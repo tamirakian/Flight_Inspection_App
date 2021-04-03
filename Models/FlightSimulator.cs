@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Threading;
 using System.ComponentModel;
+using System.IO;
 
 namespace Flight_Inspection_App
 {
+    static class Constants
+    {
+        public const string HOST_IP = "localhost";
+        public const int HOST_PORT = 5400;
+    }
+
     // the model
     class FlightSimulator : FlightSimulatorModel
     {
@@ -74,13 +81,31 @@ namespace Flight_Inspection_App
         // ****need to change
         public void start()
         {
+            this.connect(Constants.HOST_IP, Constants.HOST_PORT);
+            StreamReader reader = new StreamReader(regFlightFile);
+            NetworkStream writer = new NetworkStream(fg);
+            string line;
             new Thread(delegate ()
-            {  
-                while (!stop)
+            {
+                while ((line = reader.ReadLine()) != null)
                 {
-                    fg.Send()
+                    if (writer.CanWrite)
+                    {
+                        byte[] writeBuffer = Encoding.ASCII.GetBytes(line);
+                        writer.Write(writeBuffer, 0, writeBuffer.Length);
+                        writer.Flush();
+                        // sending data in 10HZ
+                        Thread.Sleep(100);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Sorry.  You cannot write to the Flight Gear right now.");
+                    }
                 }
-            })
+                writer.Close();
+                reader.Close();
+                fg.Close();
+            }).Start();
         }
     }
 }
