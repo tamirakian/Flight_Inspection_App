@@ -6,11 +6,46 @@
         xmlns:local="clr-namespace:Flight_Inspection_App"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Border BorderBrush="Black" BorderThickness="1" Height="443" Margin="10,10,10,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.RowSpan="2">
-            <Viewbox Margin="0,0,-1,-1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <local:testView x:Name="anomaliesUC" />
-            </Viewbox>
-        </Border>
-    </Grid>
+  <Grid>
+    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="569" Margin="110,136,0,0" Height="95">
+      <Button Content="Button" Width="75"/>
+    </ComboBox>
+    <Button Content="Open" HorizontalAlignment="Left" Margin="136,155,0,0" VerticalAlignment="Top" Width="75"/>
+    <Slider HorizontalAlignment="Left" Margin="136,197,0,0" VerticalAlignment="Top" Width="527"/>
+    <Button  HorizontalAlignment="Left" Margin="399,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
+      <StackPanel Orientation="Horizontal">
+        <Image Source="C:\Users\gabyc\source\repos\tamirakian\Flight_Inspection_App\Pitcures\playIcon.png" Width="16" Height="18"/>
+      </StackPanel>
+    </Button>
+    <Button  HorizontalAlignment="Left" Margin="368,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
+      <StackPanel Orientation="Horizontal">
+        <Image Source="C:\Users\gabyc\source\repos\tamirakian\Flight_Inspection_App\Pitcures\stopIcon.png" Width="16" Height="18"/>
+      </StackPanel>
+    </Button>
+    <Button HorizontalAlignment="Left" Margin="306,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
+      <StackPanel Orientation="Horizontal">
+        <Image Source="C:\Users\gabyc\source\repos\tamirakian\Flight_Inspection_App\Pitcures\endIcon.png" Width="16" Height="18"/>
+      </StackPanel>
+    </Button>
+    <Button HorizontalAlignment="Left" Margin="430,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
+      <StackPanel Orientation="Horizontal">
+        <Image Source="C:\Users\gabyc\source\repos\tamirakian\Flight_Inspection_App\Pitcures\pauseIcon.png" Width="16" Height="18"/>
+      </StackPanel>
+    </Button>
+    <Button HorizontalAlignment="Left" Margin="492,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
+      <StackPanel Orientation="Horizontal">
+        <Image Source="C:\Users\gabyc\source\repos\tamirakian\Flight_Inspection_App\Pitcures\endIcon.png" Width="16" Height="18"/>
+      </StackPanel>
+    </Button>
+    <Button HorizontalAlignment="Left" Margin="461,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
+      <StackPanel Orientation="Horizontal">
+        <Image Source="C:\Users\gabyc\source\repos\tamirakian\Flight_Inspection_App\Pitcures\forwardIcon.png" Width="16" Height="18"/>
+      </StackPanel>
+    </Button>
+    <Button HorizontalAlignment="Left" Margin="337,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
+      <StackPanel Orientation="Horizontal">
+        <Image Source="C:\Users\gabyc\source\repos\tamirakian\Flight_Inspection_App\Pitcures\rewindIcon.png" Width="16" Height="18"/>
+      </StackPanel>
+    </Button>
+  </Grid>
 </Window>
