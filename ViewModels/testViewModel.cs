@@ -4,9 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Flight_Inspection_App.Models;
 
-namespace Flight_Inspection_App.ViewModels
+namespace Flight_Inspection_App
 {
     class testViewModel:INotifyPropertyChanged
     {

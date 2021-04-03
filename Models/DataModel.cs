@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace Flight_Inspection_App.Models
+namespace Flight_Inspection_App
 {
     class DataModel : INotifyPropertyChanged
     {

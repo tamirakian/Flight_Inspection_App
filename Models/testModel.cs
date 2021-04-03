@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Flight_Inspection_App.Models
+namespace Flight_Inspection_App
 {
     class testModel : INotifyPropertyChanged
     {

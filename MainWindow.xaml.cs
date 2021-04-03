@@ -20,9 +20,11 @@ namespace Flight_Inspection_App
     /// </summary>
     public partial class MainWindow : Window
     {
+        private DataModel dm;
         public MainWindow()
         {
             InitializeComponent();
+            dm = new DataModel();
         }
     }
 }
