@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Threading;
 using System.ComponentModel;
+using System.IO;
 
 namespace Flight_Inspection_App
 {
+    static class Constants
+    {
+        public const string HOST_IP = "localhost";
+        public const int HOST_PORT = 5400;
+    }
+
     // the model
     class FlightSimulator : FlightSimulatorModel
     {
@@ -74,6 +81,9 @@ namespace Flight_Inspection_App
         // ****need to change
         public void start()
         {
+            this.connect(Constants.HOST_IP, Constants.HOST_PORT);
+            StreamReader reader = new StreamReader(regFlightFile);
+            StreamWriter writer = new StreamWriter(fg. );
             new Thread(delegate ()
             {  
                 while (!stop)
