@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\DataModel.cs" />
+    <Compile Include="Models\testModel.cs" />
+    <Compile Include="ViewModels\testViewModel.cs" />
     <Compile Include="ViewModels\FlightSimulatorViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
