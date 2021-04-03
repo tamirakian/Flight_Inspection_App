@@ -83,14 +83,29 @@ namespace Flight_Inspection_App
         {
             this.connect(Constants.HOST_IP, Constants.HOST_PORT);
             StreamReader reader = new StreamReader(regFlightFile);
-            StreamWriter writer = new StreamWriter(fg. );
+            NetworkStream writer = new NetworkStream(fg);
+            string line;
             new Thread(delegate ()
-            {  
-                while (!stop)
+            {
+                while ((line = reader.ReadLine()) != null)
                 {
-                    fg.Send()
+                    if (writer.CanWrite)
+                    {
+                        byte[] writeBuffer = Encoding.ASCII.GetBytes(line);
+                        writer.Write(writeBuffer, 0, writeBuffer.Length);
+                        writer.Flush();
+                        // sending data in 10HZ
+                        Thread.Sleep(100);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Sorry.  You cannot write to the Flight Gear right now.");
+                    }
                 }
-            })
+                writer.Close();
+                reader.Close();
+                fg.Close();
+            }).Start();
         }
     }
 }
