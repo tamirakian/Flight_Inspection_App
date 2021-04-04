@@ -34,7 +34,8 @@ namespace Flight_Inspection_App
                     featureTypes.Add(child);
                 }
             }
-            Console.WriteLine("hi");
+            
+            
         }
 
 
