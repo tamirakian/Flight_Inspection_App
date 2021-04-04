@@ -49,5 +49,6 @@ namespace Flight_Inspection_App
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
+
     }
 }

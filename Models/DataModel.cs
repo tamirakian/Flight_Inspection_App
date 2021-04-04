@@ -1,3 +1,4 @@
+using Flight_Inspection_App.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,9 @@ namespace Flight_Inspection_App
         public event PropertyChangedEventHandler PropertyChanged;
         private List<string> featureTypes;
         private int frameNumber;
+        private string csvFileName;
+        private featureModel featuremodel;
+
 
         public DataModel()
         {
@@ -34,10 +38,27 @@ namespace Flight_Inspection_App
                     featureTypes.Add(child);
                 }
             }
-            
-            
+
+            featuremodel = new featureModel();
+            featuremodel.startCommunicatingWithServer();
         }
 
 
+        public string pCSV
+        {
+            get
+            { return this.csvFileName; }
+            set
+            {
+                this.csvFileName = value;
+                NotifyPropertyChanged("pCSV");
+            }
+        }
+
+        public void NotifyPropertyChanged(string propName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+        }
     }
 }

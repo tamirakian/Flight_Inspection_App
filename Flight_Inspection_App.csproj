@@ -56,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\DataModel.cs" />
+    <Compile Include="Models\featureModel.cs" />
     <Compile Include="Models\testModel.cs" />
     <Compile Include="ViewModels\testViewModel.cs" />
     <Compile Include="ViewModels\FlightSimulatorViewModel.cs" />
@@ -96,6 +97,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="reg_flight.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
