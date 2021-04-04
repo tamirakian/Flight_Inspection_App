@@ -116,5 +116,10 @@
     <Resource Include="Pitcures\beginIcon.png" />
     <Resource Include="Pitcures\playIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="playback_small.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
