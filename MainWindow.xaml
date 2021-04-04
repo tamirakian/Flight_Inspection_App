@@ -3,50 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Flight_Inspection_App"
+        xmlns:controls="clr-namespace:Flight_Inspection_App"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
   <Grid>
-    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="569" Margin="110,136,0,0" Height="95">
-      <Button Content="Button" Width="75"/>
-    </ComboBox>
-    <Button Content="Open" HorizontalAlignment="Left" Margin="136,155,0,0" VerticalAlignment="Top" Width="75"/>
-    <Slider HorizontalAlignment="Left" Margin="136,197,0,0" VerticalAlignment="Top" Width="527"/>
-    <Button  HorizontalAlignment="Left" Margin="399,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
-      <StackPanel Orientation="Horizontal">
-        <Image Source="Pitcures\playIcon.png" Width="16" Height="18"/>
-      </StackPanel>
-    </Button>
-    <Button  HorizontalAlignment="Left" Margin="368,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
-      <StackPanel Orientation="Horizontal">
-        <Image Source="Pitcures\stopIcon.png" Width="16" Height="18"/>
-      </StackPanel>
-    </Button>
-    <Button HorizontalAlignment="Left" Margin="306,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
-      <StackPanel Orientation="Horizontal">
-        <Image Source="Pitcures\endIcon.png" Width="16" Height="18"/>
-      </StackPanel>
-    </Button>
-    <Button HorizontalAlignment="Left" Margin="430,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
-      <StackPanel Orientation="Horizontal">
-        <Image Source="Pitcures\pauseIcon.png" Width="16" Height="18"/>
-      </StackPanel>
-    </Button>
-    <Button HorizontalAlignment="Left" Margin="492,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
-      <StackPanel Orientation="Horizontal">
-        <Image Source="Pitcures\endIcon.png" Width="16" Height="18"/>
-      </StackPanel>
-    </Button>
-    <Button HorizontalAlignment="Left" Margin="461,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
-      <StackPanel Orientation="Horizontal">
-        <Image Source="Pitcures\forwardIcon.png" Width="16" Height="18"/>
-      </StackPanel>
-    </Button>
-    <Button HorizontalAlignment="Left" Margin="337,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
-      <StackPanel Orientation="Horizontal">
-        <Image Source="Pitcures\rewindIcon.png" Width="16" Height="18"/>
-      </StackPanel>
-    </Button>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="100" />
+      <RowDefinition Height="400*" />
+    </Grid.RowDefinitions>
+    <StackPanel Grid.Row="0" >
+      <Button Content="Start Flight Gear Simulator " Height="23" HorizontalAlignment="Right"     Margin="0,40,284,0" Name="btnSwittch" VerticalAlignment="Center" Width="168" />
+    </StackPanel>
+
+    <StackPanel Name="myStack" Grid.Row="1" >
+      <!--Here I want to display  two user controls by switching from button on Top -->
+    </StackPanel>
+      <controls:MediaPlayerController x:Name="MediaPlayer" 
   </Grid>
 </Window>
 
