@@ -61,6 +61,7 @@
     <Compile Include="Controllers\MediaPlayerController.xaml.cs">
       <DependentUpon>MediaPlayerController.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\MediaPlayerModel.cs" />
     <Compile Include="Models\DataModel.cs" />
     <Compile Include="Models\featureModel.cs" />
     <Compile Include="Models\testModel.cs" />
