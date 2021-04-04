@@ -47,7 +47,7 @@
                 <Image Source="..\Pitcures\rewindIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
-            <Button Content="Play speed" HorizontalAlignment="Left" Margin="468,155,0,0" VerticalAlignment="Top" Width="62" BorderThickness="0" Background="Grey"/>
+            <Button Content="Play speed" HorizontalAlignment="Left" Margin="468,155,0,0" VerticalAlignment="Top" Width="62" BorderThickness="0" Background="Transparent"/>
             <Button Content="Button" HorizontalAlignment="Left" Margin="535,155,0,0" VerticalAlignment="Top" Width="19" Height="15" Background="White"/>
         </Grid>
 </UserControl>

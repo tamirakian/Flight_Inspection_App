@@ -18,7 +18,7 @@
     <StackPanel Name="myStack" Grid.Row="1" >
       <!--Here I want to display  two user controls by switching from button on Top -->
     </StackPanel>
-      <controls:MediaPlayerController x:Name="MediaPlayer" 
-  </Grid>
+        <controls:MediaPlayerController x:Name="MediaPlayer" />
+    </Grid>
 </Window>
 
