@@ -58,6 +58,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\ImportFileController.xaml.cs">
+      <DependentUpon>ImportFileController.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\MediaPlayerController.xaml.cs">
       <DependentUpon>MediaPlayerController.xaml</DependentUpon>
     </Compile>
@@ -67,6 +70,10 @@
     <Compile Include="Models\testModel.cs" />
     <Compile Include="ViewModels\testViewModel.cs" />
     <Compile Include="ViewModels\FlightSimulatorViewModel.cs" />
+    <Page Include="Controllers\ImportFileController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
