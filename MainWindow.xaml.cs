@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net.Sockets;
 
 namespace Flight_Inspection_App
 {
@@ -23,9 +24,11 @@ namespace Flight_Inspection_App
         private Control currentUser;
         private MediaPlayerController mpc;
         private DataModel dm;
+        public Socket client;
         public MainWindow()
         {
             InitializeComponent();
+            client = new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
             dm = new DataModel();
             mpc = new MediaPlayerController();
             currentUser = mpc;

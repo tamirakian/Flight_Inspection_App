@@ -5,46 +5,46 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Flight_Inspection_App"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid>
             <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="569" Margin="110,136,0,0" Height="95" Background="White">
                 <Button Content="Button" Width="75"/>
             </ComboBox>
-            <Button Content="Open" HorizontalAlignment="Left" Margin="136,155,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Open" Name="openButton" HorizontalAlignment="Left" Margin="136,155,0,0" VerticalAlignment="Top" Width="75"/>
             <Slider HorizontalAlignment="Left" Margin="136,197,0,0" VerticalAlignment="Top" Width="527"/>
-            <Button  HorizontalAlignment="Left" Margin="329,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
+        <Button Name="playButton" HorizontalAlignment="Left" Margin="329,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="Pitcures\playIcon.png" Width="16" Height="18"/>
+                    <Image Source="..\Pitcures\playIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
-            <Button  HorizontalAlignment="Left" Margin="298,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
+        <Button Name="stopButton" HorizontalAlignment="Left" Margin="298,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="Pitcures\stopIcon.png" Width="16" Height="18"/>
+                <Image Source="..\Pitcures\stopIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
-            <Button HorizontalAlignment="Left" Margin="236,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
+        <Button Name="beginButton" HorizontalAlignment="Left" Margin="236,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="Pitcures\endIcon.png" Width="16" Height="18"/>
+                <Image Source="..\Pitcures\beginIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
-            <Button HorizontalAlignment="Left" Margin="360,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
+        <Button Name="pauseButton" HorizontalAlignment="Left" Margin="360,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="Pitcures\pauseIcon.png" Width="16" Height="18"/>
+                <Image Source="..\Pitcures\pauseIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
-            <Button HorizontalAlignment="Left" Margin="422,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
+        <Button Name="endButton" HorizontalAlignment="Left" Margin="422,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="Pitcures\endIcon.png" Width="16" Height="18"/>
+                <Image Source="..\Pitcures\endIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
-            <Button HorizontalAlignment="Left" Margin="391,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
+        <Button Name="forwardButton" HorizontalAlignment="Left" Margin="391,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="Pitcures\forwardIcon.png" Width="16" Height="18"/>
+                <Image Source="..\Pitcures\forwardIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
-            <Button HorizontalAlignment="Left" Margin="267,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
+        <Button Name="rewindButton" HorizontalAlignment="Left" Margin="267,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="Pitcures\rewindIcon.png" Width="16" Height="18"/>
+                <Image Source="..\Pitcures\rewindIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
             <Button Content="Play speed" HorizontalAlignment="Left" Margin="468,155,0,0" VerticalAlignment="Top" Width="62" BorderThickness="0" Background="Grey"/>
