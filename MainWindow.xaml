@@ -6,5 +6,26 @@
         xmlns:controls="clr-namespace:Flight_Inspection_App"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <StackPanel HorizontalAlignment="Stretch" Height="300" Margin="0,80,0,0" VerticalAlignment="Top" Width="300">
+        <TextBlock TextWrapping="Wrap" Text="Welcome to the Flight Inspection App" HorizontalAlignment="Center" FontSize="16" Height="69" Margin="10,0" Width="280" />
+        <Button x:Name="Import_Button" Height="58" Click="ImportBTn_Click" Margin="20,0,34,0">
+            <StackPanel>
+                <TextBlock><Run Text="Import Flight Regression File"/></TextBlock>
+                <Image Source=".\Pictures\importIcon.png" Width="30" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="Start_Button" Height="58" Click="StartBTn_Click" Margin="20,0,34,0">
+            <StackPanel>
+                <TextBlock><Run Text="Open the Flight Gear App"/></TextBlock>
+                <Image Source=".\Pictures\PoweronIcon.jpg" Width="30" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="Exit_Button" Height="58" Click="StartBTn_Click" Margin="20,0,34,0">
+            <StackPanel>
+                <TextBlock><Run Text="Exit"/></TextBlock>
+                <Image Source=".\Pictures\exitIcon.png" Width="30" />
+            </StackPanel>
+        </Button>
+    </StackPanel>
 </Window>
 
