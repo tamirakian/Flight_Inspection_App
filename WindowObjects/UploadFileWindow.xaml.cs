@@ -10,23 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net.Sockets;
 
-namespace Flight_Inspection_App.Controllers
+namespace Flight_Inspection_App.WindowObjects
 {
     /// <summary>
-    /// Interaction logic for ImportFileController.xaml
+    /// Interaction logic for UploadFileWindow.xaml
     /// </summary>
-    public partial class ImportFileController : UserControl
+    public partial class UploadFileWindow : Window
     {
         private Microsoft.Win32.OpenFileDialog dlg;
         private string filename;
         private FlightSimulatorModel fs;
-        private UserControl control;
 
-        public ImportFileController()
+        public UploadFileWindow()
         {
             InitializeComponent();
             // Create OpenFileDialog
@@ -34,14 +32,9 @@ namespace Flight_Inspection_App.Controllers
             fs = new FlightSimulator(new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp));
         }
 
-        public ImportFileController(UserControl control) : this()
-        {
-            this.control = control;
-        }
-
         private void BtnUpload_Click(object sender, RoutedEventArgs e)
         {
-             
+
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             // Set filter for file extension and default file extension 
             dlg.DefaultExt = ".csv";
@@ -55,19 +48,6 @@ namespace Flight_Inspection_App.Controllers
                 // Open document 
                 filename = dlg.FileName;
                 FilePath.Text = filename;
-            }
-        }
-
-        private void BtnSubmit_Click(object sender, RoutedEventArgs e)
-        {
-            if(FilePath.Text != "")
-            {
-                fs.regFlightFile = filename;
-                return;
-            }
-            else
-            {
-                MessageBox.Show("Please chose a path before submitting");
             }
         }
     }

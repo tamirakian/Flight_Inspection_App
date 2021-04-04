@@ -99,7 +99,7 @@ namespace Flight_Inspection_App
                     }
                     else
                     {
-                        Console.WriteLine("Sorry. You cannot write to the Flight Gear right now.");
+                        Console.WriteLine("Sorry.  You cannot write to the Flight Gear right now.");
                     }
                 }
                 writer.Close();
