@@ -107,6 +107,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Pictures\exitIcon.png" />
+    <Resource Include="Pictures\importIcon.png" />
+    <Resource Include="Pictures\PoweronIcon.jpg" />
     <Content Include="reg_flight.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -115,13 +118,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Pitcures\stopIcon.png" />
-    <Resource Include="Pitcures\endIcon.png" />
-    <Resource Include="Pitcures\pauseIcon.png" />
-    <Resource Include="Pitcures\rewindIcon.png" />
-    <Resource Include="Pitcures\forwardIcon.png" />
-    <Resource Include="Pitcures\beginIcon.png" />
-    <Resource Include="Pitcures\playIcon.png" />
+    <Resource Include="Pictures\stopIcon.png" />
+    <Resource Include="Pictures\endIcon.png" />
+    <Resource Include="Pictures\pauseIcon.png" />
+    <Resource Include="Pictures\rewindIcon.png" />
+    <Resource Include="Pictures\forwardIcon.png" />
+    <Resource Include="Pictures\beginIcon.png" />
+    <Resource Include="Pictures\playIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="playback_small.xml">

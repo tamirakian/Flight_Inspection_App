@@ -6,19 +6,5 @@
         xmlns:controls="clr-namespace:Flight_Inspection_App"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="100" />
-      <RowDefinition Height="400*" />
-    </Grid.RowDefinitions>
-    <StackPanel Grid.Row="0" >
-      <Button Content="Start Flight Gear Simulator " Height="23" HorizontalAlignment="Right"     Margin="0,40,284,0" Name="btnSwittch" VerticalAlignment="Center" Width="168" />
-    </StackPanel>
-
-    <StackPanel Name="myStack" Grid.Row="1" >
-      <!--Here I want to display  two user controls by switching from button on Top -->
-    </StackPanel>
-        <controls:MediaPlayerController x:Name="MediaPlayer" />
-    </Grid>
 </Window>
 

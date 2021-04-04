@@ -14,37 +14,37 @@
             <Slider HorizontalAlignment="Left" Margin="136,197,0,0" VerticalAlignment="Top" Width="527"/>
         <Button Name="playButton" HorizontalAlignment="Left" Margin="329,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="..\Pitcures\playIcon.png" Width="16" Height="18"/>
+                    <Image Source="..\Pictures\playIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
         <Button Name="stopButton" HorizontalAlignment="Left" Margin="298,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
                 <StackPanel Orientation="Horizontal">
-                <Image Source="..\Pitcures\stopIcon.png" Width="16" Height="18"/>
+                <Image Source="..\Pictures\stopIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
         <Button Name="beginButton" HorizontalAlignment="Left" Margin="236,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
                 <StackPanel Orientation="Horizontal">
-                <Image Source="..\Pitcures\beginIcon.png" Width="16" Height="18"/>
+                <Image Source="..\Pictures\beginIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
         <Button Name="pauseButton" HorizontalAlignment="Left" Margin="360,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
                 <StackPanel Orientation="Horizontal">
-                <Image Source="..\Pitcures\pauseIcon.png" Width="16" Height="18"/>
+                <Image Source="..\Pictures\pauseIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
         <Button Name="endButton" HorizontalAlignment="Left" Margin="422,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
                 <StackPanel Orientation="Horizontal">
-                <Image Source="..\Pitcures\endIcon.png" Width="16" Height="18"/>
+                <Image Source="..\Pictures\endIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
         <Button Name="forwardButton" HorizontalAlignment="Left" Margin="391,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
                 <StackPanel Orientation="Horizontal">
-                <Image Source="..\Pitcures\forwardIcon.png" Width="16" Height="18"/>
+                <Image Source="..\Pictures\forwardIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
         <Button Name="rewindButton" HorizontalAlignment="Left" Margin="267,155,0,0" VerticalAlignment="Top" Width="26" Height="19">
                 <StackPanel Orientation="Horizontal">
-                <Image Source="..\Pitcures\rewindIcon.png" Width="16" Height="18"/>
+                <Image Source="..\Pictures\rewindIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
             <Button Content="Play speed" HorizontalAlignment="Left" Margin="468,155,0,0" VerticalAlignment="Top" Width="62" BorderThickness="0" Background="Transparent"/>

@@ -21,26 +21,9 @@ namespace Flight_Inspection_App
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Control currentUser;
-        private MediaPlayerController mpc;
-        private DataModel dm;
-        public Socket client;
         public MainWindow()
         {
-            InitializeComponent();
-            client = new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
-            dm = new DataModel();
-            mpc = new MediaPlayerController();
-            currentUser = mpc;
-            myStack.Children.Add(currentUser);
-        }
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            myStack.Children.Clear();
-            if(currentUser == mpc)
-            {
-                myStack.Children.Add(currentUser); 
-            }
+            InitializeComponent();     
         }
     }
 }
