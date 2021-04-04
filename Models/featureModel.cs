@@ -5,11 +5,21 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
 namespace Flight_Inspection_App.Models
 {
     class featureModel : INotifyPropertyChanged
     {
+        [DllImport("anomalyProject.dll")]
+        public static extern IntPtr CreateTimeSeries(string str);
+
+        [DllImport("anomalyProject.dll")]
+        public static extern IntPtr Create(IntPtr str);
+
+        [DllImport("anomalyProject.dll")]
+        public static extern void learnNormalExtern(string str);
+
         public event PropertyChangedEventHandler PropertyChanged;
         private string trainCsvFile;
         private string testCsvFile;
@@ -23,8 +33,9 @@ namespace Flight_Inspection_App.Models
         }
 
         public void startCommunicatingWithServer() {
-            this.client = new TcpClient("127.0.0.1", 5800);
-            sendLine("hello from client");
+            //this.client = new TcpClient("127.0.0.1", 5800);
+            //sendLine("hello from client");
+            IntPtr detector = Create(CreateTimeSeries(trainCsvFile));
         }
 
         public void sendLine(string line)
