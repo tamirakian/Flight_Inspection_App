@@ -64,7 +64,26 @@ namespace Flight_Inspection_App.Models
                 counter++;
             }
             tempCalc += counter / 10;
-            return 1;
+            return tempCalc;
+        }
+        string DisplayTime(int seconds)
+        {
+            int min = 0;
+            string display;
+            if (seconds >= 60)
+            {
+                min += seconds / 60;
+                seconds = seconds - min * 60;
+            }
+            if (min > 0)
+            {
+                display = min.ToString() + ":" + seconds.ToString();
+            }
+            else
+            {
+                display = seconds.ToString();
+            }
+            return display;
         }
     }
 }
