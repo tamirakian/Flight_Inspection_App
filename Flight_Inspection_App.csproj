@@ -69,6 +69,12 @@
     <Compile Include="WindowObjects\UploadFileWindow.xaml.cs">
       <DependentUpon>UploadFileWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowObjects\UploadFlightGearLocationWindow.xaml.cs">
+      <DependentUpon>UploadFlightGearLocationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowObjects\UserFeaturesWindow.xaml.cs">
+      <DependentUpon>UserFeaturesWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -86,6 +92,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowObjects\UploadFileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowObjects\UploadFlightGearLocationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowObjects\UserFeaturesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -11,19 +11,18 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Net.Sockets;
 
 namespace Flight_Inspection_App.WindowObjects
 {
     /// <summary>
-    /// Interaction logic for UploadFileWindow.xaml
+    /// Interaction logic for UploadFlightGearLocationWindow.xaml
     /// </summary>
-    public partial class UploadFileWindow : Window
+    public partial class UploadFlightGearLocationWindow : Window
     {
         private Microsoft.Win32.OpenFileDialog dlg;
         private string filename;
 
-        public UploadFileWindow()
+        public UploadFlightGearLocationWindow()
         {
             InitializeComponent();
             // Create OpenFileDialog
@@ -33,8 +32,8 @@ namespace Flight_Inspection_App.WindowObjects
         private void BtnUpload_Click(object sender, RoutedEventArgs e)
         {
             // Set filter for file extension and default file extension 
-            dlg.DefaultExt = ".csv";
-            dlg.Filter = "CSV files (*.csv)|*.csv";
+            dlg.DefaultExt = ".exe";
+            dlg.Filter = "Exe Files(.exe)| *.exe";
 
             // Display OpenFileDialog by calling ShowDialog method 
             Nullable<bool> result = dlg.ShowDialog();
@@ -45,7 +44,6 @@ namespace Flight_Inspection_App.WindowObjects
                 filename = dlg.FileName;
                 FilePath.Text = filename;
             }
-            this.Close();
         }
 
         private void BtnSubmit_Click(object sender, RoutedEventArgs e)

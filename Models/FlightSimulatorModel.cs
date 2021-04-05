@@ -13,6 +13,7 @@ namespace Flight_Inspection_App
         void connect(string ip, int port);
         void disconnect();
         void start();
+        void UploadReg(string name);
 
         // The flight simulator properties
         string regFlightFile { set; get; }

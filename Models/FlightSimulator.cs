@@ -107,5 +107,10 @@ namespace Flight_Inspection_App
                 fg.Close();
             }).Start();
         }
+
+        public void UploadReg(string name)
+        {
+            regFlightFile = name;
+        }
     }
 }
