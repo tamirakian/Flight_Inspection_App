@@ -52,5 +52,19 @@ namespace Flight_Inspection_App.Models
                 NotifyPropertyChanged("time");
             }
         }
+        int GetTimeInSeconds()
+        {
+            int counter = 0;
+            int rest = 0;
+            int tempCalc = 0;
+            StreamReader reader = new StreamReader(CSV);
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                counter++;
+            }
+            tempCalc += counter / 10;
+            return 1;
+        }
     }
 }

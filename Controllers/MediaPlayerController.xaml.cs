@@ -21,9 +21,11 @@ namespace Flight_Inspection_App
     public partial class MediaPlayerController : UserControl
     {
         private MediaPlayerViewModel mpvm;
+        string V_CSVFile;
+        string V_curTime;
         public MediaPlayerController()
         {
-            this.mpvm = new MediaPlayerViewModel(new Models.MediaPlayerModel());
+            this.mpvm = new MediaPlayerViewModel(new Models.MediaPlayerModel(V_CSVFile , V_curTime));
             InitializeComponent();
         }
     }
