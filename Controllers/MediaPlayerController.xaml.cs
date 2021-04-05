@@ -29,10 +29,18 @@ namespace Flight_Inspection_App
             this.mpvm = new MediaPlayerViewModel(new Models.MediaPlayerModel(V_CSVFile , V_curTime));
             InitializeComponent();
         }
-        private static readonly Regex _regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
-        private static bool IsTextAllowed(string text)
+        // checks if the input given by the user is a decimal number.
+        private void NumberDecimalValidationTextbox(object sender, TextCompositionEventArgs e)
         {
-            return !_regex.IsMatch(text);
+            var regex = new Regex(@"^[0-9]*(?:\.[0-9]*)?$");
+            if (regex.IsMatch(e.Text) && !(e.Text == "." && ((TextBox)sender).Text.Contains(e.Text)))
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+        private void btnPlay_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
