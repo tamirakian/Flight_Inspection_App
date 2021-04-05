@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Net.Sockets;
 
 namespace Flight_Inspection_App.WindowObjects
 {
@@ -19,9 +20,14 @@ namespace Flight_Inspection_App.WindowObjects
     /// </summary>
     public partial class UserFeaturesWindow : Window
     {
-        public UserFeaturesWindow()
+        private FlightSimulatorViewModel fsView;
+
+        public UserFeaturesWindow(string csvFile)
         {
             InitializeComponent();
+            fsView = new FlightSimulatorViewModel(new FlightSimulator(new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)));
+            fsView.VM_UploadReg(csvFile);
+            DataContext = fsView;
         }
     }
 }

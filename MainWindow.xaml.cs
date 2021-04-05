@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Net.Sockets;
 using Flight_Inspection_App.WindowObjects;
 using System.Diagnostics;
+using Flight_Inspection_App.ViewModels;
+using Flight_Inspection_App.Models;
 
 namespace Flight_Inspection_App
 {
@@ -23,35 +25,33 @@ namespace Flight_Inspection_App
     /// </summary>
     public partial class MainWindow : Window
     {
-        private FlightSimulatorViewModel fsView;
-        private string fgLocation;
+        private MainWindowViewModel vm;
 
         public MainWindow()
         {
             InitializeComponent();
-            fsView = new FlightSimulatorViewModel(new FlightSimulator(new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)));
-            DataContext = fsView;
+            vm = new MainWindowViewModel(new MainWindowModel(null, null));
         }
 
         private void ImportBTn_Click(object sender, RoutedEventArgs e)
         {
             UploadFileWindow uploadWin = new UploadFileWindow();
             uploadWin.ShowDialog();
-            fsView.VM_UploadReg(uploadWin.FileName);
+            vm.VM_CSVFile = uploadWin.FileName;
         }
 
         private void StartBTn_Click(object sender, RoutedEventArgs e)
         {
-            if (fgLocation == null)
+            if (vm.VM_FGLocation == null)
             {
                 UploadFlightGearLocationWindow uploadFGWin = new UploadFlightGearLocationWindow();
                 uploadFGWin.ShowDialog();
-                fgLocation = uploadFGWin.FileName;
+                vm.VM_FGLocation = uploadFGWin.FileName;
             }
             else
             {
-                Process.Start(fgLocation);
-                UserFeaturesWindow featureWin = new UserFeaturesWindow();
+                Process.Start(vm.VM_FGLocation);
+                UserFeaturesWindow featureWin = new UserFeaturesWindow(vm.VM_CSVFile);
                 featureWin.Show();
                 this.Close();
             }
