@@ -121,7 +121,11 @@ namespace Flight_Inspection_App.Models
             }
             int timeSample = timeToStart * 10;
             int sampleCounter = 0;
-            while (sampleCounter != timeSample) { };
+            StreamReader reader = new StreamReader(this.CSV);
+            while (sampleCounter != timeSample)
+            {
+                
+            }
         }
     }
 }
