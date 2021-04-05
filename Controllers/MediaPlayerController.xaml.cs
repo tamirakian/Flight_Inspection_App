@@ -20,8 +20,10 @@ namespace Flight_Inspection_App
     /// </summary>
     public partial class MediaPlayerController : UserControl
     {
+        private MediaPlayerViewModel mpvm;
         public MediaPlayerController()
         {
+            this.mpvm = new MediaPlayerViewModel(new Models.MediaPlayerModel());
             InitializeComponent();
         }
     }
