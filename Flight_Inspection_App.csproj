@@ -58,9 +58,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controllers\MediaPlayerController.xaml.cs">
-      <DependentUpon>MediaPlayerController.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Models\DataModel.cs" />
     <Compile Include="Models\featureModel.cs" />
     <Compile Include="Models\testModel.cs" />
@@ -87,10 +84,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Controllers\MediaPlayerController.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="WindowObjects\UploadFileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
