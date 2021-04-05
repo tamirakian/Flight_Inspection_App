@@ -45,7 +45,6 @@ namespace Flight_Inspection_App.WindowObjects
                 filename = dlg.FileName;
                 FilePath.Text = filename;
             }
-            this.Close();
         }
 
         private void BtnSubmit_Click(object sender, RoutedEventArgs e)
