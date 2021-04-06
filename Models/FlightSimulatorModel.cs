@@ -19,6 +19,7 @@ namespace Flight_Inspection_App
         string regFlightFile { set; get; }
         string settingsFile { set; get; }
         Dictionary<string, Boolean> Flags { set; get; }
+        string CurTime { set; get; }
         Boolean Stop { set; get; }
     }
 }
