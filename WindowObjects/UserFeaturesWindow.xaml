@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Flight_Inspection_App.WindowObjects"
         mc:Ignorable="d"
-        Title="UserFeaturesWindow" Height="450" Width="800">
+        Title="UserFeaturesWindow" Height="426.501" Width="800">
     <Grid>
         <Grid>
             <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="569" Margin="110,317,0,0" Height="95" Background="White">
