@@ -182,5 +182,11 @@
                 </Canvas>
             </Canvas>
         </Viewbox>
+        <Canvas HorizontalAlignment="Left" Height="92" Margin="27,196,0,0" VerticalAlignment="Top" Width="16" Background="#FF8C8888">
+            <Rectangle HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Width="15" Fill="Black" Canvas.Top="{Binding Throttle}"/>
+        </Canvas>
+        <Canvas HorizontalAlignment="Left" Height="15" Margin="48,291,0,0" VerticalAlignment="Top" Width="94" Background="#FF8E8989">
+            <Rectangle Fill="Black" HorizontalAlignment="Left" Height="15" VerticalAlignment="Top" Width="22" Canvas.Left="{Binding Rudder}"/>
+        </Canvas>
     </Grid>
 </Window>
