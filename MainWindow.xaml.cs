@@ -13,6 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net.Sockets;
+using Flight_Inspection_App.WindowObjects;
+using System.Diagnostics;
+using Flight_Inspection_App.ViewModels;
+using Flight_Inspection_App.Models;
 
 namespace Flight_Inspection_App
 {
@@ -21,26 +25,41 @@ namespace Flight_Inspection_App
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Control currentUser;
-        private MediaPlayerController mpc;
-        private DataModel dm;
-        public Socket client;
+        private MainWindowViewModel vm;
+
         public MainWindow()
         {
             InitializeComponent();
-            client = new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
-            dm = new DataModel();
-            mpc = new MediaPlayerController();
-            currentUser = mpc;
-            myStack.Children.Add(currentUser);
+            vm = new MainWindowViewModel(new MainWindowModel(null, null));
         }
-        private void button1_Click(object sender, RoutedEventArgs e)
+
+        private void ImportBTn_Click(object sender, RoutedEventArgs e)
         {
-            myStack.Children.Clear();
-            if(currentUser == mpc)
+            UploadFileWindow uploadWin = new UploadFileWindow();
+            uploadWin.ShowDialog();
+            vm.VM_CSVFile = uploadWin.FileName;
+        }
+
+        private void StartBTn_Click(object sender, RoutedEventArgs e)
+        {
+            if (vm.VM_FGLocation == null)
             {
-                myStack.Children.Add(currentUser); 
+                UploadFlightGearLocationWindow uploadFGWin = new UploadFlightGearLocationWindow();
+                uploadFGWin.ShowDialog();
+                vm.VM_FGLocation = uploadFGWin.FileName;
             }
+            else
+            {
+                Process.Start(vm.VM_FGLocation);
+                UserFeaturesWindow featureWin = new UserFeaturesWindow(vm.VM_CSVFile);
+                featureWin.Show();
+                this.Close();
+            }
+        }
+
+        private void ExitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -41,5 +41,10 @@ namespace Flight_Inspection_App
         {
             get { return model.settingsFile; }
         }
+
+        public void VM_UploadReg(string name)
+        {
+            model.UploadReg(name);
+        }
     }
 }

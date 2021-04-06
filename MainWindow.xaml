@@ -5,21 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:Flight_Inspection_App"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="100" />
-      <RowDefinition Height="400*" />
-    </Grid.RowDefinitions>
-    <StackPanel Grid.Row="0" >
-      <Button Content="Start Flight Gear Simulator " Height="23" HorizontalAlignment="Right"     Margin="0,40,284,0" Name="btnSwittch" VerticalAlignment="Center" Width="168" />
+        Title="Flight Inspection App" Height="450" Width="800">
+    <StackPanel HorizontalAlignment="Stretch" Height="300" Margin="0,80,0,0" VerticalAlignment="Top" Width="300">
+        <TextBlock TextWrapping="Wrap" Text="Welcome to the Flight Inspection App" HorizontalAlignment="Center" FontSize="16" Height="69" Margin="10,0" Width="280" />
+        <Button x:Name="Import_Button" Height="58" Click="ImportBTn_Click" Margin="20,0,34,0">
+            <StackPanel>
+                <TextBlock><Run Text="Import Flight Regression File"/></TextBlock>
+                <Image Source=".\Pictures\importIcon.png" Width="30" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="Start_Button" Height="58" Click="StartBTn_Click" Margin="20,0,34,0">
+            <StackPanel>
+                <TextBlock><Run Text="Open the Flight Gear App"/></TextBlock>
+                <Image Source=".\Pictures\PoweronIcon.jpg" Width="30" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="Exit_Button" Height="58" Click="ExitBtn_Click" Margin="20,0,34,0">
+            <StackPanel>
+                <TextBlock><Run Text="Exit"/></TextBlock>
+                <Image Source=".\Pictures\exitIcon.png" Width="30" />
+            </StackPanel>
+        </Button>
     </StackPanel>
-
-    <StackPanel Name="myStack" Grid.Row="1" >
-      <!--Here I want to display  two user controls by switching from button on Top -->
-    </StackPanel>
-      <controls:MediaPlayerController x:Name="MediaPlayer" 
-  </Grid>
 </Window>
 
     
