@@ -25,13 +25,7 @@ namespace Flight_Inspection_App.Models
         {
             this.CSV = flight;
             this.curTime = time;
-            flags.Add("Play", false);
-            flags.Add("Stop", false);
-            flags.Add("Pause", false);
-            flags.Add("End", false);
-            flags.Add("Begin", false);
-            flags.Add("Rewind", false);
-            flags.Add("Forward", false);
+ 
         }
         public void NotifyPropertyChanged(string propName)
         {
@@ -121,10 +115,11 @@ namespace Flight_Inspection_App.Models
             }
             int timeSample = timeToStart * 10;
             int sampleCounter = 0;
+            string line;
             StreamReader reader = new StreamReader(this.CSV);
             while (sampleCounter != timeSample)
             {
-                
+                line = reader.ReadLine();
             }
         }
     }

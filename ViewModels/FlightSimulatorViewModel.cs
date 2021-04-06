@@ -61,6 +61,29 @@ namespace Flight_Inspection_App
                 {
                     model.CurTime = "00:00:00";
                 }
+                if (value["End"])
+                {
+                    model.CurTime = model.FlightLen();
+                }
+                if (value["Pause"])
+                {
+                    model.Stop = true;
+                }
+                if (value["Rewind"])
+                {
+                    int numOfCurSamples = model.CurSampleLen();
+                    if (numOfCurSamples <= 10)
+                    {
+                        model.CurTime = "00:00:00";
+                    }
+                    else
+                    {
+                        if (model.GetCurMinutes() == "00" && model.GetCurSeconds() == "00")
+                        {
+                        
+                        }
+                    }
+                }
             }
         }
 

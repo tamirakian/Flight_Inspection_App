@@ -15,6 +15,14 @@ namespace Flight_Inspection_App
         void start();
         void UploadReg(string name);
 
+        // helper functions.
+        string FlightLen();
+        int CurSampleLen();
+        string GetCurMinutes();
+        string GetCurSeconds();
+        string GetCurCentiseconds();
+
+
         // The flight simulator properties
         string regFlightFile { set; get; }
         string settingsFile { set; get; }

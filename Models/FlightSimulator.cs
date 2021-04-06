@@ -33,8 +33,9 @@ namespace Flight_Inspection_App
         // a dictionary to keep the check which buttons was pressed.
         Dictionary<string, Boolean> flags = new Dictionary<string, bool>();
 
-        // in the format of HH:MM:SS
+        // in the format of MM:SS:CSCS
         string curTime;
+        int timeSamples;
 
         // constructor - initializing the flight gear socket, and setting the stop value to false
         public FlightSimulator(Socket fg)
@@ -145,7 +146,7 @@ namespace Flight_Inspection_App
                     }
                     else
                     {
-                        Console.WriteLine("Sorry.  You cannot write to the Flight Gear right now.");
+                        Console.WriteLine("Sorry. You cannot write to the Flight Gear right now.");
                     }
                 }
                 writer.Close();
@@ -154,30 +155,95 @@ namespace Flight_Inspection_App
             }).Start();
         }
 
+        // return the entire flight time.
         public string FlightLen()
         {
             StreamReader reader = new StreamReader(regFlightFile);
-            int sampleCounter = 0;
+            timeSamples = 0;
             string line;
+            // here we read the entire CSV file and count the time samples.
             while ((line = reader.ReadLine()) != null)
             {
-                sampleCounter++;
+                timeSamples++;
             }
-            int milisecondsNum = sampleCounter * 10;
-            int minutes = milisecondsNum / (60 * 10);
-            int seconds = (milisecondsNum - (minutes * 100*60)) / 100;
-            int miliseconds = (milisecondsNum - (minutes * 100 * 60) - (seconds * 100));
-            CurTime = minutes + ":" + seconds + ":" + miliseconds;
+            // calc the time.
+            int centisecondsNum = timeSamples * 10;
+            int minutes = centisecondsNum / (60 * 10);
+            int seconds = (centisecondsNum - (minutes * 100*60)) / 100;
+            int centiseconds = (centisecondsNum - (minutes * 100 * 60) - (seconds * 100));
+            // return the entire flight time in a string.
+            return CurTime = minutes + ":" + seconds + ":" + centiseconds;
         } 
-
-        public void UpdateTime()
+        
+        // returns the number of current time samples that were read.
+        public int CurSampleLen()
         {
+            // parse the time member.
             string minutes = curTime.Substring(0, 2);
             string seconds = curTime.Substring(3, 2);
-            string miliseconds = curTime.Substring(6, 2);
-            if (Int32.Parse(miliseconds) == 90)
+            string centiseconds = curTime.Substring(6, 2);
+            return ((Int32.Parse(minutes) * 60 * 10) + (Int32.Parse(seconds) * 10) + (Int32.Parse(centiseconds) / 10));
+        }
+
+        public string GetCurMinutes()
+        {
+            return curTime.Substring(0, 2);
+        }
+        public string GetCurSeconds()
+        {
+            return curTime.Substring(3, 2);
+        }
+        public string GetCurCentiseconds()
+        {
+            return curTime.Substring(6, 2);
+        }
+
+        public string NumOfTimeSamplesToStr(int timeSamples)
+        {
+            int min = timeSamples / 600;
+            int sec = timeSamples - (min * 600);
+            int centisec = timeSamples - (sec * 10);
+            if (timeSamples == 0)
             {
-                miliseconds = "00";
+                return "00:00:00";
+            }
+            else if (timeSamples < 10)
+            {
+                return ("00:00:" + centisec.ToString());
+            }
+            else if (timeSamples < 600)
+                {
+                if ((timeSamples - (sec * 10)) == 0)
+                {
+                    return ("00:" + sec.ToString() + ":00");
+                }
+                return ("00:" + sec.ToString() + ":" + centisec.ToString());
+            }
+            else
+            {
+                if(timeSamples - (min * 600) == 0)
+                {
+                    return (min.ToString() + ":00:00");
+                }
+                else if(timeSamples - (min * 600) > 0 && (timeSamples - (min * 600) - (sec * 10)) == 0)
+                {
+                    return("")
+                }
+            }
+        }
+
+        // this function will go to the next time sample. 
+        public void UpdateTime()
+        {
+            // parse the time member.
+            string minutes = curTime.Substring(0, 2);
+            string seconds = curTime.Substring(3, 2);
+            string centiseconds = curTime.Substring(6, 2);
+            // if we are at the limit of the centiseconds.
+            if (Int32.Parse(centiseconds) == 90)
+            {
+                centiseconds = "00";
+                // if we are at the limit of the seconds.
                 if (Int32.Parse(seconds) == 59)
                 {
                     seconds = "00";
@@ -194,11 +260,11 @@ namespace Flight_Inspection_App
             }
             else
             {
-                int tempMiliSeconds = Int32.Parse(miliseconds);
-                tempMiliSeconds++;
-                seconds = tempMiliSeconds.ToString();
+                int tempCentiSeconds = Int32.Parse(centiseconds);
+                tempCentiSeconds++;
+                seconds = tempCentiSeconds.ToString();
             }
-            CurTime = minutes + ":" + seconds + ":" + miliseconds;
+            CurTime = minutes + ":" + seconds + ":" + centiseconds;
         }
 
         public void UploadReg(string name)
