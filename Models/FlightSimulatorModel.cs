@@ -18,5 +18,7 @@ namespace Flight_Inspection_App
         // The flight simulator properties
         string regFlightFile { set; get; }
         string settingsFile { set; get; }
+        Dictionary<string, Boolean> Flags { set; get; }
+        Boolean Stop { set; get; }
     }
 }

@@ -30,12 +30,25 @@ namespace Flight_Inspection_App
         Socket fg;
         volatile Boolean stop;
 
+        // a dictionary to keep the check which buttons was pressed.
+        Dictionary<string, Boolean> flags = new Dictionary<string, bool>();
+
+        // in the format of HH:MM:SS
+        string curTime;
+
         // constructor - initializing the flight gear socket, and setting the stop value to false
         public FlightSimulator(Socket fg)
         {
             this.fg = fg;
             // indicating that the socket is running.
             stop = false;
+            flags.Add("Play", false);
+            flags.Add("Stop", false);
+            flags.Add("Pause", false);
+            flags.Add("End", false);
+            flags.Add("Begin", false);
+            flags.Add("Rewind", false);
+            flags.Add("Forward", false);
         }
 
         public void NotifyPropertyChanged(string propName)
@@ -64,6 +77,38 @@ namespace Flight_Inspection_App
             }
         }
 
+        public Dictionary<string, Boolean> Flags
+        {
+            get { return flags; }
+            set
+            {
+                flags = value;
+                NotifyPropertyChanged("Flags");
+            }
+        }
+
+        public string CurTime
+        {
+            get { return curTime; }
+            set { 
+                curTime = value;
+                NotifyPropertyChanged("CurTime"); 
+            }
+        }
+
+        public Boolean Stop
+        {
+            get
+            {
+                return stop;
+            }
+            set
+            {
+                stop = value;
+                NotifyPropertyChanged("Stop");
+            }
+        }
+
         // connect to the flight gear socket.
         public void connect(string ip, int port)
         {
@@ -87,7 +132,7 @@ namespace Flight_Inspection_App
             string line;
             new Thread(delegate ()
             {
-                while ((line = reader.ReadLine()) != null)
+                while ((line = reader.ReadLine()) != null || Stop)
                 {
                     if (writer.CanWrite)
                     {

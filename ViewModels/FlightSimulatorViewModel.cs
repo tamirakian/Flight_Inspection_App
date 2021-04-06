@@ -42,6 +42,35 @@ namespace Flight_Inspection_App
             get { return model.settingsFile; }
         }
 
+        public Dictionary<string, Boolean> VM_Flags
+        {
+            get { return model.Flags; }
+            set
+            {
+                model.Flags = value;
+                if (value["Play"])
+                {
+                    model.start();
+                }
+                if (value["Stop"])
+                {
+                    model.Stop = true;
+                }
+                if (value["Begin"])
+                {
+                    model.UploadReg();
+                }
+            }
+        }
+
+        public Boolean VM_Stop
+        {
+            get
+            {
+                return model.Stop;
+            }
+        }
+
         public void VM_UploadReg(string name)
         {
             model.UploadReg(name);
