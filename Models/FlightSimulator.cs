@@ -138,7 +138,7 @@ namespace Flight_Inspection_App
                     UpdateTime();
                     if (writer.CanWrite)
                     {
-                        byte[] writeBuffer = Encoding.ASCII.GetBytes(line);
+                        byte[] writeBuffer = Encoding.ASCII.GetBytes(line+"\r\n");
                         writer.Write(writeBuffer, 0, writeBuffer.Length);
                         writer.Flush();
                         // sending data in 10HZ
