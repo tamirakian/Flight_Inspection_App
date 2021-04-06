@@ -50,7 +50,9 @@
             </Button>
             <Button Content="Play speed" HorizontalAlignment="Left" Margin="468,336,0,0" VerticalAlignment="Top" Width="62" BorderThickness="0" Background="Transparent" Click="btnPlaySpeed_Click"/>
             <TextBox HorizontalAlignment="Left" Height="19" Margin="535,336,0,0" TextWrapping="Wrap" PreviewTextInput="PreviewTextInput" VerticalAlignment="Top" Width="25"/>
-            <Canvas  x:Name="Base" Margin="0" Width="340" Height="340">
+        </Grid>
+        <Viewbox Width="100" Height="100" Margin="10,165,683.6,131.8">
+            <Canvas  x:Name="Base" Margin="194,-26,233.6,80.8">
                 <Ellipse HorizontalAlignment="Left" Height="340" VerticalAlignment="Top" Width="340">
                     <Ellipse.Fill>
                         <RadialGradientBrush>
@@ -178,6 +180,6 @@
                     </Canvas.Resources>
                 </Canvas>
             </Canvas>
-        </Grid>
+        </Viewbox>
     </Grid>
 </Window>
