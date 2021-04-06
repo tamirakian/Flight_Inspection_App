@@ -71,18 +71,11 @@ namespace Flight_Inspection_App
                 }
                 if (value["Rewind"])
                 {
-                    int numOfCurSamples = model.CurSampleLen();
-                    if (numOfCurSamples <= 10)
-                    {
-                        model.CurTime = "00:00:00";
-                    }
-                    else
-                    {
-                        if (model.GetCurMinutes() == "00" && model.GetCurSeconds() == "00")
-                        {
-                        
-                        }
-                    }
+                    model.RewindTime();
+                }
+                if (value["Forward"])
+                {
+                    model.UpdateTime();
                 }
             }
         }

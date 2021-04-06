@@ -13,15 +13,13 @@ namespace Flight_Inspection_App
         void connect(string ip, int port);
         void disconnect();
         void start();
-        void UploadReg(string name);
 
         // helper functions.
         string FlightLen();
         int CurSampleLen();
-        string GetCurMinutes();
-        string GetCurSeconds();
-        string GetCurCentiseconds();
-
+        void UploadReg(string name);
+        void RewindTime();
+        void UpdateTime();
 
         // The flight simulator properties
         string regFlightFile { set; get; }

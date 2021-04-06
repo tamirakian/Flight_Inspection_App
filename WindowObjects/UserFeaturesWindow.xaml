@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="UserFeaturesWindow" Height="426.501" Width="800">
     <Grid>
-        <Grid>
+        <Grid Margin="-18,0,17.6,-0.2">
             <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="569" Margin="110,317,0,0" Height="95" Background="White">
                 <Button Content="Button" Width="75"/>
             </ComboBox>
@@ -48,10 +48,9 @@
                     <Image Source="..\Pictures\rewindIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
-            <Button Content="Play speed" HorizontalAlignment="Left" Margin="468,336,0,0" VerticalAlignment="Top" Width="62" BorderThickness="0" Background="Transparent" Click="btnPlaySpeed_Click"/>
-            <TextBox HorizontalAlignment="Left" Height="19" Margin="535,336,0,0" TextWrapping="Wrap" PreviewTextInput="PreviewTextInput" VerticalAlignment="Top" Width="25"/>
+
         </Grid>
-        <Viewbox Width="100" Height="100" Margin="10,165,683.6,131.8">
+        <Viewbox Width="104" Height="108" Margin="10,157,679.6,131.8" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Canvas  x:Name="Base" Margin="194,-26,233.6,80.8">
                 <Ellipse HorizontalAlignment="Left" Height="340" VerticalAlignment="Top" Width="340">
                     <Ellipse.Fill>
@@ -164,7 +163,7 @@
                     </Canvas.RenderTransform>
                     <Canvas.Resources>
 
-                        <Storyboard x:Key="CenterKnob" Name="centerKnob" Completed="centerKnob_Completed">
+                        <Storyboard x:Key="CenterKnob" Name="centerKnob">
 
                             <DoubleAnimation Storyboard.TargetName="knobPosition"
                              Storyboard.TargetProperty="X" To="0" Duration="0:0:0.2">

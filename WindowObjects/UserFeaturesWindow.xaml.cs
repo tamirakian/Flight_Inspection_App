@@ -41,7 +41,7 @@ namespace Flight_Inspection_App.WindowObjects
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
-            foreach(string butn in flags.Keys)
+            foreach(string butn in flags.Keys.ToList())
             {
                 flags[butn] = false;
             }
@@ -68,6 +68,7 @@ namespace Flight_Inspection_App.WindowObjects
             flags["Begin"] = true;
             fsView.VM_Flags = flags;
         }
+
         private void btnPause_Click(object sender, RoutedEventArgs e)
         {
             foreach (string butn in flags.Keys)
@@ -77,6 +78,7 @@ namespace Flight_Inspection_App.WindowObjects
             flags["Pause"] = true;
             fsView.VM_Flags = flags;
         }
+
         private void btnEnd_Click(object sender, RoutedEventArgs e)
         {
             foreach (string butn in flags.Keys)
@@ -86,6 +88,7 @@ namespace Flight_Inspection_App.WindowObjects
             flags["End"] = true;
             fsView.VM_Flags = flags;
         }
+
         private void btnForward_Click(object sender, RoutedEventArgs e)
         {
             foreach (string butn in flags.Keys)
@@ -95,6 +98,7 @@ namespace Flight_Inspection_App.WindowObjects
             flags["Forward"] = true;
             fsView.VM_Flags = flags;
         }
+
         private void btnRewind_Click(object sender, RoutedEventArgs e)
         {
             foreach (string butn in flags.Keys)
@@ -103,6 +107,11 @@ namespace Flight_Inspection_App.WindowObjects
             }
             flags["Rewind"] = true;
             fsView.VM_Flags = flags;
+        }
+
+        private void btnSpeed_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
