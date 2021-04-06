@@ -63,6 +63,7 @@
     <Compile Include="Models\DataModel.cs" />
     <Compile Include="Models\featureModel.cs" />
     <Compile Include="Models\testModel.cs" />
+    <Compile Include="ViewModels\joystick.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\MediaPlayerViewModel.cs" />
     <Compile Include="ViewModels\testViewModel.cs" />
@@ -76,6 +77,10 @@
     <Compile Include="WindowObjects\UserFeaturesWindow.xaml.cs">
       <DependentUpon>UserFeaturesWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Joystick.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

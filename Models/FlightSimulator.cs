@@ -134,6 +134,7 @@ namespace Flight_Inspection_App
             {
                 while ((line = reader.ReadLine()) != null || Stop)
                 {
+                    UpdateTime();
                     if (writer.CanWrite)
                     {
                         byte[] writeBuffer = Encoding.ASCII.GetBytes(line);
@@ -151,6 +152,53 @@ namespace Flight_Inspection_App
                 reader.Close();
                 fg.Close();
             }).Start();
+        }
+
+        public string FlightLen()
+        {
+            StreamReader reader = new StreamReader(regFlightFile);
+            int sampleCounter = 0;
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                sampleCounter++;
+            }
+            int milisecondsNum = sampleCounter * 10;
+            int minutes = milisecondsNum / (60 * 10);
+            int seconds = (milisecondsNum - (minutes * 100*60)) / 100;
+            int miliseconds = (milisecondsNum - (minutes * 100 * 60) - (seconds * 100));
+            CurTime = minutes + ":" + seconds + ":" + miliseconds;
+        } 
+
+        public void UpdateTime()
+        {
+            string minutes = curTime.Substring(0, 2);
+            string seconds = curTime.Substring(3, 2);
+            string miliseconds = curTime.Substring(6, 2);
+            if (Int32.Parse(miliseconds) == 90)
+            {
+                miliseconds = "00";
+                if (Int32.Parse(seconds) == 59)
+                {
+                    seconds = "00";
+                    int tempMinutes = Int32.Parse(minutes);
+                    tempMinutes++;
+                    minutes = tempMinutes.ToString();
+                }
+                else
+                {
+                    int tempSeconds = Int32.Parse(seconds);
+                    tempSeconds++;
+                    seconds = tempSeconds.ToString();
+                }
+            }
+            else
+            {
+                int tempMiliSeconds = Int32.Parse(miliseconds);
+                tempMiliSeconds++;
+                seconds = tempMiliSeconds.ToString();
+            }
+            CurTime = minutes + ":" + seconds + ":" + miliseconds;
         }
 
         public void UploadReg(string name)

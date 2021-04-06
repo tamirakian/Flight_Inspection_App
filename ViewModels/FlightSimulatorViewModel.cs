@@ -55,10 +55,11 @@ namespace Flight_Inspection_App
                 if (value["Stop"])
                 {
                     model.Stop = true;
+                    model.CurTime = "00:00:00";
                 }
                 if (value["Begin"])
                 {
-                    model.UploadReg();
+                    model.CurTime = "00:00:00";
                 }
             }
         }
