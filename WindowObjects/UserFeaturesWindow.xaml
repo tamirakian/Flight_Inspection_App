@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="UserFeaturesWindow" Height="426.501" Width="800">
     <Grid>
-        <Grid Margin="-18,0,17.6,-0.2">
+        <Grid Margin="-27,-22,26.6,-0.2">
             <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="569" Margin="110,317,0,0" Height="95" Background="White">
                 <Button Content="Button" Width="75"/>
             </ComboBox>
@@ -50,7 +50,7 @@
             </Button>
 
         </Grid>
-        <Viewbox Width="104" Height="108" Margin="10,157,679.6,131.8" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Viewbox Width="104" Height="108" Margin="43,111,646.6,177.8" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Canvas  x:Name="Base" Margin="194,-26,233.6,80.8">
                 <Ellipse HorizontalAlignment="Left" Height="340" VerticalAlignment="Top" Width="340">
                     <Ellipse.Fill>
@@ -181,10 +181,10 @@
                 </Canvas>
             </Canvas>
         </Viewbox>
-        <Canvas HorizontalAlignment="Left" Height="92" Margin="27,196,0,0" VerticalAlignment="Top" Width="16" Background="#FF8C8888">
+        <Canvas HorizontalAlignment="Left" Height="92" Margin="48,146,0,0" VerticalAlignment="Top" Width="16" Background="#FF8C8888">
             <Rectangle HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Width="15" Fill="Black" Canvas.Top="{Binding Throttle}"/>
         </Canvas>
-        <Canvas HorizontalAlignment="Left" Height="15" Margin="48,291,0,0" VerticalAlignment="Top" Width="94" Background="#FF8E8989">
+        <Canvas HorizontalAlignment="Left" Height="15" Margin="82,255,0,0" VerticalAlignment="Top" Width="94" Background="#FF8E8989">
             <Rectangle Fill="Black" HorizontalAlignment="Left" Height="15" VerticalAlignment="Top" Width="22" Canvas.Left="{Binding Rudder}"/>
         </Canvas>
     </Grid>
