@@ -12,12 +12,16 @@ namespace Flight_Inspection_App.Models
 {
     class MediaPlayerModel
     {
+        // the flight time samples.
         private string CSV;
+        // the current time in flight.
         private string curTime;
         public event PropertyChangedEventHandler PropertyChanged;
+        // a dictionary to keep the check which buttons was pressed.
         Dictionary<string, Boolean> flags = new Dictionary<string, bool>();
 
-        public MediaPlayerModel(string flight , string time)
+        // constructor.
+        public MediaPlayerModel(string flight, string time)
         {
             this.CSV = flight;
             this.curTime = time;
@@ -52,10 +56,10 @@ namespace Flight_Inspection_App.Models
                 NotifyPropertyChanged("time");
             }
         }
+        // get tje entire flight time in seconds.
         int GetTimeInSeconds()
         {
             int counter = 0;
-            int rest = 0;
             int tempCalc = 0;
             StreamReader reader = new StreamReader(CSV);
             string line;
@@ -66,6 +70,20 @@ namespace Flight_Inspection_App.Models
             tempCalc += counter / 10;
             return tempCalc;
         }
+        int GetTimeInSeconds(string flightFile)
+        {
+            int counter = 0;
+            int tempCalc = 0;
+            StreamReader reader = new StreamReader(flightFile);
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                counter++;
+            }
+            tempCalc += counter / 10;
+            return tempCalc;
+        }
+        // display the time of the flight given a number of seconds.
         string DisplayTime(int seconds)
         {
             int min = 0;
@@ -84,6 +102,30 @@ namespace Flight_Inspection_App.Models
                 display = seconds.ToString();
             }
             return display;
+        }
+        void Play(string time)
+        {
+            int min;
+            int seconds;
+            int timeToStart;
+            if (time.Contains(":"))
+            {
+                string[] words = time.Split(':');
+                min = Int32.Parse(words[0]);
+                seconds = Int32.Parse(words[1]);
+                timeToStart = min * 60 + seconds;
+            }
+            else
+            {
+                timeToStart = Int32.Parse(time);
+            }
+            int timeSample = timeToStart * 10;
+            int sampleCounter = 0;
+            StreamReader reader = new StreamReader(this.CSV);
+            while (sampleCounter != timeSample)
+            {
+                
+            }
         }
     }
 }
