@@ -25,9 +25,14 @@ namespace Flight_Inspection_App.WindowObjects
         private Dictionary<string, Boolean> flags;
         private string playSpeed;
 
-        bool IsValidFloat(string str)
+        bool LoadInputNumber(string str)
         {
-            return true;
+            float f;
+            if (float.TryParse(str, out f))
+            {
+                return true;
+            }
+            return false;
         }
 
         public UserFeaturesWindow(string csvFile)
@@ -39,6 +44,10 @@ namespace Flight_Inspection_App.WindowObjects
             flags = fsView.VM_Flags;
         }
 
+        private void btnApply_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         private void btnOpen_Click(object sender, RoutedEventArgs e)
         {
             UploadFileWindow uploadWin = new UploadFileWindow();
