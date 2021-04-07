@@ -42,11 +42,20 @@ namespace Flight_Inspection_App.WindowObjects
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
+            bool start = false;
+            if (fsView.VM_Flags["Start"])
+            {
+                start = true; 
+            }
             foreach(string butn in flags.Keys.ToList())
             {
                 flags[butn] = false;
             }
             flags["Play"] = true;
+            if(start)
+            {
+                flags["Start"] = true;
+            }
             fsView.VM_Flags = flags;
         }
 
