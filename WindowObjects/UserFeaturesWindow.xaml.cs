@@ -23,6 +23,12 @@ namespace Flight_Inspection_App.WindowObjects
     {
         private FlightSimulatorViewModel fsView;
         private Dictionary<string, Boolean> flags;
+        private string playSpeed;
+
+        bool IsValidFloat(string str)
+        {
+            return true;
+        }
 
         public UserFeaturesWindow(string csvFile)
         {
