@@ -61,7 +61,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="94,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="&lt;-rudder-&gt;"/><LineBreak/><Run/></TextBlock>
 
         </Grid>
-        <Viewbox Width="104" Height="108" Margin="43,111,646.6,177.8" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Viewbox Width="104" Height="108" Margin="43,111,646.6,177.8" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.494,0.532">
             <Canvas  x:Name="Base" Margin="194,-26,233.6,80.8">
                 <Ellipse HorizontalAlignment="Left" Height="340" VerticalAlignment="Top" Width="340">
                     <Ellipse.Fill>

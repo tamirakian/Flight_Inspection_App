@@ -27,7 +27,7 @@ namespace Flight_Inspection_App.WindowObjects
         public UserFeaturesWindow(string csvFile)
         {
             InitializeComponent();
-            fsView = new FlightSimulatorViewModel(new FlightSimulator(new Socket(AddressFamily.Unspecified, SocketType.Stream, ProtocolType.Tcp)));
+            fsView = new FlightSimulatorViewModel(new FlightSimulator());
             fsView.VM_UploadReg(csvFile);
             DataContext = fsView;
             flags = fsView.VM_Flags;

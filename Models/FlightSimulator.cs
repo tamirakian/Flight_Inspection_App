@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.ComponentModel;
 using System.IO;
+using System.Net;
 
 namespace Flight_Inspection_App
 {
@@ -38,9 +39,8 @@ namespace Flight_Inspection_App
         int timeSamples;
 
         // constructor - initializing the flight gear socket, and setting the stop value to false
-        public FlightSimulator(Socket fg)
+        public FlightSimulator()
         {
-            this.fg = fg;
             // indicating that the socket is running.
             stop = false;
             flags.Add("Play", false);
@@ -113,7 +113,18 @@ namespace Flight_Inspection_App
         // connect to the flight gear socket.
         public void connect(string ip, int port)
         {
-            fg.Connect(ip, port);
+            IPHostEntry ipHost = Dns.GetHostEntry(ip);
+            IPAddress ipAddr = ipHost.AddressList[1];
+            IPEndPoint localEndPoint = new IPEndPoint(ipAddr, port);
+            fg = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            try
+            {
+                fg.Connect(localEndPoint);
+            }
+            catch (Exception e)
+            {
+                return;
+            }
         }
 
         // disconnecting from the flight gear socket.
