@@ -137,6 +137,19 @@ namespace Flight_Inspection_App.HelperClasses
             return list;
         }
 
+        public string GetTimestepStr(int index)
+        {
+            string str = "";
+            str += featuresMap[0].Values[index].ToString();
+            for (int i = 1; i < featuresMap.Count(); i++)
+            {
+                str += ",";
+                str+= featuresMap[i].Values[index].ToString();
+            }
+            str += "\r\n";
+            return str;
+        }
+
         // getting the size of the features
         public int getNumOfFeatures()
         {
