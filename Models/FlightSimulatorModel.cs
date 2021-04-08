@@ -15,8 +15,7 @@ namespace Flight_Inspection_App
         void start();
 
         // helper functions.
-        string FlightLen();
-        int CurSampleLen();
+        void UpdateFlightLen();
         void UploadReg(string name);
         void ControlTime(bool flag);
         void UpdateTime();
