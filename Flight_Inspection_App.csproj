@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="HelperClasses\TimeSeries.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
     <Compile Include="Models\MediaPlayerModel.cs" />
     <Compile Include="Models\DataModel.cs" />
@@ -67,11 +68,20 @@
     <Compile Include="ViewModels\MediaPlayerViewModel.cs" />
     <Compile Include="ViewModels\testViewModel.cs" />
     <Compile Include="ViewModels\FlightSimulatorViewModel.cs" />
+    <Compile Include="WindowObjects\PlayBack.xaml.cs">
+      <DependentUpon>PlayBack.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowObjects\UploadFileWindow.xaml.cs">
       <DependentUpon>UploadFileWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowObjects\UploadFlightGearLocationWindow.xaml.cs">
       <DependentUpon>UploadFlightGearLocationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowObjects\Joystick.xaml.cs">
+      <DependentUpon>Joystick.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowObjects\UserFeaturesWindow - Copy.xaml.cs">
+      <DependentUpon>UserFeaturesWindow - Copy.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowObjects\UserFeaturesWindow.xaml.cs">
       <DependentUpon>UserFeaturesWindow.xaml</DependentUpon>
@@ -88,6 +98,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="WindowObjects\PlayBack.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowObjects\UploadFileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -95,6 +109,14 @@
     <Page Include="WindowObjects\UploadFlightGearLocationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowObjects\Joystick.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WindowObjects\UserFeaturesWindow - Copy.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="WindowObjects\UserFeaturesWindow.xaml">
       <SubType>Designer</SubType>
