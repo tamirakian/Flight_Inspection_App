@@ -50,7 +50,14 @@ namespace Flight_Inspection_App
                 model.Flags = value;
                 if (value["Play"])
                 {
-                    model.start();
+                    if(model.CurTime == "00:00:00" && model.Flags["Start"])
+                    {
+                        model.start();
+                    }
+                    else
+                    {
+                        model.Stop = false;
+                    }
                 }
                 if (value["Stop"])
                 {
@@ -85,6 +92,18 @@ namespace Flight_Inspection_App
             get
             {
                 return model.Stop;
+            }
+        }
+
+        public float VM_Speed
+        {
+            get
+            {
+                return model.Speed;
+            }
+            set
+            {
+                model.Speed = value;
             }
         }
 

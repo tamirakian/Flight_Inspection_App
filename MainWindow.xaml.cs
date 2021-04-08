@@ -50,7 +50,13 @@ namespace Flight_Inspection_App
             }
             else
             {
-                Process.Start(vm.VM_FGLocation);
+                Process process = new Process();
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                startInfo.FileName = "CMD.exe";
+                startInfo.Arguments = "/C \"" + vm.VM_FGLocation + "\" " + "--launcher";
+                process.StartInfo = startInfo;
+                process.Start();
                 UserFeaturesWindow featureWin = new UserFeaturesWindow(vm.VM_CSVFile);
                 featureWin.Show();
                 this.Close();

@@ -30,19 +30,17 @@ namespace Flight_Inspection_App
         // the flight simulator socket
         Socket fg;
         volatile Boolean stop;
-
         // a dictionary to keep the check which buttons was pressed.
         Dictionary<string, Boolean> flags = new Dictionary<string, bool>();
 
         // in the format of MM:SS:CSCS
         string curTime;
-        int timeSamples;
+        float speed;
 
         // constructor - initializing the flight gear socket, and setting the stop value to false
         public FlightSimulator()
         {
             // indicating that the socket is running.
-            stop = false;
             flags.Add("Play", false);
             flags.Add("Stop", false);
             flags.Add("Pause", false);
@@ -50,6 +48,8 @@ namespace Flight_Inspection_App
             flags.Add("Begin", false);
             flags.Add("Rewind", false);
             flags.Add("Forward", false);
+            flags.Add("Start", true);
+            curTime = "00:00:00";
         }
 
         public void NotifyPropertyChanged(string propName)
@@ -97,6 +97,16 @@ namespace Flight_Inspection_App
             }
         }
 
+        public float Speed
+        {
+            get { return speed; }
+            set
+            {
+                speed = value;
+                NotifyPropertyChanged("Speed");
+            }
+        }
+
         public Boolean Stop
         {
             get
@@ -131,7 +141,7 @@ namespace Flight_Inspection_App
         public void disconnect()
         {
             // indicating that the socket is closed.
-            stop = true;
+            Stop = true;
             fg.Disconnect(false);
         }
 
@@ -144,20 +154,27 @@ namespace Flight_Inspection_App
             string line;
             new Thread(delegate ()
             {
-                while ((line = reader.ReadLine()) != null || Stop)
+                while ((line = reader.ReadLine()) != null)
                 {
-                    UpdateTime();
-                    if (writer.CanWrite)
+                    if (!Stop)
                     {
-                        byte[] writeBuffer = Encoding.ASCII.GetBytes(line+"\r\n");
-                        writer.Write(writeBuffer, 0, writeBuffer.Length);
-                        writer.Flush();
-                        // sending data in 10HZ
-                        Thread.Sleep(100);
+                        UpdateTime();
+                        if (writer.CanWrite)
+                        {
+                            byte[] writeBuffer = Encoding.ASCII.GetBytes(line + "\r\n");
+                            writer.Write(writeBuffer, 0, writeBuffer.Length);
+                            writer.Flush();
+                            // sending data in 10HZ
+                            Thread.Sleep(100);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Sorry. You cannot write to the Flight Gear right now.");
+                        }
                     }
                     else
                     {
-                        Console.WriteLine("Sorry. You cannot write to the Flight Gear right now.");
+                        while (!Stop) { };
                     }
                 }
                 writer.Close();
@@ -169,7 +186,7 @@ namespace Flight_Inspection_App
         public int FlightLenInCenti()
         {
             StreamReader reader = new StreamReader(regFlightFile);
-            timeSamples = 0;
+            int timeSamples = 0;
             string line;
             // here we read the entire CSV file and count the time samples.
             while ((line = reader.ReadLine()) != null)
@@ -195,9 +212,9 @@ namespace Flight_Inspection_App
         public int CurSampleLen()
         {
             // parse the time member.
-            string minutes = curTime.Substring(0, 2);
-            string seconds = curTime.Substring(3, 2);
-            string centiseconds = curTime.Substring(6, 2);
+            string minutes = CurTime.Substring(0, 2);
+            string seconds = CurTime.Substring(3, 2);
+            string centiseconds = CurTime.Substring(6, 2);
             return ((Int32.Parse(minutes) * 60 * 10) + (Int32.Parse(seconds) * 10) + (Int32.Parse(centiseconds) / 10));
         }
 
@@ -215,29 +232,43 @@ namespace Flight_Inspection_App
                 string seconds = curTime.Substring(3, 2);
                 string centiseconds = curTime.Substring(6, 2);
                 // if we are at the limit of the centiseconds.
-                if (Int32.Parse(centiseconds) == 90)
+                if (centiseconds == "90")
                 {
                     centiseconds = "00";
                     // if we are at the limit of the seconds.
-                    if (Int32.Parse(seconds) == 59)
+                    if (seconds == "59")
                     {
                         seconds = "00";
                         int tempMinutes = Int32.Parse(minutes);
                         tempMinutes++;
-                        minutes = tempMinutes.ToString();
+                        if(tempMinutes<=9)
+                        {
+                            minutes = "0" + tempMinutes.ToString();
+                        }
+                        else
+                        {
+                            minutes = tempMinutes.ToString();
+                        }
                     }
                     else
                     {
                         int tempSeconds = Int32.Parse(seconds);
                         tempSeconds++;
-                        seconds = tempSeconds.ToString();
+                        if (tempSeconds<=9)
+                        {
+                            seconds = "0" + tempSeconds.ToString();
+                        }
+                        else
+                        {
+                            seconds = tempSeconds.ToString();
+                        }
                     }
                 }
                 else
                 {
                     int tempCentiSeconds = Int32.Parse(centiseconds);
-                    tempCentiSeconds++;
-                    seconds = tempCentiSeconds.ToString();
+                    tempCentiSeconds+=10;
+                    centiseconds = tempCentiSeconds.ToString();
                 }
                 CurTime = minutes + ":" + seconds + ":" + centiseconds;
             }
@@ -257,28 +288,42 @@ namespace Flight_Inspection_App
                 string seconds = curTime.Substring(3, 2);
                 string centiseconds = curTime.Substring(6, 2);
                 // if we are at the limit of the centiseconds.
-                if (Int32.Parse(centiseconds) == 00)
+                if (centiseconds == "00")
                 {
                     centiseconds = "90";
                     // if we are at the limit of the seconds.
-                    if (Int32.Parse(seconds) == 00)
+                    if (seconds == "00")
                     {
                         seconds = "59";
                         int tempMinutes = Int32.Parse(minutes);
                         tempMinutes--;
-                        minutes = tempMinutes.ToString();
+                        if (tempMinutes <= 9)
+                        {
+                            minutes = "0" + tempMinutes.ToString();
+                        }
+                        else
+                        {
+                            minutes = tempMinutes.ToString();
+                        }
                     }
                     else
                     {
                         int tempSeconds = Int32.Parse(seconds);
                         tempSeconds--;
-                        seconds = tempSeconds.ToString();
+                        if (tempSeconds <= 9)
+                        {
+                            seconds = "0" + tempSeconds.ToString();
+                        }
+                        else
+                        {
+                            seconds = tempSeconds.ToString();
+                        }
                     }
                 }
                 else
                 {
                     int tempCentiSeconds = Int32.Parse(centiseconds);
-                    tempCentiSeconds--;
+                    tempCentiSeconds-=10;
                     seconds = tempCentiSeconds.ToString();
                 }
                 CurTime = minutes + ":" + seconds + ":" + centiseconds;

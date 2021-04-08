@@ -6,21 +6,30 @@
         xmlns:local="clr-namespace:Flight_Inspection_App.WindowObjects"
         mc:Ignorable="d"
         Title="UserFeaturesWindow" Height="426.501" Width="800">
+<<<<<<< HEAD
     <Grid>
         <Grid Margin="-8,1,21.333,2.333" RenderTransformOrigin="0.5,0.5">
+=======
+    <Grid Margin="0,0,3.6,-0.2">
+        <Grid Margin="-2,1,5,3" RenderTransformOrigin="1.058,0.82">
+>>>>>>> f6f13cedda5704ffa7fa899a2f22b43b2508a9dd
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
                     <RotateTransform Angle="-0.073"/>
-                    <TranslateTransform/>
+                    <TranslateTransform X="0.166" Y="-0.558"/>
                 </TransformGroup>
             </Grid.RenderTransform>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="7*"/>
                 <ColumnDefinition Width="383*"/>
             </Grid.ColumnDefinitions>
+<<<<<<< HEAD
             <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="353" Margin="99,329,0,0" Height="35" Background="White" Grid.Column="1" RenderTransformOrigin="0.535,0.422">
+=======
+            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="481" Margin="209.4,326,0,0" Height="35" Background="White" Grid.Column="1" RenderTransformOrigin="0.535,0.422">
+>>>>>>> f6f13cedda5704ffa7fa899a2f22b43b2508a9dd
                 <ComboBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -31,49 +40,78 @@
                 </ComboBox.RenderTransform>
                 <Button Content="Button" Width="75"/>
             </ComboBox>
-            <Button Content="Open" Name="openButton" HorizontalAlignment="Left" Margin="108,336,0,0" VerticalAlignment="Top" Width="75" Click="btnOpen_Click" Grid.Column="1" Height="21"/>
-            <Slider HorizontalAlignment="Left" Margin="208,369,0,0" VerticalAlignment="Top" Width="386" Grid.Column="1" Height="16"/>
-            <Button Name="playButton" HorizontalAlignment="Left" Margin="301,336,0,0" VerticalAlignment="Top" Width="26" Height="19" Click="btnPlay_Click" Grid.Column="1">
+            <Button Content="Open" Name="openButton" HorizontalAlignment="Left" Margin="212.4,334,0,0" VerticalAlignment="Top" Width="75" Click="btnOpen_Click" Grid.Column="1" Height="19"/>
+            <Slider HorizontalAlignment="Left" Margin="208.4,369,0,0" VerticalAlignment="Top" Width="480" Grid.Column="1" Height="16"/>
+            <Button Name="playButton" HorizontalAlignment="Left" Margin="385.4,334,0,0" VerticalAlignment="Top" Width="26" Height="19" Click="btnPlay_Click" Grid.Column="1">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="..\Pictures\playIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
-            <Button Name="stopButton" HorizontalAlignment="Left" Margin="270,336,0,0" VerticalAlignment="Top" Width="26" Height="19" Click="btnStop_Click" Grid.Column="1">
+            <Button Name="stopButton" HorizontalAlignment="Left" Margin="354.4,334,0,0" VerticalAlignment="Top" Width="26" Height="19" Click="btnStop_Click" Grid.Column="1">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="..\Pictures\stopIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
-            <Button Name="beginButton" HorizontalAlignment="Left" Margin="208,336,0,0" VerticalAlignment="Top" Width="26" Height="19" Click="btnBegin_Click" Grid.Column="1">
+            <Button Name="beginButton" HorizontalAlignment="Left" Margin="292.4,334,0,0" VerticalAlignment="Top" Width="26" Height="19" Click="btnBegin_Click" Grid.Column="1">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="..\Pictures\beginIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
-            <Button Name="pauseButton" HorizontalAlignment="Left" Margin="332,336,0,0" VerticalAlignment="Top" Width="26" Height="19" Click="btnPause_Click" Grid.Column="1">
+            <Button Name="pauseButton" HorizontalAlignment="Left" Margin="416.4,334,0,0" VerticalAlignment="Top" Width="26" Height="19" Click="btnPause_Click" Grid.Column="1">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="..\Pictures\pauseIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
-            <Button Name="endButton" HorizontalAlignment="Left" Margin="394,336,0,0" VerticalAlignment="Top" Width="26" Height="19" Click="btnEnd_Click" Grid.Column="1">
+            <Button Name="endButton" HorizontalAlignment="Left" Margin="478.4,334,0,0" VerticalAlignment="Top" Width="26" Height="19" Click="btnEnd_Click" Grid.Column="1">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="..\Pictures\endIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
-            <Button Name="forwardButton" HorizontalAlignment="Left" Margin="363,336,0,0" VerticalAlignment="Top" Width="26" Height="19" Click="btnForward_Click" Grid.Column="1">
+            <Button Name="forwardButton" HorizontalAlignment="Left" Margin="447.4,334,0,0" VerticalAlignment="Top" Width="26" Height="19" Click="btnForward_Click" Grid.Column="1">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="..\Pictures\forwardIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
-            <Button Name="rewindButton" HorizontalAlignment="Left" Margin="239,336,0,0" VerticalAlignment="Top" Width="26" Height="19" Click="btnRewind_Click" Grid.Column="1">
+            <Button Name="rewindButton" HorizontalAlignment="Left" Margin="323.4,334,0,0" VerticalAlignment="Top" Width="26" Height="19" Click="btnRewind_Click" Grid.Column="1">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="..\Pictures\rewindIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
+<<<<<<< HEAD
 
            
 
+=======
+            <TextBlock HorizontalAlignment="Left" Margin="601,33,0,0" TextWrapping="Wrap" Text="&lt;-aileron-&gt;" VerticalAlignment="Top" Grid.Column="1" Height="16" Width="69"/>
+            <TextBlock HorizontalAlignment="Left" Margin="665,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Text="&lt;-elevator-&gt;" Grid.Column="1" Height="15" Width="75">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90.69"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform></TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="594,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Height="22" Width="76"><Run Text="&lt;-rudder-&gt;"/><LineBreak/><Run/></TextBlock>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="493,100,0,0" TextWrapping="Wrap" Text="&lt;-throttle-&gt;" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.5,0.5">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="89.726"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="22,10,0,0" VerticalAlignment="Top" Width="98" Height="298"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="516.4,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="19"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="536.4,334,0,0" TextWrapping="Wrap" Text="Play speed" VerticalAlignment="Top" Height="19"/>
+            <TextBox x:Name="userSpeedInput" Grid.Column="1" HorizontalAlignment="Left" Height="19" Margin="598.4,334,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="29"/>
+            <Button Content="Apply" Grid.Column="1" HorizontalAlignment="Left" Margin="632.4,334,0,0" VerticalAlignment="Top" Width="38" Height="19" Click="btnApply_Click"/>
+>>>>>>> f6f13cedda5704ffa7fa899a2f22b43b2508a9dd
         </Grid>
         <Viewbox Width="104" Height="108" Margin="552,24,137.333,265.333" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.494,0.532">
-            <Canvas  x:Name="Base" Margin="194,-26,233.6,80.8">
+            <Canvas  x:Name="Base" Margin="194,-26,233.6,80.8" Background="Black">
                 <Ellipse HorizontalAlignment="Left" Height="340" VerticalAlignment="Top" Width="340">
                     <Ellipse.Fill>
                         <RadialGradientBrush>
