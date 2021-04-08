@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Flight_Inspection_App.WindowObjects
 {
     /// <summary>
-    /// Interaction logic for PlayBack.xaml
+    /// Interaction logic for GraphsAndList.xaml
     /// </summary>
-    public partial class PlayBack : UserControl
+    public partial class GraphsAndList : UserControl
     {
-        public PlayBack()
+        public GraphsAndList()
         {
             InitializeComponent();
         }

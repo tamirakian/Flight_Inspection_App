@@ -1,19 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Net.Sockets;
-using System.Net;
-using System.Globalization;
 
 namespace Flight_Inspection_App.WindowObjects
 {
@@ -47,7 +37,7 @@ namespace Flight_Inspection_App.WindowObjects
 
         private void btnApply_Click(object sender, RoutedEventArgs e)
         {
-            if(userSpeedInput.Text != "")
+            if (userSpeedInput.Text != "")
             {
                 fsView.VM_Speed = float.Parse(userSpeedInput.Text, CultureInfo.InvariantCulture.NumberFormat);
             }
@@ -65,14 +55,14 @@ namespace Flight_Inspection_App.WindowObjects
             bool start = false;
             if (fsView.VM_Flags["Start"])
             {
-                start = true; 
+                start = true;
             }
-            foreach(string butn in flags.Keys.ToList())
+            foreach (string butn in flags.Keys.ToList())
             {
                 flags[butn] = false;
             }
             flags["Play"] = true;
-            if(start)
+            if (start)
             {
                 flags["Start"] = true;
             }
