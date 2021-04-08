@@ -18,7 +18,7 @@ namespace Flight_Inspection_App
         string FlightLen();
         int CurSampleLen();
         void UploadReg(string name);
-        void RewindTime();
+        void ControlTime(bool flag);
         void UpdateTime();
 
         // The flight simulator properties

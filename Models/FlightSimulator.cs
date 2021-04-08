@@ -8,6 +8,7 @@ using System.Threading;
 using System.ComponentModel;
 using System.IO;
 using System.Net;
+using Flight_Inspection_App.HelperClasses;
 
 namespace Flight_Inspection_App
 {
@@ -18,7 +19,7 @@ namespace Flight_Inspection_App
     }
 
     // the model
-    class FlightSimulator : FlightSimulatorModel
+    class FlightSimulator : FlightSimulatorModel 
     {
         // the reg_flight csv file name
         private string regFlight;
@@ -50,6 +51,7 @@ namespace Flight_Inspection_App
             flags.Add("Forward", false);
             flags.Add("Start", true);
             curTime = "00:00:00";
+            Speed = 10;
         }
 
         public void NotifyPropertyChanged(string propName)
@@ -78,7 +80,6 @@ namespace Flight_Inspection_App
             }
         }
 
-        // jk
         public Dictionary<string, Boolean> Flags
         {
             get { return flags; }
@@ -103,8 +104,12 @@ namespace Flight_Inspection_App
             get { return speed; }
             set
             {
-                speed = value;
-                NotifyPropertyChanged("Speed");
+                // *******need to put an error message to user
+                if(value < 3)
+                {
+                    NotifyPropertyChanged("Speed");
+                    return;
+                }       
             }
         }
 
@@ -150,12 +155,15 @@ namespace Flight_Inspection_App
         public void start()
         {
             this.connect(Constants.HOST_IP, Constants.HOST_PORT);
-            StreamReader reader = new StreamReader(regFlightFile);
             NetworkStream writer = new NetworkStream(fg);
-            string line;
+            List<string> lineVar;
+            TimeSeries ts = new TimeSeries(regFlightFile);
             new Thread(delegate ()
             {
-                while ((line = reader.ReadLine()) != null)
+               for(int i = 0; i < ts.getNumOfTimesteps(); i++ )
+                {
+                    lineVar = ts.getTimeStemp(i);
+                }
                 {
                     if (!Stop)
                     {
@@ -166,7 +174,8 @@ namespace Flight_Inspection_App
                             writer.Write(writeBuffer, 0, writeBuffer.Length);
                             writer.Flush();
                             // sending data in 10HZ
-                            Thread.Sleep(100);
+                            int converToIntSpeed = Convert.ToInt32(Speed * 10.0);
+                            Thread.Sleep(converToIntSpeed);
                         }
                         else
                         {
@@ -222,7 +231,10 @@ namespace Flight_Inspection_App
         // this function will go to the next time sample. 
         public void UpdateTime()
         {
-            if (FlightLenInCenti() <= CurSampleLen() + 10)
+            int converToIntSpeed = Convert.ToInt32(Speed * 10.0);
+            int tempCent;
+            int tempSec;
+            if (FlightLenInCenti() <= CurSampleLen() + converToIntSpeed)
             {
                 CurTime = FlightLen();
             }
@@ -233,13 +245,15 @@ namespace Flight_Inspection_App
                 string seconds = curTime.Substring(3, 2);
                 string centiseconds = curTime.Substring(6, 2);
                 // if we are at the limit of the centiseconds.
-                if (centiseconds == "90")
+                if (Int32.Parse(centiseconds) + converToIntSpeed >= 100)
                 {
-                    centiseconds = "00";
+                    tempCent = (Int32.Parse(centiseconds) + converToIntSpeed) % 100;
+                    centiseconds = tempCent.ToString();
                     // if we are at the limit of the seconds.
-                    if (seconds == "59")
+                    if (Int32.Parse(seconds) + (converToIntSpeed / 100) >= 60)
                     {
-                        seconds = "00";
+                        tempSec = (Int32.Parse(seconds) + converToIntSpeed / 100) % 60;
+                        seconds = tempSec.ToString();
                         int tempMinutes = Int32.Parse(minutes);
                         tempMinutes++;
                         if(tempMinutes<=9)
@@ -253,22 +267,22 @@ namespace Flight_Inspection_App
                     }
                     else
                     {
-                        int tempSeconds = Int32.Parse(seconds);
-                        tempSeconds++;
-                        if (tempSeconds<=9)
+                        tempSec = (Int32.Parse(seconds) + converToIntSpeed / 100);
+                        seconds = tempSec.ToString();
+                        if (tempSec<=9)
                         {
-                            seconds = "0" + tempSeconds.ToString();
+                            seconds = "0" + tempSec.ToString();
                         }
                         else
                         {
-                            seconds = tempSeconds.ToString();
+                            seconds = tempSec.ToString();
                         }
                     }
                 }
                 else
                 {
-                    int tempCentiSeconds = Int32.Parse(centiseconds);
-                    tempCentiSeconds+=10;
+                    int tempCentiSeconds = Int32.Parse(centiseconds) + converToIntSpeed;
+     
                     centiseconds = tempCentiSeconds.ToString();
                 }
                 CurTime = minutes + ":" + seconds + ":" + centiseconds;
@@ -276,59 +290,119 @@ namespace Flight_Inspection_App
         }
 
         // this function will go to the next time sample. 
-        public void RewindTime()
+        public void ControlTime(bool flag)
         {
-            if (CurSampleLen() <= 10)
+            // if we are using the rewind button.
+            if (flag)
             {
-                CurTime = "00:00:00";
-            }
-            else
-            {
-                // parse the time member.
-                string minutes = curTime.Substring(0, 2);
-                string seconds = curTime.Substring(3, 2);
-                string centiseconds = curTime.Substring(6, 2);
-                // if we are at the limit of the centiseconds.
-                if (centiseconds == "00")
+                if (CurSampleLen() <= 10)
                 {
-                    centiseconds = "90";
-                    // if we are at the limit of the seconds.
-                    if (seconds == "00")
+                    CurTime = "00:00:00";
+                }
+                else
+                {
+                    // parse the time member.
+                    string minutes = curTime.Substring(0, 2);
+                    string seconds = curTime.Substring(3, 2);
+                    string centiseconds = curTime.Substring(6, 2);
+                    // if we are at the limit of the centiseconds.
+                    if (centiseconds == "00")
                     {
-                        seconds = "59";
-                        int tempMinutes = Int32.Parse(minutes);
-                        tempMinutes--;
-                        if (tempMinutes <= 9)
+                        centiseconds = "90";
+                        // if we are at the limit of the seconds.
+                        if (seconds == "00")
                         {
-                            minutes = "0" + tempMinutes.ToString();
+                            seconds = "59";
+                            int tempMinutes = Int32.Parse(minutes);
+                            tempMinutes--;
+                            if (tempMinutes <= 9)
+                            {
+                                minutes = "0" + tempMinutes.ToString();
+                            }
+                            else
+                            {
+                                minutes = tempMinutes.ToString();
+                            }
                         }
                         else
                         {
-                            minutes = tempMinutes.ToString();
+                            int tempSeconds = Int32.Parse(seconds);
+                            tempSeconds--;
+                            if (tempSeconds <= 9)
+                            {
+                                seconds = "0" + tempSeconds.ToString();
+                            }
+                            else
+                            {
+                                seconds = tempSeconds.ToString();
+                            }
                         }
                     }
                     else
                     {
-                        int tempSeconds = Int32.Parse(seconds);
-                        tempSeconds--;
-                        if (tempSeconds <= 9)
-                        {
-                            seconds = "0" + tempSeconds.ToString();
-                        }
-                        else
-                        {
-                            seconds = tempSeconds.ToString();
-                        }
+                        int tempCentiSeconds = Int32.Parse(centiseconds);
+                        tempCentiSeconds -= 10;
+                        seconds = tempCentiSeconds.ToString();
                     }
+                    CurTime = minutes + ":" + seconds + ":" + centiseconds;
+                }
+            }
+            // we are using the forward button.
+            else
+            {
+                if (FlightLenInCenti() <= CurSampleLen() + 10)
+                {
+                    CurTime = FlightLen();
                 }
                 else
                 {
-                    int tempCentiSeconds = Int32.Parse(centiseconds);
-                    tempCentiSeconds-=10;
-                    seconds = tempCentiSeconds.ToString();
+                    // parse the time member.
+                    string minutes = curTime.Substring(0, 2);
+                    string seconds = curTime.Substring(3, 2);
+                    string centiseconds = curTime.Substring(6, 2);
+                    // if we are at the limit of the centiseconds.
+                    if (centiseconds == "90")
+                    {
+                        centiseconds = "00";
+                        // if we are at the limit of the seconds.
+                        if (seconds == "59")
+                        {
+                            seconds = "00";
+                            int tempMinutes = Int32.Parse(minutes);
+                            tempMinutes++;
+                            if (tempMinutes <= 9)
+                            {
+                                minutes = "0" + tempMinutes.ToString();
+                            }
+                            else
+                            {
+                                minutes = tempMinutes.ToString();
+                            }
+                        }
+                        else
+                        {
+                            int tempSeconds = Int32.Parse(seconds);
+                            tempSeconds++;
+                            if (tempSeconds <= 9)
+                            {
+                                seconds = "0" + tempSeconds.ToString();
+                            }
+                            else
+                            {
+                                seconds = tempSeconds.ToString();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        int tempCentiSeconds = Int32.Parse(centiseconds);
+                        tempCentiSeconds += 10;
+                        centiseconds = tempCentiSeconds.ToString();
+                    }
+                    CurTime = minutes + ":" + seconds + ":" + centiseconds;
                 }
-                CurTime = minutes + ":" + seconds + ":" + centiseconds;
             }
+            
         }
 
         public void UploadReg(string name)

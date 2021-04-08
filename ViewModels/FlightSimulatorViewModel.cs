@@ -78,11 +78,11 @@ namespace Flight_Inspection_App
                 }
                 if (value["Rewind"])
                 {
-                    model.RewindTime();
+                    model.ControlTime(true);
                 }
                 if (value["Forward"])
                 {
-                    model.UpdateTime();
+                    model.ControlTime(false);
                 }
             }
         }
