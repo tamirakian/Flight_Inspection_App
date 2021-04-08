@@ -38,8 +38,16 @@
     <Reference Include="anomalyProject">
       <HintPath>.\anomalyProject.dll</HintPath>
     </Reference>
+    <Reference Include="OxyPlot, Version=2.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <HintPath>packages\OxyPlot.Core.2.0.0\lib\net45\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.Wpf, Version=2.0.0.0, Culture=neutral, PublicKeyToken=75e952ba404cdbb0, processorArchitecture=MSIL">
+      <HintPath>packages\OxyPlot.Wpf.2.0.0\lib\net45\OxyPlot.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -67,20 +75,14 @@
     <Compile Include="ViewModels\MediaPlayerViewModel.cs" />
     <Compile Include="ViewModels\testViewModel.cs" />
     <Compile Include="ViewModels\FlightSimulatorViewModel.cs" />
-    <Compile Include="WindowObjects\PlayBack.xaml.cs">
-      <DependentUpon>PlayBack.xaml</DependentUpon>
+    <Compile Include="WindowObjects\GraphsAndList.xaml.cs">
+      <DependentUpon>GraphsAndList.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowObjects\UploadFileWindow.xaml.cs">
       <DependentUpon>UploadFileWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowObjects\UploadFlightGearLocationWindow.xaml.cs">
       <DependentUpon>UploadFlightGearLocationWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WindowObjects\Joystick.xaml.cs">
-      <DependentUpon>Joystick.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WindowObjects\UserFeaturesWindow - Copy.xaml.cs">
-      <DependentUpon>UserFeaturesWindow - Copy.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowObjects\UserFeaturesWindow.xaml.cs">
       <DependentUpon>UserFeaturesWindow.xaml</DependentUpon>
@@ -97,7 +99,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="WindowObjects\PlayBack.xaml">
+    <Page Include="WindowObjects\GraphsAndList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -109,17 +111,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WindowObjects\Joystick.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="WindowObjects\UserFeaturesWindow - Copy.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="WindowObjects\UserFeaturesWindow.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +136,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
