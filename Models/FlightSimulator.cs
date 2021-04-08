@@ -53,9 +53,8 @@ namespace Flight_Inspection_App
             flags.Add("Start", true);
             curTime = "00:00:00";
             timeInDeciSeconds = 1;
-            Speed = 10;
+            speed = 1;
             ts = new TimeSeries(regFlightFile);
-
         }
 
         public void NotifyPropertyChanged(string propName)
@@ -163,7 +162,8 @@ namespace Flight_Inspection_App
             string line;
             new Thread(delegate ()
             {
-                while(timeInDeciSeconds <= ts.getNumOfTimesteps())
+                ts.initFeaturesMap(regFlightFile);
+                while (timeInDeciSeconds < ts.getNumOfTimesteps())
                 {
                     line = ts.GetTimestepStr(timeInDeciSeconds);
                     if (!Stop)
@@ -175,7 +175,7 @@ namespace Flight_Inspection_App
                             writer.Write(writeBuffer, 0, writeBuffer.Length);
                             writer.Flush();
                             // sending data in 10HZ
-                            int converToIntSpeed = Convert.ToInt32(Speed * 10.0);
+                            int converToIntSpeed = Convert.ToInt32(100 / Speed);
                             Thread.Sleep(converToIntSpeed);
                         }
                         else
@@ -194,9 +194,9 @@ namespace Flight_Inspection_App
         }
 
         // return the entire flight time.
-        public void UpdateFlightLen()
+        public void UpdateFlightLen(int timeInDeci)
         {
-            int centiSecondsNum = timeInDeciSeconds * 10;
+            int centiSecondsNum = timeInDeci * 10;
             int minutes = centiSecondsNum / (60 * 10);
             int seconds = (centiSecondsNum - (minutes * 100*60)) / 100;
             int centiseconds = (centiSecondsNum - (minutes * 100 * 60) - (seconds * 100));
@@ -234,16 +234,15 @@ namespace Flight_Inspection_App
         // this function will go to the next time sample. 
         public void UpdateTime()
         {
-            int convertToIntSpeed = Convert.ToInt32(Speed * 10.0);
-            if(timeInDeciSeconds + convertToIntSpeed >= ts.getNumOfTimesteps())
+            if(timeInDeciSeconds >= ts.getNumOfTimesteps())
             {
                 timeInDeciSeconds = ts.getNumOfTimesteps();
-                UpdateFlightLen();
+                UpdateFlightLen(timeInDeciSeconds);
             }
             else
             {
-                timeInDeciSeconds += convertToIntSpeed;
-                UpdateFlightLen();
+                timeInDeciSeconds ++;
+                UpdateFlightLen(timeInDeciSeconds);
             }
         }
 
@@ -256,12 +255,12 @@ namespace Flight_Inspection_App
                 if (timeInDeciSeconds >= ts.getNumOfTimesteps())
                 {
                     timeInDeciSeconds = ts.getNumOfTimesteps();
-                    UpdateFlightLen();
+                    UpdateFlightLen(timeInDeciSeconds);
                 }
                 else
                 {
                     timeInDeciSeconds++;
-                    UpdateFlightLen();
+                    UpdateFlightLen(timeInDeciSeconds);
                 }
             }
             // we are using the rewind button.
@@ -270,9 +269,14 @@ namespace Flight_Inspection_App
                 if (timeInDeciSeconds > 1)
                 {
                     timeInDeciSeconds--;
-                    UpdateFlightLen();
+                    UpdateFlightLen(timeInDeciSeconds);
                 }
             }
+        }
+
+        public int getFlightLen()
+        {
+            return ts.getNumOfTimesteps();
         }
 
         public void UploadReg(string name)

@@ -145,6 +145,9 @@
     <Resource Include="Pictures\exitIcon.png" />
     <Resource Include="Pictures\importIcon.png" />
     <Resource Include="Pictures\PoweronIcon.jpg" />
+    <Resource Include="HelperClasses\playback_small.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="reg_flight.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -15,15 +15,27 @@ namespace Flight_Inspection_App.HelperClasses
     {
         List<float> values;
         string featureName;
+
+        public featureID()
+        {
+            values = new List<float>();
+            featureName = "";
+        }
         public List<float> Values
         {
             get { return values; }
-            set { }
+            set 
+            {
+                values = value; 
+            }
         }
         public string FeatureName
         {
             get { return featureName; }
-            set { }
+            set 
+            {
+                featureName = value;
+            }
         }
     };
 
@@ -36,6 +48,7 @@ namespace Flight_Inspection_App.HelperClasses
         public TimeSeries(string CSVFile)
         {
             this.CSVFile = CSVFile;
+            featuresMap = new SortedDictionary<int, featureID>();
         }
 
         // intializing the map keys and values from the csv file
@@ -43,10 +56,8 @@ namespace Flight_Inspection_App.HelperClasses
         {
             string featuresLine;
             StreamReader reader = new StreamReader(fileName);
-            // getting the first line from the file - the features names line
-            featuresLine = reader.ReadLine();
             // creating from each feature a key in the map by its position indes in the line
-            loadFeaturesFromFile(featuresLine);
+            loadFeaturesFromFile("playback_small.xml");
             // iterating over the time steps lines in the file
             string valuesLine;
             while ((valuesLine = reader.ReadLine()) != null)
@@ -76,24 +87,18 @@ namespace Flight_Inspection_App.HelperClasses
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(fileName);
-            XmlElement root = doc.DocumentElement;
-            XmlNodeList nodes = root.SelectNodes("Output");
+            XmlNode root = doc.DocumentElement;
+            XmlNodeList nodes = root.SelectNodes("descendant::name");
             int i = 0;
             foreach (XmlNode node in nodes)
             {
-                var childNodes = node.SelectNodes("Chunk");
-                if (childNodes != null)
+                if(i >= 42)
                 {
-                    foreach (XmlNode childNode in childNodes)
-                    {
-                        featureID id = new featureID();
-                        if(childNode.InnerText == "name")
-                        {
-                            id.FeatureName = childNode.InnerText;
-                            featuresMap[i++] = id;
-                        }
-                    }
+                    break;
                 }
+                featureID id = new featureID();
+                id.FeatureName = node.InnerText;
+                featuresMap.Add(i++, id);
             }
         }
 
@@ -103,9 +108,9 @@ namespace Flight_Inspection_App.HelperClasses
             for (int i = 0; i < valList.Count(); i++)
             {
                 //converting the string to float
-                float floatValue = float.Parse(valList[i], CultureInfo.InvariantCulture.NumberFormat);
+                float floatValue = (float)Convert.ToDouble(valList[i]);
                 //adding the value i to the feature in index i in the map
-                featuresMap[i].Values.Add(floatValue);
+                featuresMap.ElementAt(i).Value.Values.Add(floatValue);
             }
         }
 

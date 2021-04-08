@@ -70,7 +70,7 @@ namespace Flight_Inspection_App
                 }
                 if (value["End"])
                 {
-                    model.CurTime = model.FlightLen();
+                    model.UpdateFlightLen(model.getFlightLen());
                 }
                 if (value["Pause"])
                 {
