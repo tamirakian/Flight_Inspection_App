@@ -35,7 +35,7 @@ namespace Flight_Inspection_App
 
         // in the format of MM:SS:CSCS
         string curTime;
-        int timeSamples;
+        float speed;
 
         // constructor - initializing the flight gear socket, and setting the stop value to false
         public FlightSimulator()
@@ -97,6 +97,16 @@ namespace Flight_Inspection_App
             }
         }
 
+        public float Speed
+        {
+            get { return speed; }
+            set
+            {
+                speed = value;
+                NotifyPropertyChanged("Speed");
+            }
+        }
+
         public Boolean Stop
         {
             get
@@ -131,7 +141,7 @@ namespace Flight_Inspection_App
         public void disconnect()
         {
             // indicating that the socket is closed.
-            flags["Stop"] = true;
+            Stop = true;
             fg.Disconnect(false);
         }
 
@@ -176,7 +186,7 @@ namespace Flight_Inspection_App
         public int FlightLenInCenti()
         {
             StreamReader reader = new StreamReader(regFlightFile);
-            timeSamples = 0;
+            int timeSamples = 0;
             string line;
             // here we read the entire CSV file and count the time samples.
             while ((line = reader.ReadLine()) != null)

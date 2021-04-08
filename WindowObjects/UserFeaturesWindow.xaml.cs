@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Net.Sockets;
 using System.Net;
+using System.Globalization;
 
 namespace Flight_Inspection_App.WindowObjects
 {
@@ -46,8 +47,12 @@ namespace Flight_Inspection_App.WindowObjects
 
         private void btnApply_Click(object sender, RoutedEventArgs e)
         {
-
+            if(userSpeedInput.Text != "")
+            {
+                fsView.VM_Speed = float.Parse(userSpeedInput.Text, CultureInfo.InvariantCulture.NumberFormat);
+            }
         }
+
         private void btnOpen_Click(object sender, RoutedEventArgs e)
         {
             UploadFileWindow uploadWin = new UploadFileWindow();

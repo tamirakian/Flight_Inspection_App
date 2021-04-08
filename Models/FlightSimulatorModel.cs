@@ -26,6 +26,7 @@ namespace Flight_Inspection_App
         string settingsFile { set; get; }
         Dictionary<string, Boolean> Flags { set; get; }
         string CurTime { set; get; }
+        float Speed { set; get; }
         Boolean Stop { set; get; }
     }
 }

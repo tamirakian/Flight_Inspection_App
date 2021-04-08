@@ -95,6 +95,18 @@ namespace Flight_Inspection_App
             }
         }
 
+        public float VM_Speed
+        {
+            get
+            {
+                return model.Speed;
+            }
+            set
+            {
+                model.Speed = value;
+            }
+        }
+
         public void VM_UploadReg(string name)
         {
             model.UploadReg(name);

@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Flight_Inspection_App.WindowObjects"
         mc:Ignorable="d"
         Title="UserFeaturesWindow" Height="426.501" Width="800">
-    <Grid>
-        <Grid Margin="-2,1,15.333,2.333" RenderTransformOrigin="1.058,0.82">
+    <Grid Margin="0,0,3.6,-0.2">
+        <Grid Margin="-2,1,5,3" RenderTransformOrigin="1.058,0.82">
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -91,12 +91,12 @@
             </TextBlock>
             <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="22,10,0,0" VerticalAlignment="Top" Width="98" Height="298"/>
             <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="516.4,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="19"/>
-            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="509.4,334,0,0" TextWrapping="Wrap" Text="Play speed" VerticalAlignment="Top" Height="19"/>
-            <TextBox x:Name="userSpeedInput" Grid.Column="1" HorizontalAlignment="Left" Height="19" Margin="571.4,334,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="29"/>
-            <Button Content="Apply" Grid.Column="1" HorizontalAlignment="Left" Margin="605.4,334,0,0" VerticalAlignment="Top" Width="38" Height="19" Click="btnApply_Click"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="536.4,334,0,0" TextWrapping="Wrap" Text="Play speed" VerticalAlignment="Top" Height="19"/>
+            <TextBox x:Name="userSpeedInput" Grid.Column="1" HorizontalAlignment="Left" Height="19" Margin="598.4,334,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="29"/>
+            <Button Content="Apply" Grid.Column="1" HorizontalAlignment="Left" Margin="632.4,334,0,0" VerticalAlignment="Top" Width="38" Height="19" Click="btnApply_Click"/>
         </Grid>
         <Viewbox Width="104" Height="108" Margin="552,24,137.333,265.333" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.494,0.532">
-            <Canvas  x:Name="Base" Margin="194,-26,233.6,80.8">
+            <Canvas  x:Name="Base" Margin="194,-26,233.6,80.8" Background="Black">
                 <Ellipse HorizontalAlignment="Left" Height="340" VerticalAlignment="Top" Width="340">
                     <Ellipse.Fill>
                         <RadialGradientBrush>
