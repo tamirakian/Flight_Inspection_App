@@ -1,0 +1,64 @@
+﻿<Window x:Class="Flight_Inspection_App.WindowObjects.UserFeaturesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Flight_Inspection_App.WindowObjects"
+        mc:Ignorable="d"
+        Title="UserFeaturesWindow" Height="426.501" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.75*"/>
+            <RowDefinition Height="0.25*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.6*"/>
+                <ColumnDefinition Width="0.4*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Margin="0,0,0.2,0" Grid.Column="1">
+                <DockPanel VerticalAlignment="Center" Margin="10,10,0,10" HorizontalAlignment="Left">
+                    <Label Content="← rudder →" FontWeight="Bold" FontSize="14" DockPanel.Dock="Bottom" HorizontalContentAlignment="Center" />
+                    <Grid DockPanel.Dock="Top">
+                        <Label Content="← aileron →" FontWeight="Bold" FontSize="14"  HorizontalContentAlignment="Center" />
+                        <Label Content="{Binding ElementName=myJoyStick, Path=Aileron}" ContentStringFormat="F2"  FontWeight="Bold" FontSize="14"  HorizontalContentAlignment="Right" Margin="0,0,30,0" />
+                        <Label Content="{Binding ElementName=throttleSlider, Path=Value}" ContentStringFormat="F2" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="30,10,0,-362">
+                            <Label.LayoutTransform>
+                                <RotateTransform Angle="90" />
+                            </Label.LayoutTransform>
+                        </Label>
+                    </Grid>
+                    <Label Content="← throttle →" FontWeight="Bold" FontSize="14" DockPanel.Dock="Left" HorizontalContentAlignment="Center">
+                        <Label.LayoutTransform>
+                            <RotateTransform Angle="90" />
+                        </Label.LayoutTransform>
+                    </Label>
+                    <Grid DockPanel.Dock="Right">
+                        <Label  FontWeight="Bold" FontSize="14" Content="← elevator →" HorizontalContentAlignment="Center">
+                            <Label.LayoutTransform>
+                                <RotateTransform Angle="90" />
+                            </Label.LayoutTransform>
+                        </Label>
+                        <Label  FontWeight="Bold" FontSize="14" Content="{Binding ElementName=myJoyStick, Path=Elevator}" ContentStringFormat="F2" HorizontalContentAlignment="Left">
+                            <Label.LayoutTransform>
+                                <RotateTransform Angle="90" />
+                            </Label.LayoutTransform>
+                        </Label>
+                        <Label Content="{Binding RudderSliderVal}" ContentStringFormat="F2" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" />
+                    </Grid>
+                    <Slider Name="throttleSlider" DockPanel.Dock="Left" Minimum="-1" IsMoveToPointEnabled="True" Maximum="1" IsSnapToTickEnabled="False" TickPlacement="BottomRight" TickFrequency="0.1" Value="{Binding ThrottleSliderVal, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Delay=10}" Orientation="Vertical" Height="314" />
+                    <Slider Name="rudderSlider" DockPanel.Dock="Bottom" Minimum="-1" IsMoveToPointEnabled="True" Maximum="1" IsSnapToTickEnabled="False" TickPlacement="BottomRight" TickFrequency="0.1" Value="{Binding RudderSliderVal, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Delay=10}" Margin="10,0,10,0" />
+                    <Viewbox Stretch="Uniform">
+                        <local:Joystick/>
+                    </Viewbox>
+                </DockPanel>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Viewbox Stretch="Fill">
+                <local:PlayBack/>
+            </Viewbox>
+        </Grid>
+
+    </Grid>
+</Window>
