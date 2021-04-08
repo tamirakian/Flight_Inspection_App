@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="UserFeaturesWindow" Height="426.501" Width="800">
     <Grid>
-        <Grid Margin="-2,1,15.333,2.333" RenderTransformOrigin="0.5,0.5">
+        <Grid Margin="-8,1,21.333,2.333" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -20,7 +20,7 @@
                 <ColumnDefinition Width="7*"/>
                 <ColumnDefinition Width="383*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="353" Margin="94,329,0,0" Height="35" Background="White" Grid.Column="1" RenderTransformOrigin="0.535,0.422">
+            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="353" Margin="99,329,0,0" Height="35" Background="White" Grid.Column="1" RenderTransformOrigin="0.535,0.422">
                 <ComboBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -68,38 +68,8 @@
                     <Image Source="..\Pictures\rewindIcon.png" Width="16" Height="18"/>
                 </StackPanel>
             </Button>
-            <TextBlock HorizontalAlignment="Left" Margin="601,33,0,0" TextWrapping="Wrap" Text="&lt;-aileron-&gt;" VerticalAlignment="Top" Grid.Column="1" Height="16" Width="69"/>
-            <TextBlock HorizontalAlignment="Left" Margin="665,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Text="&lt;-elevator-&gt;" Grid.Column="1" Height="15" Width="75">
-                <TextBlock.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="90.69"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </TextBlock.RenderTransform></TextBlock>
-            <TextBlock HorizontalAlignment="Left" Margin="594,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Height="22" Width="76"><Run Text="&lt;-rudder-&gt;"/><LineBreak/><Run/></TextBlock>
-            <Slider HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
-                <Slider.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-109.225"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Slider.RenderTransform>
-            </Slider>
-            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="493,100,0,0" TextWrapping="Wrap" Text="&lt;-throttle-&gt;" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.5,0.5">
-                <TextBlock.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="89.726"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </TextBlock.RenderTransform>
-            </TextBlock>
-            <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="22,10,0,0" VerticalAlignment="Top" Width="98" Height="298"/>
+
+           
 
         </Grid>
         <Viewbox Width="104" Height="108" Margin="552,24,137.333,265.333" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.494,0.532">
@@ -225,5 +195,38 @@
         <Border HorizontalAlignment="Left" Height="18" Margin="591,154,0,0" VerticalAlignment="Top" Width="106" Background="#FF8E8989">
             <Rectangle Fill="Black" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Width="18" Margin="0,0,0,-0.333"/>
         </Border>
+        <TextBlock HorizontalAlignment="Left" Margin="601,33,0,0" TextWrapping="Wrap" Text="&lt;-aileron-&gt;" VerticalAlignment="Top" Grid.Column="1" Height="16" Width="69"/>
+        <TextBlock HorizontalAlignment="Left" Margin="665,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Text="&lt;-elevator-&gt;" Grid.Column="1" Height="15" Width="75">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90.69"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="594,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Height="22" Width="76"><Run Text="&lt;-rudder-&gt;"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="505,100,0,0" TextWrapping="Wrap" Text="&lt;-throttle-&gt;" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.5,0.5">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="89.726"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="22,10,0,0" VerticalAlignment="Top" Width="98" Height="298"/>
+        <Slider HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+            <Slider.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-109.225"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Slider.RenderTransform>
+        </Slider>
+
     </Grid>
 </Window>
