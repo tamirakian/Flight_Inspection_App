@@ -78,7 +78,6 @@ namespace Flight_Inspection_App
             }
         }
 
-        // jk
         public Dictionary<string, Boolean> Flags
         {
             get { return flags; }
