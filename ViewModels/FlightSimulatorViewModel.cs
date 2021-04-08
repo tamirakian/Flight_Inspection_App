@@ -63,14 +63,18 @@ namespace Flight_Inspection_App
                 {
                     model.Stop = true;
                     model.CurTime = "00:00:00";
+                    model.TimeInDeci = 1;
                 }
                 if (value["Begin"])
                 {
                     model.CurTime = "00:00:00";
+                    model.TimeInDeci = 1;
                 }
                 if (value["End"])
                 {
                     model.UpdateFlightLen(model.getFlightLen());
+                    model.TimeInDeci = model.getFlightLen() -1;
+                    model.Stop = true;
                 }
                 if (value["Pause"])
                 {
@@ -78,11 +82,11 @@ namespace Flight_Inspection_App
                 }
                 if (value["Rewind"])
                 {
-                    model.ControlTime(true);
+                    model.ControlTime(false);
                 }
                 if (value["Forward"])
                 {
-                    model.ControlTime(false);
+                    model.ControlTime(true);
                 }
             }
         }
@@ -104,6 +108,18 @@ namespace Flight_Inspection_App
             set
             {
                 model.Speed = value;
+            }
+        }
+
+        public int VM_TimeInDeci
+        {
+            get
+            {
+                return model.TimeInDeci;
+            }
+            set
+            {
+                model.TimeInDeci = value;
             }
         }
 

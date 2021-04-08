@@ -125,7 +125,18 @@ namespace Flight_Inspection_App
             set
             {
                 stop = value;
+                Flags["Stop"] = value;
                 NotifyPropertyChanged("Stop");
+            }
+        }
+
+        public int TimeInDeci
+        {
+            get { return timeInDeciSeconds; }
+            set
+            {
+                timeInDeciSeconds = value;
+                NotifyPropertyChanged("TimeInDeci");
             }
         }
 
@@ -185,7 +196,7 @@ namespace Flight_Inspection_App
                     }
                     else
                     {
-                        while (!Stop) { };
+                        while (Stop) { };
                     }
                 }
                 writer.Close();

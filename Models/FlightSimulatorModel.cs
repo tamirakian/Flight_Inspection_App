@@ -27,6 +27,7 @@ namespace Flight_Inspection_App
         Dictionary<string, Boolean> Flags { set; get; }
         string CurTime { set; get; }
         float Speed { set; get; }
+        int TimeInDeci { set; get; }
         Boolean Stop { set; get; }
     }
 }
