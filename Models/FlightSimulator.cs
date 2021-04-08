@@ -8,6 +8,7 @@ using System.Threading;
 using System.ComponentModel;
 using System.IO;
 using System.Net;
+using Flight_Inspection_App.HelperClasses;
 
 namespace Flight_Inspection_App
 {
@@ -154,12 +155,15 @@ namespace Flight_Inspection_App
         public void start()
         {
             this.connect(Constants.HOST_IP, Constants.HOST_PORT);
-            StreamReader reader = new StreamReader(regFlightFile);
             NetworkStream writer = new NetworkStream(fg);
-            string line;
+            List<string> lineVar;
+            TimeSeries ts = new TimeSeries(regFlightFile);
             new Thread(delegate ()
             {
-                while ((line = reader.ReadLine()) != null)
+               for(int i = 0; i < ts.getNumOfTimesteps(); i++ )
+                {
+                    lineVar = ts.getTimeStemp(i);
+                }
                 {
                     if (!Stop)
                     {

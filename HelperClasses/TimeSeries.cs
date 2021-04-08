@@ -30,7 +30,14 @@ namespace Flight_Inspection_App.HelperClasses
 
     class TimeSeries
     {
+        private string CSVFile;
         private SortedDictionary<int, featureID> featuresMap;
+
+        public TimeSeries(string CSVFile)
+        {
+            this.CSVFile = CSVFile;
+        }
+
         // intializing the map keys and values from the csv file
         public void initFeaturesMap(string fileName)
         {
