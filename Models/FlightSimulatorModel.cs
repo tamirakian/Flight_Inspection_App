@@ -15,10 +15,10 @@ namespace Flight_Inspection_App
         void start();
 
         // helper functions.
-        string FlightLen();
-        int CurSampleLen();
+        void UpdateFlightLen(int timeInDeci);
+        int getFlightLen();
         void UploadReg(string name);
-        void RewindTime();
+        void ControlTime(bool flag);
         void UpdateTime();
 
         // The flight simulator properties
@@ -27,6 +27,7 @@ namespace Flight_Inspection_App
         Dictionary<string, Boolean> Flags { set; get; }
         string CurTime { set; get; }
         float Speed { set; get; }
+        int TimeInDeci { set; get; }
         Boolean Stop { set; get; }
     }
 }
