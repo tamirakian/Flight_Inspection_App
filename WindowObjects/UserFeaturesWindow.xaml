@@ -7,16 +7,12 @@
         xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
         Title="UserFeaturesWindow" Height="426.501" Width="800">
-    <Grid Margin="0,0,3.6,-0.2">
-        <Grid Margin="-2,1,5,3" RenderTransformOrigin="1.058,0.82">
-            <Grid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-0.073"/>
-                    <TranslateTransform X="0.166" Y="-0.558"/>
-                </TransformGroup>
-            </Grid.RenderTransform>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.75*"/>
+            <RowDefinition Height="0.25*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.5*"/>
                 <ColumnDefinition Width="0.1*"/>
