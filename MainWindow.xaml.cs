@@ -1,22 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Net.Sockets;
+﻿using Flight_Inspection_App.Models;
+using Flight_Inspection_App.ViewModels;
 using Flight_Inspection_App.WindowObjects;
 using System.Diagnostics;
-using Flight_Inspection_App.ViewModels;
-using Flight_Inspection_App.Models;
+using System.Windows;
 
 namespace Flight_Inspection_App
 {
@@ -47,9 +33,9 @@ namespace Flight_Inspection_App
                 UploadFlightGearLocationWindow uploadFGWin = new UploadFlightGearLocationWindow();
                 uploadFGWin.ShowDialog();
                 vm.VM_FGLocation = uploadFGWin.FileName;
-            }
-            else
-            {
+                //}
+                //else
+                //{
                 Process process = new Process();
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.WindowStyle = ProcessWindowStyle.Hidden;
