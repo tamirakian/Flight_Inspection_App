@@ -8,17 +8,21 @@
         mc:Ignorable="d"
         Title="UserFeaturesWindow" Height="426.501" Width="800">
     <Grid>
+        <!--split the screen into two rows-->
         <Grid.RowDefinitions>
             <RowDefinition Height="0.75*"/>
             <RowDefinition Height="0.25*"/>
         </Grid.RowDefinitions>
+        <!-- split the first row into 3 parts-->
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.5*"/>
                 <ColumnDefinition Width="0.1*"/>
                 <ColumnDefinition Width="0.4*"/>
             </Grid.ColumnDefinitions>
+            <!-- UserStory6 - graphs and list-->
             <local:GraphsAndList/>
+            <!--list - userStory5-->
             <StackPanel Grid.Column="1">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text=" Height: " FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -45,6 +49,7 @@
                     <TextBlock x:Name="FlightPitch" Text="0.0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </StackPanel>
             </StackPanel>
+            <!--UserStory 3 - Joystick-->
             <Grid Margin="0,0,0.2,0" Grid.Column="2">
                 <DockPanel VerticalAlignment="Center" Margin="10,10,0,10" HorizontalAlignment="Left">
                     <Label Content="← rudder →" FontWeight="Bold" FontSize="14" DockPanel.Dock="Bottom" HorizontalContentAlignment="Center" />
@@ -213,6 +218,7 @@
                 </DockPanel>
             </Grid>
         </Grid>
+        <!--playack-->
         <Grid Grid.Row="2">
             <Grid.Resources>
                 <Thickness x:Key="myMargin" Top="20" Left="10" Right="10" Bottom ="20"></Thickness>
