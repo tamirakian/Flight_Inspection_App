@@ -15,6 +15,7 @@ namespace Flight_Inspection_App.WindowObjects
         private FlightSimulatorViewModel fsView;
         private Dictionary<string, Boolean> flags;
         private string playSpeed;
+        private GraphsAndList graphsAndList;
 
         bool LoadInputNumber(string str)
         {
@@ -33,6 +34,7 @@ namespace Flight_Inspection_App.WindowObjects
             fsView.VM_UploadReg(csvFile);
             DataContext = fsView;
             flags = fsView.VM_Flags;
+            graphsAndList = new GraphsAndList();
         }
 
         private void btnApply_Click(object sender, RoutedEventArgs e)
