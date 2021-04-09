@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 
 namespace Flight_Inspection_App.Models
@@ -32,7 +28,8 @@ namespace Flight_Inspection_App.Models
             this.testCsvFile = "reg_flight.csv";
         }
 
-        public void startCommunicatingWithServer() {
+        public void startCommunicatingWithServer()
+        {
             //this.client = new TcpClient("127.0.0.1", 5800);
             //sendLine("hello from client");
             IntPtr detector = Create(CreateTimeSeries(trainCsvFile));
