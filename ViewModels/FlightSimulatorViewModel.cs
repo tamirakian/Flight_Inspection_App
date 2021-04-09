@@ -127,6 +127,16 @@ namespace Flight_Inspection_App
             }
         }
 
+        public double VM_Elevator
+        {
+            get { return model.Elevator; }
+        }
+
+        public double VM_Aileron
+        {
+            get { return model.Aileron; }
+        }
+
         public void VM_UploadReg(string name)
         {
             model.UploadReg(name);

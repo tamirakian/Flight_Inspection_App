@@ -131,6 +131,19 @@ namespace Flight_Inspection_App.HelperClasses
             return featuresMap[featureIndex].Values[valueIndex];
         }
 
+        public float getFeatureVal(string featureName, int valueIndex)
+        {
+            foreach (var feature in featuresMap)
+            {
+                if(feature.Value.FeatureName == featureName)
+                {
+                    return getFeatureVal(feature.Key, valueIndex);
+                }
+            }
+            //////////// to change
+            return 0;
+        }
+
         // getting the specific time step values
         public List<float> getTimeStemp(int stepIndex)
         {

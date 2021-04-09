@@ -39,6 +39,9 @@ namespace Flight_Inspection_App
         float speed;
         int timeInDeciSeconds;
         TimeSeries ts;
+        double elevator;
+        double aileron;
+
         // constructor - initializing the flight gear socket, and setting the stop value to false
         public FlightSimulator()
         {
@@ -53,6 +56,8 @@ namespace Flight_Inspection_App
             flags.Add("Start", true);
             curTime = "00:00:00";
             timeInDeciSeconds = 1;
+            elevator = 125;
+            aileron = 125;
             speed = 1;
             ts = new TimeSeries(regFlightFile);
         }
@@ -114,6 +119,26 @@ namespace Flight_Inspection_App
                     NotifyPropertyChanged("Speed");
                     return;
                 }       
+            }
+        }
+
+        public double Elevator
+        {
+            get { return elevator; }
+            set
+            {
+                elevator = value;
+                NotifyPropertyChanged("Elevator");
+            }
+        }
+
+        public double Aileron
+        {
+            get { return aileron; }
+            set
+            {
+                aileron = value;
+                NotifyPropertyChanged("Aileron");
             }
         }
 
@@ -185,6 +210,8 @@ namespace Flight_Inspection_App
                         }
                         line = ts.GetTimestepStr(timeInDeciSeconds);
                         UpdateTime();
+                        Elevator = (ts.getFeatureVal("elevator", timeInDeciSeconds)) * 130 + 125;
+                        Aileron = (ts.getFeatureVal("aileron", timeInDeciSeconds)) * 130 + 125;
                         if (writer.CanWrite)
                         {
                             byte[] writeBuffer = Encoding.ASCII.GetBytes(line + "\r\n");
