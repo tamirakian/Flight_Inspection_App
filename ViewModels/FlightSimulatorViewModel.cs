@@ -74,7 +74,6 @@ namespace Flight_Inspection_App
                 {
                     model.UpdateFlightLen(model.getFlightLen());
                     model.TimeInDeci = model.getFlightLen() -1;
-                    model.Stop = true;
                 }
                 if (value["Pause"])
                 {
@@ -89,6 +88,11 @@ namespace Flight_Inspection_App
                     model.ControlTime(true);
                 }
             }
+        }
+
+        public string VM_CurTime
+        {
+            get { return model.CurTime; }
         }
 
         public Boolean VM_Stop
@@ -126,6 +130,11 @@ namespace Flight_Inspection_App
         public void VM_UploadReg(string name)
         {
             model.UploadReg(name);
+        }
+
+        public int VM_GetFlightLen()
+        {
+            return model.getFlightLen();
         }
     }
 }

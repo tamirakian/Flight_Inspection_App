@@ -110,6 +110,7 @@ namespace Flight_Inspection_App
                 // *******need to put an error message to user
                 if(value < 3)
                 {
+                    speed = value;
                     NotifyPropertyChanged("Speed");
                     return;
                 }       
@@ -174,11 +175,15 @@ namespace Flight_Inspection_App
             new Thread(delegate ()
             {
                 ts.initFeaturesMap(regFlightFile);
-                while (timeInDeciSeconds < ts.getNumOfTimesteps())
+                while (timeInDeciSeconds <= ts.getNumOfTimesteps())
                 {
-                    line = ts.GetTimestepStr(timeInDeciSeconds);
                     if (!Stop)
                     {
+                        if (timeInDeciSeconds == ts.getNumOfTimesteps() - 1)
+                        {
+                            Stop = true;
+                        }
+                        line = ts.GetTimestepStr(timeInDeciSeconds);
                         UpdateTime();
                         if (writer.CanWrite)
                         {
@@ -208,7 +213,7 @@ namespace Flight_Inspection_App
         public void UpdateFlightLen(int timeInDeci)
         {
             int centiSecondsNum = timeInDeci * 10;
-            int minutes = centiSecondsNum / (60 * 10);
+            int minutes = centiSecondsNum / (60 * 100);
             int seconds = (centiSecondsNum - (minutes * 100*60)) / 100;
             int centiseconds = (centiSecondsNum - (minutes * 100 * 60) - (seconds * 100));
             string minutesStr;
@@ -263,23 +268,23 @@ namespace Flight_Inspection_App
             // if we are using the rewind button.
             if (forward)
             {
-                if (timeInDeciSeconds >= ts.getNumOfTimesteps())
+                if (timeInDeciSeconds + 10 >= ts.getNumOfTimesteps())
                 {
                     timeInDeciSeconds = ts.getNumOfTimesteps();
                     UpdateFlightLen(timeInDeciSeconds);
                 }
                 else
                 {
-                    timeInDeciSeconds++;
+                    timeInDeciSeconds+=10;
                     UpdateFlightLen(timeInDeciSeconds);
                 }
             }
             // we are using the rewind button.
             else
             {
-                if (timeInDeciSeconds > 1)
+                if (timeInDeciSeconds - 10 > 1)
                 {
-                    timeInDeciSeconds--;
+                    timeInDeciSeconds-=10;
                     UpdateFlightLen(timeInDeciSeconds);
                 }
             }

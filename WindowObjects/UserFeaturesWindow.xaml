@@ -262,10 +262,9 @@
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Play speed" VerticalAlignment="Center" Height="19" Margin="20,10,5,10"/>
                 <TextBox x:Name="userSpeedInput" Grid.Column="1" HorizontalAlignment="Left" Height="19" TextWrapping="Wrap" VerticalAlignment="Center" Width="100" Margin="{StaticResource myMargin}"/>
                 <Button Content="Apply" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="38" Height="19" Click="btnApply_Click" Margin="{StaticResource myMargin}"/>
-                <TextBlock x:Name="Timer" Text="00:00:00" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="{StaticResource myMargin}"/>
+                <TextBlock x:Name="Timer" Text="{Binding VM_CurTime}" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="{StaticResource myMargin}"/>
             </DockPanel>
-
-            <Slider VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,3,20,0" Grid.Row="2"/>
+            <Slider Minimum="1" Maximum="{Binding VM_GetFlightLen}" TickFrequency="1" IsMoveToPointEnabled="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,3,20,0" Grid.Row="2" Value="{Binding VM_TimeInDeci, Mode=TwoWay}"/>
         </Grid>
 
     </Grid>
