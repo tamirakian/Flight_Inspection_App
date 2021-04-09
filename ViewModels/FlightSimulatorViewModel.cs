@@ -131,5 +131,10 @@ namespace Flight_Inspection_App
         {
             model.UploadReg(name);
         }
+
+        public int VM_GetFlightLen()
+        {
+            return model.getFlightLen();
+        }
     }
 }

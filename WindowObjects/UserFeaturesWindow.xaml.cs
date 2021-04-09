@@ -150,5 +150,10 @@ namespace Flight_Inspection_App.WindowObjects
         {
 
         }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
     }
 }
