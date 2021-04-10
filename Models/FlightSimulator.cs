@@ -41,6 +41,12 @@ namespace Flight_Inspection_App
         TimeSeries ts;
         double elevator;
         double aileron;
+        float height;
+        float flightSpeed;
+        float direction;
+        float roll;
+        float yaw;
+        float pitch;
 
         // constructor - initializing the flight gear socket, and setting the stop value to false
         public FlightSimulator()
@@ -59,6 +65,12 @@ namespace Flight_Inspection_App
             elevator = 125;
             aileron = 125;
             speed = 1;
+            height = 0;
+            flightSpeed = 0;
+            direction = 0;
+            roll = 0;
+            yaw = 0;
+            pitch = 0;
             ts = new TimeSeries(regFlightFile);
         }
 
@@ -142,6 +154,66 @@ namespace Flight_Inspection_App
             }
         }
 
+        public float Height
+        {
+            get { return height; }
+            set
+            {
+                height = value;
+                NotifyPropertyChanged("Height");
+            }
+        }
+
+        public float FlightSpeed
+        {
+            get { return flightSpeed; }
+            set
+            {
+                flightSpeed = value;
+                NotifyPropertyChanged("FlightSpeed");
+            }
+        }
+
+        public float Direction
+        {
+            get { return direction; }
+            set
+            {
+                direction = value;
+                NotifyPropertyChanged("Direction");
+            }
+        }
+
+        public float Roll
+        {
+            get { return roll; }
+            set
+            {
+                roll = value;
+                NotifyPropertyChanged("Roll");
+            }
+        }
+
+        public float Yaw
+        {
+            get { return yaw; }
+            set
+            {
+                yaw = value;
+                NotifyPropertyChanged("Yaw");
+            }
+        }
+
+        public float Pitch
+        {
+            get { return pitch; }
+            set
+            {
+                pitch = value;
+                NotifyPropertyChanged("Pitch");
+            }
+        }
+
         public Boolean Stop
         {
             get
@@ -212,6 +284,12 @@ namespace Flight_Inspection_App
                         UpdateTime();
                         Elevator = (ts.getFeatureVal("elevator", timeInDeciSeconds)) * 130 + 125;
                         Aileron = (ts.getFeatureVal("aileron", timeInDeciSeconds)) * 130 + 125;
+                        Height = ts.getFeatureVal("altitude-ft", timeInDeciSeconds);
+                        FlightSpeed = ts.getFeatureVal("airspeed-kt", timeInDeciSeconds);
+                        Direction = ts.getFeatureVal("heading-deg", timeInDeciSeconds);
+                        Roll = ts.getFeatureVal("roll-deg", timeInDeciSeconds);
+                        Yaw = ts.getFeatureVal("side-slip-deg", timeInDeciSeconds);
+                        Pitch = ts.getFeatureVal("pitch-deg", timeInDeciSeconds);
                         if (writer.CanWrite)
                         {
                             byte[] writeBuffer = Encoding.ASCII.GetBytes(line + "\r\n");

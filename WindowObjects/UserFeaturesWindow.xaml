@@ -22,27 +22,27 @@
             <StackPanel Grid.Column="1">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text=" Height: " FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock x:Name="FlightHeight" Text="0.0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="FlightHeight" Text="{Binding VM_Height}" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text=" Speed: " FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock x:Name="FlightSpeed" Text="0.0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="FlightSpeed" Text="{Binding VM_FlightSpeed}" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text=" Direction: " FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock x:Name="FlightDirection" Text="0.0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="FlightDirection" Text="{Binding VM_Direction}" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text=" Yaw: " FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock x:Name="FlightYaw" Text="0.0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="FlightYaw" Text="{Binding VM_Yaw}" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text=" Roll: " FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock x:Name="FlightRoll" Text="0.0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="FlightRoll" Text="{Binding VM_Roll}" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text=" Pitch: " FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock x:Name="FlightPitch" Text="0.0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="FlightPitch" Text="{Binding VM_Pitch}" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </StackPanel>
             </StackPanel>
             <Grid Margin="0,0,0.2,0" Grid.Column="2">

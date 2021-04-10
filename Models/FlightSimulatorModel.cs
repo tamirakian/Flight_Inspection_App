@@ -29,6 +29,12 @@ namespace Flight_Inspection_App
         float Speed { set; get; }
         double Elevator { set; get; }
         double Aileron { set; get; }
+        float Height { set; get; }
+        float FlightSpeed { set; get; }
+        float Direction { set; get; }
+        float Roll { set; get; }
+        float Yaw { set; get; }
+        float Pitch { set; get; }
         int TimeInDeci { set; get; }
         Boolean Stop { set; get; }
     }

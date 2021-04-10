@@ -132,6 +132,36 @@ namespace Flight_Inspection_App
             get { return model.Elevator; }
         }
 
+        public float VM_Height
+        {
+            get { return model.Height; }
+        }
+
+        public float VM_FlightSpeed
+        {
+            get { return model.FlightSpeed; }
+        }
+
+        public float VM_Direction
+        {
+            get { return model.Direction; }
+        }
+
+        public float VM_Roll
+        {
+            get { return model.Roll; }
+        }
+
+        public float VM_Yaw
+        {
+            get { return model.Yaw; }
+        }
+
+        public float VM_Pitch
+        {
+            get { return model.Pitch; }
+        }
+
         public double VM_Aileron
         {
             get { return model.Aileron; }
