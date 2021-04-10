@@ -15,5 +15,11 @@ namespace Flight_Inspection_App.WindowObjects
             ViewModel = new GraphsAndListViewModel();
             DataContext = ViewModel;
         }
+
+        private void SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (FlightVariables.SelectedItem != null)
+                ViewModel.PointsTopRightGraph = (lbTodoList.SelectedItem as TodoItem).Title;
+        }
     }
 }

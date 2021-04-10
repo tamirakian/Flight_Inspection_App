@@ -8,17 +8,17 @@ using System.Threading;
 using System.ComponentModel;
 using System.IO;
 using Flight_Inspection_App.Models;
+using Flight_Inspection_App.HelperClasses;
 
 namespace Flight_Inspection_App
 {
-    class MediaPlayerViewModel : INotifyPropertyChanged
+    class MediaPlayerViewModel : INotifyClass, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        private MediaPlayerModel mpm;
+        private MediaPlayerModel model;
 
         public MediaPlayerViewModel(MediaPlayerModel model)
         {
-            this.mpm = model;
+            this.model = model;
             model.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
                 {
@@ -26,19 +26,30 @@ namespace Flight_Inspection_App
                 };
         }
 
-        public void NotifyPropertyChanged(string propName)
+        public Dictionary<string, Boolean> VM_Flags
         {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            get { return model.Flags; }
+            set
+            {
+                model.Flags = value;
+            }
         }
 
-        public string VM_CSVFile
+        public string VM_CurTime
         {
-            get { return mpm.CSVFile; }
+            get { return model.CurTime; }
         }
-        public string VM_curTime
+
+        public float VM_Speed
         {
-            get { return mpm.time; }
+            get
+            {
+                return model.Speed;
+            }
+            set
+            {
+                model.Speed = value;
+            }
         }
     } 
 }

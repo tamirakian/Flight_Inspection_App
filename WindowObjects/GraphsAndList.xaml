@@ -11,7 +11,218 @@
             <ColumnDefinition Width="0.5*"/>
             <ColumnDefinition Width="0.5*"/>
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0" BorderThickness="3"/>
+        <ListBox x:Name="FlightVariables" Grid.Column="0" BorderThickness="3" SelectionMode="Extended" SelectionChanged="SelectionChanged">
+            <ListBoxItem x:Name="aileron">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>aileron</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="elevator">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>elevator</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="rudder">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>rudder</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="flaps">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>flaps</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="slats">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>slats</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="speedbrake">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>speedbrake</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="throttle1">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>throttle1</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="throttle2">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>throttle2</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="enginePump1">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>engine-pump1</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="enginePump2">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>engine-pump2</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="electricPump1">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>electric-pump1</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="electricPump2">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>electric-pump2</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="externalPower">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>external-power</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="APUGenerator">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>APU-generator</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="latitudeDeg">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>latitude-deg</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="longitudeDeg">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>longitude-deg</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="altitudeFt">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>altitude-ft</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="rollDeg">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>roll-deg</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="pitchDeg">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>pitch-deg</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="headingDeg">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>heading-deg</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="sideSlipDeg">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>side-slip-deg</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="airspeedKt">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>airspeed-kt</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="glideslope">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>glideslope</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="verticalSpeedFps">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>vertical-speed-fps</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="airspeedIndicatorSpeedKt">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>airspeed-indicator_indicated-speed-kt</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="altimeterIndicatedAltitudeFt">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>altimeter_indicated-altitude-ft</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="altimeterPressureAltFt">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>altimeter_pressure-alt-ft</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="attitudeIndicatorPitchDeg">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>attitude-indicator_indicated-pitch-deg</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="attitudeIndicatorIndicatedRollDeg">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>attitude-indicator_indicated-roll-deg</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="attitudeIndicatorInternalPitchDeg">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>attitude-indicator_internal-pitch-deg</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="attitudeIndicatorInternalRollDeg">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>attitude-indicator_internal-roll-deg</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="encoderIndicatedAltitudeFt">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>encoder_indicated-altitude-ft</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="encoderPressureAltFt">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>encoder_pressure-alt-ft</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="gpsIndicatedAltitudeFt">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>gps_indicated-altitude-ft</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="gpsIndicatedGroundSpeedKt">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>gps_indicated-ground-speed-kt</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="gpsIndicatedVerticalSpeed">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>gps_indicated-vertical-speed</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="indicatedHeadingDeg">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>indicated-heading-deg</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="magneticCompassIndicatedHeadingDeg">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>magnetic-compass_indicated-heading-deg</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="slipSkidBallIndicatedSlipSkid">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>slip-skid-ball_indicated-slip-skid</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="turnIndicatorTurnRate">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>turn-indicator_indicated-turn-rate</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="verticalSpeedIndicatorSpeedFpm">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>vertical-speed-indicator_indicated-speed-fpm</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="engineRpm">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>engine_rpm</TextBlock>
+                </StackPanel>
+            </ListBoxItem>
+        </ListBox>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.4*"/>

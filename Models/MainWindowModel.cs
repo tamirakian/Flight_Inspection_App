@@ -13,7 +13,8 @@ namespace Flight_Inspection_App.Models
         private string fgLocation;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public MainWindowModel(string csv, string location) {
+        public MainWindowModel(string csv, string location)
+        {
             this.csvFile = csv;
             this.fgLocation = location;
         }

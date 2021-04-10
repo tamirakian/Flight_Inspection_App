@@ -19,13 +19,13 @@ namespace Flight_Inspection_App
     }
 
     // the model
-    class FlightSimulator : FlightSimulatorModel 
+    class FlightSimulator : FlightSimulatorModel
     {
         // the reg_flight csv file name
         private string regFlight;
         // the xml file name
         private string settings;
-        
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         // the flight simulator socket
@@ -84,7 +84,9 @@ namespace Flight_Inspection_App
         public string regFlightFile
         {
             get { return regFlight; }
-            set { regFlight = value;
+            set
+            {
+                regFlight = value;
                 NotifyPropertyChanged("regFlightFile");
             }
         }
@@ -113,9 +115,10 @@ namespace Flight_Inspection_App
         public string CurTime
         {
             get { return curTime; }
-            set { 
+            set
+            {
                 curTime = value;
-                NotifyPropertyChanged("CurTime"); 
+                NotifyPropertyChanged("CurTime");
             }
         }
 
@@ -125,12 +128,12 @@ namespace Flight_Inspection_App
             set
             {
                 // *******need to put an error message to user
-                if(value < 3)
+                if (value < 3)
                 {
                     speed = value;
                     NotifyPropertyChanged("Speed");
                     return;
-                }       
+                }
             }
         }
 
@@ -319,7 +322,7 @@ namespace Flight_Inspection_App
         {
             int centiSecondsNum = timeInDeci * 10;
             int minutes = centiSecondsNum / (60 * 100);
-            int seconds = (centiSecondsNum - (minutes * 100*60)) / 100;
+            int seconds = (centiSecondsNum - (minutes * 100 * 60)) / 100;
             int centiseconds = (centiSecondsNum - (minutes * 100 * 60) - (seconds * 100));
             string minutesStr;
             string secondsStr;
@@ -350,19 +353,19 @@ namespace Flight_Inspection_App
             }
             // return the entire flight time in a string.
             CurTime = minutesStr + ":" + secondsStr + ":" + centiSecondsStr;
-        } 
-        
+        }
+
         // this function will go to the next time sample. 
         public void UpdateTime()
         {
-            if(timeInDeciSeconds >= ts.getNumOfTimesteps())
+            if (timeInDeciSeconds >= ts.getNumOfTimesteps())
             {
                 timeInDeciSeconds = ts.getNumOfTimesteps();
                 UpdateFlightLen(timeInDeciSeconds);
             }
             else
             {
-                timeInDeciSeconds ++;
+                timeInDeciSeconds++;
                 UpdateFlightLen(timeInDeciSeconds);
             }
         }
@@ -380,7 +383,7 @@ namespace Flight_Inspection_App
                 }
                 else
                 {
-                    timeInDeciSeconds+=10;
+                    timeInDeciSeconds += 10;
                     UpdateFlightLen(timeInDeciSeconds);
                 }
             }
@@ -389,7 +392,7 @@ namespace Flight_Inspection_App
             {
                 if (timeInDeciSeconds - 10 > 1)
                 {
-                    timeInDeciSeconds-=10;
+                    timeInDeciSeconds -= 10;
                     UpdateFlightLen(timeInDeciSeconds);
                 }
             }

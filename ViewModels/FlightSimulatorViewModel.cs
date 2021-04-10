@@ -18,9 +18,9 @@ namespace Flight_Inspection_App
             this.model = model;
             model.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
-            {
-                NotifyPropertyChanged("VM_" + e.PropertyName);
-            };
+                {
+                    NotifyPropertyChanged("VM_" + e.PropertyName);
+                };
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -50,7 +50,7 @@ namespace Flight_Inspection_App
                 model.Flags = value;
                 if (value["Play"])
                 {
-                    if(model.CurTime == "00:00:00" && model.Flags["Start"])
+                    if (model.CurTime == "00:00:00" && model.Flags["Start"])
                     {
                         model.start();
                     }
@@ -73,7 +73,7 @@ namespace Flight_Inspection_App
                 if (value["End"])
                 {
                     model.UpdateFlightLen(model.getFlightLen());
-                    model.TimeInDeci = model.getFlightLen() -1;
+                    model.TimeInDeci = model.getFlightLen() - 1;
                 }
                 if (value["Pause"])
                 {

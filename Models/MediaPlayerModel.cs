@@ -7,119 +7,65 @@ using System.Net.Sockets;
 using System.Threading;
 using System.ComponentModel;
 using System.IO;
+using Flight_Inspection_App.HelperClasses;
 
 namespace Flight_Inspection_App.Models
 {
-    class MediaPlayerModel
+    class MediaPlayerModel : INotifyClass
     {
-        // the flight time samples.
-        private string CSV;
-        // the current time in flight.
-        private string curTime;
-        public event PropertyChangedEventHandler PropertyChanged;
         // a dictionary to keep the check which buttons was pressed.
         Dictionary<string, Boolean> flags = new Dictionary<string, bool>();
+        // the media player speed
+        float speed;
+        // in the format of MM:SS:CSCS
+        string curTime;
 
-        // constructor.
-        public MediaPlayerModel(string flight, string time)
+        public MediaPlayerModel()
         {
-            this.CSV = flight;
-            this.curTime = time;
- 
+            flags.Add("Play", false);
+            flags.Add("Stop", false);
+            flags.Add("Pause", false);
+            flags.Add("End", false);
+            flags.Add("Begin", false);
+            flags.Add("Rewind", false);
+            flags.Add("Forward", false);
+            flags.Add("Start", true);
+            speed = 1;
+            curTime = "00:00:00";
         }
-        public void NotifyPropertyChanged(string propName)
+
+        public Dictionary<string, Boolean> Flags
         {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-        }
-        public string CSVFile
-        {
-            get { return CSV; }
+            get { return flags; }
             set
             {
-                CSVFile = value;
-                NotifyPropertyChanged("CSVFile");
+                flags = value;
+                NotifyPropertyChanged("Flags");
             }
         }
-        public string time
+
+        public float Speed
+        {
+            get { return speed; }
+            set
+            {
+                // *******need to put an error message to user
+                if (value < 3)
+                {
+                    speed = value;
+                    NotifyPropertyChanged("Speed");
+                    return;
+                }
+            }
+        }
+
+        public string CurTime
         {
             get { return curTime; }
             set
             {
-                time = value;
-                NotifyPropertyChanged("time");
-            }
-        }
-        // get tje entire flight time in seconds.
-        int GetTimeInSeconds()
-        {
-            int counter = 0;
-            int tempCalc = 0;
-            StreamReader reader = new StreamReader(CSV);
-            string line;
-            while ((line = reader.ReadLine()) != null)
-            {
-                counter++;
-            }
-            tempCalc += counter / 10;
-            return tempCalc;
-        }
-        int GetTimeInSeconds(string flightFile)
-        {
-            int counter = 0;
-            int tempCalc = 0;
-            StreamReader reader = new StreamReader(flightFile);
-            string line;
-            while ((line = reader.ReadLine()) != null)
-            {
-                counter++;
-            }
-            tempCalc += counter / 10;
-            return tempCalc;
-        }
-        // display the time of the flight given a number of seconds.
-        string DisplayTime(int seconds)
-        {
-            int min = 0;
-            string display;
-            if (seconds >= 60)
-            {
-                min += seconds / 60;
-                seconds = seconds - min * 60;
-            }
-            if (min > 0)
-            {
-                display = min.ToString() + ":" + seconds.ToString();
-            }
-            else
-            {
-                display = seconds.ToString();
-            }
-            return display;
-        }
-        void Play(string time)
-        {
-            int min;
-            int seconds;
-            int timeToStart;
-            if (time.Contains(":"))
-            {
-                string[] words = time.Split(':');
-                min = Int32.Parse(words[0]);
-                seconds = Int32.Parse(words[1]);
-                timeToStart = min * 60 + seconds;
-            }
-            else
-            {
-                timeToStart = Int32.Parse(time);
-            }
-            int timeSample = timeToStart * 10;
-            int sampleCounter = 0;
-            string line;
-            StreamReader reader = new StreamReader(this.CSV);
-            while (sampleCounter != timeSample)
-            {
-                line = reader.ReadLine();
+                curTime = value;
+                NotifyPropertyChanged("CurTime");
             }
         }
     }

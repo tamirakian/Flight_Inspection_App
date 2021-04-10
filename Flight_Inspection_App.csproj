@@ -66,7 +66,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="HelperClasses\Constants.cs" />
+    <Compile Include="HelperClasses\INotifyClass.cs" />
     <Compile Include="HelperClasses\TimeSeries.cs" />
+    <Compile Include="Models\Connection.cs" />
+    <Compile Include="Models\GraphsAndListModel.cs" />
+    <Compile Include="Models\Interfaces\FlightSimulatorModel.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
     <Compile Include="Models\MediaPlayerModel.cs" />
     <Compile Include="Models\DataModel.cs" />
@@ -118,7 +123,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\FlightSimulator.cs" />
-    <Compile Include="Models\FlightSimulatorModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -168,5 +172,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
