@@ -18,7 +18,7 @@
                 <ColumnDefinition Width="0.1*"/>
                 <ColumnDefinition Width="0.4*"/>
             </Grid.ColumnDefinitions>
-            <local:GraphsAndList/>
+            <local:GraphsAndList/> 
             <StackPanel Grid.Column="1">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text=" Height: " FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -223,6 +223,15 @@
             </Grid.RowDefinitions>
 
             <DockPanel Grid.Row="0">
+                <!--<local:openBotton/>-->
+                <!--<local:beginButton/>-->
+                <!--local:rewindButton/>-->
+                <!--local:stopButton/>-->
+                <!--local:playButton/>-->
+                <!--local:pauseButton/>-->
+                <!--local:forwardButton/>-->
+                <!--local:endButton/>-->
+                
                 <Button Content="Open" Name="openButton" Click="btnOpen_Click" Margin="{StaticResource myMargin}"/>
                 <Button Name="beginButton" Click="btnBegin_Click" Margin="{StaticResource myMargin}">
                     <StackPanel Orientation="Horizontal">

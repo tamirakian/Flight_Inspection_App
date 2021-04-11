@@ -18,8 +18,8 @@ namespace Flight_Inspection_App.WindowObjects
 
         private void SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (FlightVariables.SelectedItem != null)
-                ViewModel.PointsTopRightGraph = (lbTodoList.SelectedItem as TodoItem).Title;
+         //   if (FlightVariables.SelectedItem != null)
+           //     ViewModel.PointsTopRightGraph = (lbTodoList.SelectedItem as TodoItem).Title;
         }
     }
 }
