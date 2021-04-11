@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Net;
 using Flight_Inspection_App.HelperClasses;
+using OxyPlot;
 
 namespace Flight_Inspection_App
 {
@@ -47,6 +48,21 @@ namespace Flight_Inspection_App
         float roll;
         float yaw;
         float pitch;
+        IList<DataPoint> pointsTopRightGraph;
+
+        //singelton
+        private static FlightSimulator modelInstance;
+        public static FlightSimulator ModelInstance
+        {
+            get
+            {
+                if (modelInstance == null)
+                {
+                    modelInstance = new FlightSimulator();
+                }
+                return modelInstance;
+            }
+        }
 
         // constructor - initializing the flight gear socket, and setting the stop value to false
         public FlightSimulator()
@@ -72,6 +88,7 @@ namespace Flight_Inspection_App
             yaw = 0;
             pitch = 0;
             ts = new TimeSeries(regFlightFile);
+            pointsTopRightGraph = 
         }
 
         public void NotifyPropertyChanged(string propName)
@@ -274,11 +291,14 @@ namespace Flight_Inspection_App
             string line;
             new Thread(delegate ()
             {
-                ts.initFeaturesMap(regFlightFile);
                 while (timeInDeciSeconds <= ts.getNumOfTimesteps())
                 {
                     if (!Stop)
                     {
+                        if(ts.getFeaturesNames() == null)
+                        {
+                            ts.initFeaturesMap(regFlightFile);
+                        }
                         if (timeInDeciSeconds == ts.getNumOfTimesteps() - 1)
                         {
                             Stop = true;
@@ -400,12 +420,21 @@ namespace Flight_Inspection_App
 
         public int getFlightLen()
         {
+            if (ts.getFeaturesNames() == null)
+            {
+                ts.initFeaturesMap(regFlightFile);
+            }
             return ts.getNumOfTimesteps();
         }
 
         public void UploadReg(string name)
         {
             regFlightFile = name;
+        }
+
+        public float getFaetureVal(string featureName)
+        {
+            return ts.getFeatureVal(featureName, timeInDeciSeconds);
         }
     }
 }

@@ -117,6 +117,10 @@ namespace Flight_Inspection_App.HelperClasses
         // getting the features names vector
         public List<string> getFeaturesNames()
         {
+            if( featuresMap.Count == 0)
+            {
+                return null;
+            }
             List<string> featuresNames = new List<string>();
             for (int i = 0; i<featuresMap.Count(); i++)
             {

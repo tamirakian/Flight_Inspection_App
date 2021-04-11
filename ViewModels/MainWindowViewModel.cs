@@ -10,12 +10,12 @@ namespace Flight_Inspection_App.ViewModels
 {
     class MainWindowViewModel : INotifyPropertyChanged
     {
-        private MainWindowModel model;
+        private FlightSimulator model;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public MainWindowViewModel(MainWindowModel model)
+        public MainWindowViewModel()
         {
-            this.model = model;
+            model = FlightSimulator.ModelInstance;
             model.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
                 {
@@ -31,19 +31,19 @@ namespace Flight_Inspection_App.ViewModels
 
         public string VM_CSVFile
         {
-            get { return model.CSVFile; }
+            get { return model.regFlightFile; }
             set
             {
-                model.CSVFile = value;
+                model.regFlightFile = value;
             }
         }
 
         public string VM_FGLocation
         {
-            get { return model.FGLocation; }
+            get { return model.settingsFile; }
             set
             {
-                model.FGLocation = value;
+                model.settingsFile = value;
             }
         }
     }

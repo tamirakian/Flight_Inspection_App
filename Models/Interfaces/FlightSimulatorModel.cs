@@ -20,6 +20,7 @@ namespace Flight_Inspection_App
         void UploadReg(string name);
         void ControlTime(bool flag);
         void UpdateTime();
+        float getFaetureVal(string featureName);
 
         // The flight simulator properties
         string regFlightFile { set; get; }

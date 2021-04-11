@@ -70,7 +70,6 @@
     <Compile Include="HelperClasses\INotifyClass.cs" />
     <Compile Include="HelperClasses\TimeSeries.cs" />
     <Compile Include="Models\Connection.cs" />
-    <Compile Include="Models\GraphsAndListModel.cs" />
     <Compile Include="Models\Interfaces\FlightSimulatorModel.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
     <Compile Include="Models\MediaPlayerModel.cs" />

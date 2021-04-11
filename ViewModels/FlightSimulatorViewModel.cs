@@ -13,9 +13,9 @@ namespace Flight_Inspection_App
         private FlightSimulatorModel model;
 
         // constructor 
-        public FlightSimulatorViewModel(FlightSimulatorModel model)
+        public FlightSimulatorViewModel()
         {
-            this.model = model;
+            model = FlightSimulator.ModelInstance;
             model.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
                 {

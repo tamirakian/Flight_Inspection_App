@@ -18,8 +18,12 @@ namespace Flight_Inspection_App.WindowObjects
 
         private void SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //   if (FlightVariables.SelectedItem != null)
-            //     ViewModel.PointsTopRightGraph = (lbTodoList.SelectedItem as TodoItem).Title;
+            if (FlightVariables.SelectedItem != null)
+            {
+                ListBoxItem lbItem = (FlightVariables.SelectedItem as ListBoxItem);
+                StackPanel sp = lbItem.Content as StackPanel;
+                ViewModel.VM_DesiredModel = (sp.Children[0] as TextBlock).Text;
+            }
         }
     }
 }

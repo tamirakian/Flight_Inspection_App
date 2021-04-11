@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Flight_Inspection_App.ViewModels;
 
 namespace Flight_Inspection_App.WindowObjects
 {
@@ -30,7 +31,8 @@ namespace Flight_Inspection_App.WindowObjects
         public UserFeaturesWindow(string csvFile)
         {
             InitializeComponent();
-            fsView = new FlightSimulatorViewModel(new FlightSimulator());
+            FlightSimulator FSmodel = FlightSimulator.ModelInstance;
+            fsView = new FlightSimulatorViewModel();
             fsView.VM_UploadReg(csvFile);
             DataContext = fsView;
             flags = fsView.VM_Flags;

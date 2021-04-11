@@ -16,7 +16,7 @@ namespace Flight_Inspection_App
         public MainWindow()
         {
             InitializeComponent();
-            vm = new MainWindowViewModel(new MainWindowModel(null, null));
+            vm = new MainWindowViewModel();
         }
 
         private void ImportBTn_Click(object sender, RoutedEventArgs e)
