@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Flight_Inspection_App.WindowObjects"
         xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
-        Title="UserFeaturesWindow" Height="426.501" Width="800">
+        Title="UserFeaturesWindow" Height="426.501" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.75*"/>
@@ -14,12 +14,12 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.5*"/>
-                <ColumnDefinition Width="0.1*"/>
-                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="238*"/>
+                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition Width="159*"/>
             </Grid.ColumnDefinitions>
-            <local:GraphsAndList/>
-            <StackPanel Grid.Column="1">
+            <local:GraphsAndList Margin="10,0,2,-0.4"/>
+            <StackPanel Grid.Column="2" Margin="55,0,27.6,193.6">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text=" Height: " FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <TextBlock x:Name="FlightHeight" Text="{Binding VM_Height}" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -45,7 +45,7 @@
                     <TextBlock x:Name="FlightPitch" Text="{Binding VM_Pitch}" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </StackPanel>
             </StackPanel>
-            <Grid Margin="0,0,0.2,0" Grid.Column="2">
+            <Grid Margin="55,93,9.6,-93.4" Grid.Column="2">
                 <DockPanel VerticalAlignment="Center" Margin="10,10,0,10" HorizontalAlignment="Left">
                     <Label Content="← rudder →" FontWeight="Bold" FontSize="14" DockPanel.Dock="Bottom" HorizontalContentAlignment="Center" />
                     <Grid DockPanel.Dock="Top">
@@ -75,9 +75,9 @@
                         </Label>
                         <Label Content="{Binding RudderSliderVal}" ContentStringFormat="F2" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" />
                     </Grid>
-                    <Slider Name="throttleSlider" DockPanel.Dock="Left" Minimum="-1" IsMoveToPointEnabled="True" Maximum="1" IsSnapToTickEnabled="False" TickPlacement="BottomRight" TickFrequency="0.1" Value="{Binding ThrottleSliderVal, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Delay=10}" Orientation="Vertical" Height="314" />
-                    <Slider Name="rudderSlider" DockPanel.Dock="Bottom" Minimum="-1" IsMoveToPointEnabled="True" Maximum="1" IsSnapToTickEnabled="False" TickPlacement="BottomRight" TickFrequency="0.1" Value="{Binding RudderSliderVal, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Delay=10}" Margin="10,0,10,0" />
-                    <Viewbox Stretch="Uniform">
+                    <Slider Name="throttleSlider" DockPanel.Dock="Left" Minimum="-1" IsMoveToPointEnabled="True" Maximum="1" IsSnapToTickEnabled="False" TickPlacement="BottomRight" TickFrequency="0.1" Value="{Binding ThrottleSliderVal, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Delay=10}" Orientation="Vertical" Height="169" Width="31" />
+                    <Slider Name="rudderSlider" DockPanel.Dock="Bottom" Minimum="-1" IsMoveToPointEnabled="True" Maximum="1" IsSnapToTickEnabled="False" TickPlacement="BottomRight" TickFrequency="0.1" Value="{Binding RudderSliderVal, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Delay=10}" Margin="10,0,10,0" Height="22" Width="151" />
+                    <Viewbox Stretch="Uniform" Width="133">
                         <Grid>
                             <Canvas  x:Name="Base" Margin="0" Width="340" Height="340">
                                 <Ellipse HorizontalAlignment="Left" Height="340" VerticalAlignment="Top" Width="340">

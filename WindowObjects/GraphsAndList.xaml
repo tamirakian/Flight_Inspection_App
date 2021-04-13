@@ -12,7 +12,7 @@
             <ColumnDefinition Width="0.5*"/>
             <ColumnDefinition Width="0.5*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="FlightVariables" Grid.Column="0" BorderThickness="3" SelectionMode="Extended" SelectionChanged="SelectionChanged">
+        <ListBox x:Name="FlightVariables" Grid.Column="0" BorderThickness="3" SelectionMode="Extended" SelectionChanged="SelectionChanged" Margin="-10,0,10,0">
             <ListBoxItem x:Name="aileron">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock>aileron</TextBlock>
@@ -234,24 +234,25 @@
                     <ColumnDefinition Width="0.5*"/>
                     <ColumnDefinition Width="0.5*"/>
                 </Grid.ColumnDefinitions>
-                <oxy:Plot Grid.Column="1" x:Name="RightGraph" InvalidateFlag="{Binding VM_InvalidateFlag}">
+                <oxy:Plot x:Name="RightGraph" InvalidateFlag="{Binding VM_InvalidateFlag}" Grid.ColumnSpan="2" Margin="150,0,0,-43">
                     <oxy:Plot.Series>
                         <oxy:LineSeries ItemsSource="{Binding VM_PointsTopRightGraph}" x:Name="LineRight"/>
                     </oxy:Plot.Series>
                 </oxy:Plot>
-                <oxy:Plot Grid.Column="0" x:Name="LeftGraph" InvalidateFlag="{Binding VM_InvalidateFlag}">
+                <oxy:Plot Grid.Column="0" x:Name="LeftGraph" InvalidateFlag="{Binding VM_InvalidateFlag}" Margin="0,0,10.4,-43">
                     <oxy:Plot.Series>
                         <oxy:LineSeries ItemsSource="{Binding VM_PointsTopLeftGraph}"/>
                     </oxy:Plot.Series>
                 </oxy:Plot>
-                <TextBox x:Name="CorText" HorizontalAlignment="Left" Height="23" Margin="21,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
             </Grid>
             <Grid Grid.Row="1">
-                <oxy:Plot>
+                <oxy:Plot x:Name="BottomGraph" Margin="0,44,0,0" InvalidateFlag="{Binding VM_InvalidateFlag}">
                     <oxy:Plot.Series>
-                        <oxy:LineSeries ItemsSource="{Binding PointsBottomGraph}"/>
+                        <oxy:LineSeries ItemsSource="{Binding VM_LineBottomGraph}"/>
+                        <oxy:ScatterSeries ItemsSource="{Binding VM_PointsBottomGraph}" />
                     </oxy:Plot.Series>
                 </oxy:Plot>
+                <TextBox x:Name="CorText" HorizontalAlignment="Left" Height="19" Margin="46,20,0,0" TextWrapping="Wrap" FontSize="8" Text="{Binding VM_CorrelatedFeature}" VerticalAlignment="Top" Width="69"/>
             </Grid>
         </Grid>
     </Grid>

@@ -9,26 +9,15 @@ namespace Flight_Inspection_App.ViewModels
     class GraphsAndListViewModel : INotifyClass, INotifyPropertyChanged
     {
         private FlightSimulatorModel model;
-        
-        //public IList<DataPoint> PointsTopLeftGraph { get; set; }
-        //public IList<DataPoint> PointsBottomGraph { get; set; }
 
         public GraphsAndListViewModel()
         {
             model = FlightSimulator.ModelInstance;
-            //PointsTopRightGraph = rightPointsList;
             model.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
                 {
                     NotifyPropertyChanged("VM_" + e.PropertyName);
                 };
-            /*
-            this.PointsBottomGraph = new List<DataPoint>
-                              {
-                                  new DataPoint(0, 0),
-                                  new DataPoint(50, 30)
-                              };
-                              */
         }
 
         public string VM_DesiredFeature
@@ -37,7 +26,6 @@ namespace Flight_Inspection_App.ViewModels
             set
             {
                 model.DesiredFeature = value;
-                model.initializeGraphPoints();
             }
         }
 
@@ -47,7 +35,6 @@ namespace Flight_Inspection_App.ViewModels
             set
             {
                 model.CorrelatedFeature = value;
-                model.initializeGraphPoints();
             }
         }
 
@@ -59,6 +46,16 @@ namespace Flight_Inspection_App.ViewModels
         public IList<DataPoint> VM_PointsTopLeftGraph
         {
             get { return model.PointsTopLeftGraph; }
+        }
+
+        public IList<DataPoint> VM_PointsBottomGraph
+        {
+            get { return model.PointsBottomGraph; }
+        }
+
+        public IList<DataPoint> VM_LineBottomGraph
+        {
+            get { return model.LineBottomGraph; }
         }
 
         public int VM_InvalidateFlag

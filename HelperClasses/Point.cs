@@ -13,5 +13,15 @@ namespace Flight_Inspection_App.HelperClasses
             this.x = x;
             this.y = y;
         }
+
+        public float X
+        {
+            get { return x; }
+        }
+
+        public float Y
+        {
+            get { return y; }
+        }
     }
 }

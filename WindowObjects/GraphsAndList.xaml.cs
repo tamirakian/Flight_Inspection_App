@@ -25,7 +25,7 @@ namespace Flight_Inspection_App.WindowObjects
                 ViewModel.VM_DesiredFeature = (sp.Children[0] as TextBlock).Text;
                 RightGraph.InvalidatePlot(true);
                 LeftGraph.InvalidatePlot(true);
-                CorText.Text = ViewModel.VM_CorrelatedFeature;
+                BottomGraph.InvalidatePlot(true);
             }
         }
     }

@@ -44,6 +44,8 @@ namespace Flight_Inspection_App
         string CorrelatedFeature { set; get; }
         IList<DataPoint> PointsTopRightGraph { set; get; }
         IList<DataPoint> PointsTopLeftGraph { set; get; }
+        IList<DataPoint> PointsBottomGraph { set; get; }
+        IList<DataPoint> LineBottomGraph { set; get; }
         int InvalidateFlag { set; get; }
     }
 }
