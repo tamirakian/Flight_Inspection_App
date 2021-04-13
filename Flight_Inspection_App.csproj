@@ -38,6 +38,9 @@
     <Reference Include="anomalyProject">
       <HintPath>.\anomalyProject.dll</HintPath>
     </Reference>
+    <Reference Include="ClassLibrary1">
+      <HintPath>.\ClassLibrary1.dll</HintPath>
+    </Reference>
     <Reference Include="OxyPlot, Version=2.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
       <HintPath>packages\OxyPlot.Core.2.0.0\lib\net45\OxyPlot.dll</HintPath>
     </Reference>
@@ -66,8 +69,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="HelperClasses\AnomalyDetectionUtil.cs" />
+    <Compile Include="HelperClasses\AnomalyReport.cs" />
+    <Compile Include="HelperClasses\Circle.cs" />
     <Compile Include="HelperClasses\Constants.cs" />
+    <Compile Include="HelperClasses\correlatedFeatures.cs" />
+    <Compile Include="HelperClasses\HybridAnomalyDetector.cs" />
+    <Compile Include="HelperClasses\IMinCircle.cs" />
     <Compile Include="HelperClasses\INotifyClass.cs" />
+    <Compile Include="HelperClasses\Line.cs" />
+    <Compile Include="HelperClasses\MinCircle.cs" />
+    <Compile Include="HelperClasses\Point.cs" />
+    <Compile Include="HelperClasses\SimpleAnomalyDetector.cs" />
     <Compile Include="HelperClasses\TimeSeries.cs" />
     <Compile Include="Models\Connection.cs" />
     <Compile Include="Models\Interfaces\FlightSimulatorModel.cs" />

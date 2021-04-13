@@ -22,7 +22,10 @@ namespace Flight_Inspection_App.WindowObjects
             {
                 ListBoxItem lbItem = (FlightVariables.SelectedItem as ListBoxItem);
                 StackPanel sp = lbItem.Content as StackPanel;
-                ViewModel.VM_DesiredModel = (sp.Children[0] as TextBlock).Text;
+                ViewModel.VM_DesiredFeature = (sp.Children[0] as TextBlock).Text;
+                RightGraph.InvalidatePlot(true);
+                LeftGraph.InvalidatePlot(true);
+                CorText.Text = ViewModel.VM_CorrelatedFeature;
             }
         }
     }

@@ -2,55 +2,55 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Threading;
 using System.ComponentModel;
-using System.IO;
 using System.Net;
 using Flight_Inspection_App.HelperClasses;
 using OxyPlot;
 
 namespace Flight_Inspection_App
 {
-    static class Constants
-    {
-        public const string HOST_IP = "localhost";
-        public const int HOST_PORT = 5400;
-    }
-
     // the model
-    class FlightSimulator : FlightSimulatorModel
+    class FlightSimulator : INotifyClass, FlightSimulatorModel
     {
-        // the reg_flight csv file name
-        private string regFlight;
-        // the xml file name
-        private string settings;
+        // the settings members
+        private string regFlight;               // the reg_flight csv file name.
+        private string settings;                // the xml file name.
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        // the connection members
+        private Socket fg;                      // the flight simulator socket
+        private volatile Boolean stop;
+        
+        // the media player members
+        private Dictionary<string, Boolean> flags = new Dictionary<string, bool>();         // a dictionary to keep the check which buttons was pressed.
+        private string curTime;                 // the current time (in deciseconds) in the format of MM:SS:CSCS
+        private float speed;                    // the speed of the video.
 
-        // the flight simulator socket
-        Socket fg;
-        volatile Boolean stop;
-        // a dictionary to keep the check which buttons was pressed.
-        Dictionary<string, Boolean> flags = new Dictionary<string, bool>();
+        // the flightSimulator own members.
+        private int timeInDeciSeconds;          // the time in deciseconds.
+        private TimeSeries ts;                  // the timeSeries of the model.
 
-        // in the format of MM:SS:CSCS
-        string curTime;
-        float speed;
-        int timeInDeciSeconds;
-        TimeSeries ts;
-        double elevator;
-        double aileron;
-        float height;
-        float flightSpeed;
-        float direction;
-        float roll;
-        float yaw;
-        float pitch;
-        IList<DataPoint> pointsTopRightGraph;
+        // the joystick members
+        private double elevator;                // the up & down movement of the joystick.
+        private double aileron;                 // the right & left movement of the joystick.
 
-        //singelton
+        // the list members
+        private float height;                    
+        private float flightSpeed;
+        private float direction;
+        private float roll;
+        private float yaw;
+        private float pitch;
+
+        // the graph members
+        private IList<DataPoint> pointsTopRightGraph;       // the list of the points of the chosen feature.
+        private IList<DataPoint> pointsTopLeftGraph;       // the list of the points of the chosen feature.
+        private string desiredFeature;                      // the desired feature name.
+        private string correlatedFeature;                   // the desired feature's correlated feature.
+        private int invalidateFlag;                         // the flag that indicates if the list was updated.
+
+        //singelton for creating the model only once in execution.
         private static FlightSimulator modelInstance;
         public static FlightSimulator ModelInstance
         {
@@ -64,10 +64,9 @@ namespace Flight_Inspection_App
             }
         }
 
-        // constructor - initializing the flight gear socket, and setting the stop value to false
+        // constructor
         public FlightSimulator()
         {
-            // indicating that the socket is running.
             flags.Add("Play", false);
             flags.Add("Stop", false);
             flags.Add("Pause", false);
@@ -88,17 +87,15 @@ namespace Flight_Inspection_App
             yaw = 0;
             pitch = 0;
             ts = new TimeSeries(regFlightFile);
-            pointsTopRightGraph = 
+            desiredFeature = "";
+            correlatedFeature = "";
+            invalidateFlag = 0;
+            pointsTopRightGraph = initializeGraphPoints();
+            pointsTopLeftGraph = initializeGraphPoints();
         }
 
-        public void NotifyPropertyChanged(string propName)
-        {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-        }
-
-        // getter & setter for the csv file ****need to improve
-        public string regFlightFile
+        // Properties
+        public string regFlightFile                 // getter & setter for the regression flight csv file
         {
             get { return regFlight; }
             set
@@ -108,8 +105,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        // getter & setter for the xml file ****need to improve
-        public string settingsFile
+        public string settingsFile                  // getter & setter for the settings xml file
         {
             get { return settings; }
             set
@@ -119,7 +115,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public Dictionary<string, Boolean> Flags
+        public Dictionary<string, Boolean> Flags    // the property for the media player buttons
         {
             get { return flags; }
             set
@@ -129,7 +125,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public string CurTime
+        public string CurTime                       
         {
             get { return curTime; }
             set
@@ -258,6 +254,58 @@ namespace Flight_Inspection_App
             }
         }
 
+        public string DesiredFeature
+        {
+            get { return desiredFeature; }
+            set
+            {
+                PointsTopRightGraph.Clear();
+                desiredFeature = value;
+                NotifyPropertyChanged("DesiredFeature");
+            }
+        }
+
+        public string CorrelatedFeature
+        {
+            get { return correlatedFeature; }
+            set
+            {
+                PointsTopLeftGraph.Clear();
+                correlatedFeature = value;
+                NotifyPropertyChanged("CorrelatedFeature");
+            }
+        }
+
+        public int InvalidateFlag
+        {
+            get { return invalidateFlag; }
+            set
+            {
+                invalidateFlag = value;
+                NotifyPropertyChanged("InvalidateFlag");
+            }
+        }
+
+        public IList<DataPoint> PointsTopRightGraph
+        {
+            get { return pointsTopRightGraph; }
+            set
+            {
+                pointsTopRightGraph = value;
+                NotifyPropertyChanged("PointsTopRightGraph");
+            }
+        }
+
+        public IList<DataPoint> PointsTopLeftGraph
+        {
+            get { return pointsTopLeftGraph; }
+            set
+            {
+                pointsTopLeftGraph = value;
+                NotifyPropertyChanged("PointsTopLeftGraph");
+            }
+        }
+
         // connect to the flight gear socket.
         public void connect(string ip, int port)
         {
@@ -269,6 +317,7 @@ namespace Flight_Inspection_App
             {
                 fg.Connect(localEndPoint);
             }
+            //// improve!!!!
             catch (Exception e)
             {
                 return;
@@ -283,28 +332,57 @@ namespace Flight_Inspection_App
             fg.Disconnect(false);
         }
 
-        // ****need to change
+        // starting the application
         public void start()
         {
-            this.connect(Constants.HOST_IP, Constants.HOST_PORT);
-            NetworkStream writer = new NetworkStream(fg);
+            this.connect(Constants.HOST_IP, Constants.HOST_PORT);       // connecting to the flight gear server.
+            NetworkStream writer = new NetworkStream(fg);               // creating a stream for writing to the server.
             string line;
             new Thread(delegate ()
             {
-                while (timeInDeciSeconds <= ts.getNumOfTimesteps())
+                if (ts.getNumOfFeatures() == 0)                      // saving the values of the reg flight in timeseries
                 {
-                    if (!Stop)
+                    ts.initFeaturesMap(regFlightFile);
+                }
+                while (timeInDeciSeconds <= ts.getNumOfTimesteps())     // while we are not at the end of the flight
+                {
+                    if (!Stop)                                          // if the video is not stopped.
                     {
-                        if(ts.getFeaturesNames() == null)
-                        {
-                            ts.initFeaturesMap(regFlightFile);
-                        }
+                        UpdateTime();
                         if (timeInDeciSeconds == ts.getNumOfTimesteps() - 1)
                         {
                             Stop = true;
                         }
+                        if ((DesiredFeature.EndsWith("1") || DesiredFeature.EndsWith("2")) && DesiredFeature != "")
+                        {
+                            PointsTopRightGraph.Add(new DataPoint(TimeInDeci, getDuplicatedFaetureVal(DesiredFeature)));
+                            getCorrelatedFeature();
+                            if ((CorrelatedFeature.EndsWith("1") || CorrelatedFeature.EndsWith("2")) && CorrelatedFeature != "") 
+                            {
+                                PointsTopLeftGraph.Add(new DataPoint(TimeInDeci, getDuplicatedFaetureVal(CorrelatedFeature)));
+                            }
+                            else if(CorrelatedFeature != "")
+                            {
+                                PointsTopLeftGraph.Add(new DataPoint(TimeInDeci, getFaetureVal(CorrelatedFeature)));
+                            }
+                            InvalidateFlag++;
+                        }
+                        else if(DesiredFeature != "")
+                        {
+                            PointsTopRightGraph.Add(new DataPoint(TimeInDeci, getFaetureVal(DesiredFeature)));
+                            getCorrelatedFeature();
+                            if ((CorrelatedFeature.EndsWith("1") || CorrelatedFeature.EndsWith("2")) && CorrelatedFeature != "")
+                            {
+                                PointsTopLeftGraph.Add(new DataPoint(TimeInDeci, getDuplicatedFaetureVal(CorrelatedFeature)));
+                            }
+                            else if (CorrelatedFeature != "")
+                            {
+                                PointsTopLeftGraph.Add(new DataPoint(TimeInDeci, getFaetureVal(CorrelatedFeature)));
+                            }
+                            InvalidateFlag++;
+
+                        }
                         line = ts.GetTimestepStr(timeInDeciSeconds);
-                        UpdateTime();
                         Elevator = (ts.getFeatureVal("elevator", timeInDeciSeconds)) * 130 + 125;
                         Aileron = (ts.getFeatureVal("aileron", timeInDeciSeconds)) * 130 + 125;
                         Height = ts.getFeatureVal("altitude-ft", timeInDeciSeconds);
@@ -432,9 +510,60 @@ namespace Flight_Inspection_App
             regFlightFile = name;
         }
 
-        public float getFaetureVal(string featureName)
+        public float getFaetureVal(string feature)
         {
-            return ts.getFeatureVal(featureName, timeInDeciSeconds);
+            return ts.getFeatureVal(feature, timeInDeciSeconds);
+        }
+
+        public float getDuplicatedFaetureVal(string feature)
+        {
+            int isCorrect = feature.Last() - '0';
+            isCorrect--;
+            string tempName = feature;
+            tempName = tempName.Remove(tempName.Length - 1);
+            int count = 0;
+            /// to change!!!!!
+            int realIndex = -1;
+            for(int i = 0; i < ts.getNumOfFeatures(); i++)
+            {
+                if(ts.getFeaturesNames()[i] == tempName && isCorrect == count)
+                {
+                    realIndex = i;
+                    break;
+                }
+                else if(ts.getFeaturesNames()[i] == tempName)
+                {
+                    count++;
+                }
+            }
+            return ts.getFeatureVal(realIndex, timeInDeciSeconds);
+        }
+
+        public List<DataPoint> initializeGraphPoints()
+        {
+            List<DataPoint> pointsList = new List<DataPoint>();
+            pointsList.Clear();
+            return pointsList;
+        }
+
+        public void getCorrelatedFeature()
+        {
+            SimpleAnomalyDetector simp = new SimpleAnomalyDetector();
+            List<correlatedFeatures> cf = simp.LearnNormal(ts);
+            for (int i = 0; i < cf.Count; i++)
+            {
+                if(cf[i].Feature1 == DesiredFeature)
+                {
+                    CorrelatedFeature = cf[i].Feature2;
+                    break;
+                }
+                if (cf[i].Feature2 == DesiredFeature)
+                {
+                    CorrelatedFeature = cf[i].Feature1;
+                    break;
+                }
+            }
+            
         }
     }
 }

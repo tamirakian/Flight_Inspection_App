@@ -8,57 +8,62 @@ namespace Flight_Inspection_App.ViewModels
 {
     class GraphsAndListViewModel : INotifyClass, INotifyPropertyChanged
     {
-        private string desiredFeature;
         private FlightSimulatorModel model;
-        public IList<DataPoint> PointsTopRightGraph { get; set; }
-        public IList<DataPoint> PointsTopLeftGraph { get; set; }
-        public IList<DataPoint> PointsBottomGraph { get; set; }
+        
+        //public IList<DataPoint> PointsTopLeftGraph { get; set; }
+        //public IList<DataPoint> PointsBottomGraph { get; set; }
 
         public GraphsAndListViewModel()
         {
             model = FlightSimulator.ModelInstance;
-            List<DataPoint> rightPointsList = initializeGraphPoints();
-            PointsTopRightGraph = rightPointsList;
+            //PointsTopRightGraph = rightPointsList;
             model.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
                 {
                     NotifyPropertyChanged("VM_" + e.PropertyName);
                 };
-
+            /*
             this.PointsBottomGraph = new List<DataPoint>
                               {
                                   new DataPoint(0, 0),
                                   new DataPoint(50, 30)
                               };
+                              */
         }
 
-        public List<DataPoint> initializeGraphPoints()
+        public string VM_DesiredFeature
         {
-            List<DataPoint> pointsList = new List<DataPoint>();
-            for(int i = 0; i<model.getFlightLen(); i++)
-            {
-                pointsList.Add(new DataPoint(i, 0));
-            }
-            return pointsList;
-        }
-
-        public string VM_DesiredModel
-        {
-            get { return desiredFeature; }
+            get { return model.DesiredFeature; }
             set
             {
-                desiredFeature = value;
-                PointsTopRightGraph.Clear();
+                model.DesiredFeature = value;
+                model.initializeGraphPoints();
             }
         }
 
-        public int VM_TimeInDeci
+        public string VM_CorrelatedFeature
         {
-            get { return model.TimeInDeci; }
+            get { return model.CorrelatedFeature; }
             set
             {
-                PointsTopRightGraph.Add(new DataPoint(model.TimeInDeci, model.getFaetureVal(VM_DesiredModel)));
+                model.CorrelatedFeature = value;
+                model.initializeGraphPoints();
             }
+        }
+
+        public IList<DataPoint> VM_PointsTopRightGraph 
+        {
+            get { return model.PointsTopRightGraph; }
+        }
+
+        public IList<DataPoint> VM_PointsTopLeftGraph
+        {
+            get { return model.PointsTopLeftGraph; }
+        }
+
+        public int VM_InvalidateFlag
+        {
+            get { return model.InvalidateFlag; }
         }
     }
 }

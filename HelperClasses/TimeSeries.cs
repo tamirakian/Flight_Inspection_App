@@ -24,15 +24,15 @@ namespace Flight_Inspection_App.HelperClasses
         public List<float> Values
         {
             get { return values; }
-            set 
+            set
             {
-                values = value; 
+                values = value;
             }
         }
         public string FeatureName
         {
             get { return featureName; }
-            set 
+            set
             {
                 featureName = value;
             }
@@ -40,7 +40,7 @@ namespace Flight_Inspection_App.HelperClasses
     };
 
 
-    class TimeSeries
+    public class TimeSeries
     {
         private string CSVFile;
         private SortedDictionary<int, featureID> featuresMap;
@@ -92,7 +92,7 @@ namespace Flight_Inspection_App.HelperClasses
             int i = 0;
             foreach (XmlNode node in nodes)
             {
-                if(i >= 42)
+                if (i >= 42)
                 {
                     break;
                 }
@@ -117,12 +117,8 @@ namespace Flight_Inspection_App.HelperClasses
         // getting the features names vector
         public List<string> getFeaturesNames()
         {
-            if( featuresMap.Count == 0)
-            {
-                return null;
-            }
             List<string> featuresNames = new List<string>();
-            for (int i = 0; i<featuresMap.Count(); i++)
+            for (int i = 0; i < featuresMap.Count(); i++)
             {
                 featuresNames.Add(featuresMap[i].FeatureName);
             }
@@ -139,7 +135,7 @@ namespace Flight_Inspection_App.HelperClasses
         {
             foreach (var feature in featuresMap)
             {
-                if(feature.Value.FeatureName == featureName)
+                if (feature.Value.FeatureName == featureName)
                 {
                     return getFeatureVal(feature.Key, valueIndex);
                 }
@@ -152,7 +148,7 @@ namespace Flight_Inspection_App.HelperClasses
         public List<float> getTimeStemp(int stepIndex)
         {
             List<float> list = new List<float>();
-            for (int i = 0; i<featuresMap.Count(); i++)
+            for (int i = 0; i < featuresMap.Count(); i++)
             {
                 list.Add(featuresMap[i].Values[stepIndex]);
             }
@@ -166,7 +162,7 @@ namespace Flight_Inspection_App.HelperClasses
             for (int i = 1; i < featuresMap.Count(); i++)
             {
                 str += ",";
-                str+= featuresMap[i].Values[index].ToString();
+                str += featuresMap[i].Values[index].ToString();
             }
             str += "\r\n";
             return str;
@@ -187,7 +183,7 @@ namespace Flight_Inspection_App.HelperClasses
         // getting the feature indes in the map by its name
         public int getFeatureIndex(string featureName)
         {
-            for (int i = 0; i<featuresMap.Count(); i++)
+            for (int i = 0; i < featuresMap.Count(); i++)
             {
                 if (featuresMap[i].FeatureName == featureName)
                 {
@@ -201,6 +197,11 @@ namespace Flight_Inspection_App.HelperClasses
         public int getNumOfTimesteps()
         {
             return featuresMap[0].Values.Count();
+        }
+
+        public List<float> getAllFeatureValues (string name)
+        {
+            return featuresMap[getFeatureIndex(name)].Values;
         }
     }
 }

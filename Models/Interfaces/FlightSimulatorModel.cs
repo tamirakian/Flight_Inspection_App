@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using OxyPlot;
 
 namespace Flight_Inspection_App
 {
@@ -20,7 +21,8 @@ namespace Flight_Inspection_App
         void UploadReg(string name);
         void ControlTime(bool flag);
         void UpdateTime();
-        float getFaetureVal(string featureName);
+        float getFaetureVal(string feature);
+        List<DataPoint> initializeGraphPoints();
 
         // The flight simulator properties
         string regFlightFile { set; get; }
@@ -38,5 +40,10 @@ namespace Flight_Inspection_App
         float Pitch { set; get; }
         int TimeInDeci { set; get; }
         Boolean Stop { set; get; }
+        string DesiredFeature { set; get; }
+        string CorrelatedFeature { set; get; }
+        IList<DataPoint> PointsTopRightGraph { set; get; }
+        IList<DataPoint> PointsTopLeftGraph { set; get; }
+        int InvalidateFlag { set; get; }
     }
 }
