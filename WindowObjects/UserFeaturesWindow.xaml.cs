@@ -4,6 +4,8 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Threading;
 using Flight_Inspection_App.ViewModels;
 
 namespace Flight_Inspection_App.WindowObjects
@@ -15,7 +17,8 @@ namespace Flight_Inspection_App.WindowObjects
     {
         private FlightSimulatorViewModel fsView;
         private Dictionary<string, Boolean> flags;
-        private string playSpeed;
+        private bool mediaPlayerIsPlaying = false;
+        private bool userIsDraggingSlider = false;
         private GraphsAndList graphsAndList;
 
         bool LoadInputNumber(string str)
@@ -37,6 +40,10 @@ namespace Flight_Inspection_App.WindowObjects
             DataContext = fsView;
             flags = fsView.VM_Flags;
             graphsAndList = new GraphsAndList();
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += timer_Tick;
+            timer.Start();
         }
 
         private void btnApply_Click(object sender, RoutedEventArgs e)
@@ -133,29 +140,29 @@ namespace Flight_Inspection_App.WindowObjects
             fsView.VM_Flags = flags;
         }
 
-        private void btnSpeed_Click(object sender, RoutedEventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
-
+            if (!userIsDraggingSlider)
+            {
+                sliProgress.Minimum = 0;
+                sliProgress.Maximum = fsView.VM_GetFlightLen();
+                sliProgress.Value = fsView.VM_TimeInDeci;
+            }
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void sliProgress_DragStarted(object sender, DragStartedEventArgs e)
         {
-
+            userIsDraggingSlider = true;
         }
 
-        private void ListBoxItem_Selected(object sender, RoutedEventArgs e)
+        private void sliProgress_DragCompleted(object sender, DragCompletedEventArgs e)
         {
-
+            userIsDraggingSlider = false;
+            fsView.VM_TimeInDeci = (int)TimeSpan.FromSeconds(sliProgress.Value).TotalMilliseconds / 1000;
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void sliProgress_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-
-        }
-
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
         }
     }
 }

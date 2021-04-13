@@ -249,7 +249,7 @@
                 <oxy:Plot x:Name="BottomGraph" Margin="0,44,0,0" InvalidateFlag="{Binding VM_InvalidateFlag}">
                     <oxy:Plot.Series>
                         <oxy:LineSeries ItemsSource="{Binding VM_LineBottomGraph}"/>
-                        <oxy:ScatterSeries ItemsSource="{Binding VM_PointsBottomGraph}" />
+                        <oxy:LineSeries LineStyle="None" MarkerSize="1" MarkerFill="Gray" MarkerType="Circle" ItemsSource="{Binding VM_PointsBottomGraph}" />
                     </oxy:Plot.Series>
                 </oxy:Plot>
                 <TextBox x:Name="CorText" HorizontalAlignment="Left" Height="19" Margin="46,20,0,0" TextWrapping="Wrap" FontSize="8" Text="{Binding VM_CorrelatedFeature}" VerticalAlignment="Top" Width="69"/>

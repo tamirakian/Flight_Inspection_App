@@ -34,6 +34,8 @@ namespace Flight_Inspection_App
         // the joystick members
         private double elevator;                // the up & down movement of the joystick.
         private double aileron;                 // the right & left movement of the joystick.
+        private float rudder;
+        private float throttle;
 
         // the list members
         private float height;                    
@@ -48,6 +50,8 @@ namespace Flight_Inspection_App
         private IList<DataPoint> pointsTopLeftGraph;       // the list of the points of the chosen feature.
         private IList<DataPoint> pointsBottomGraph;
         private IList<DataPoint> lineBottomGraph;
+        private float lineMinX = 0;
+        private float lineMaxX = 0;
         private string desiredFeature;                      // the desired feature name.
         private string correlatedFeature;                   // the desired feature's correlated feature.
         private int invalidateFlag;                         // the flag that indicates if the list was updated.
@@ -83,6 +87,8 @@ namespace Flight_Inspection_App
             timeInDeciSeconds = 1;
             elevator = 125;
             aileron = 125;
+            //throttle = // the black square position initial
+            // same same new name
             speed = 1;
             height = 0;
             flightSpeed = 0;
@@ -173,6 +179,26 @@ namespace Flight_Inspection_App
             {
                 aileron = value;
                 NotifyPropertyChanged("Aileron");
+            }
+        }
+
+        public float Rudder
+        {
+            get { return rudder; }
+            set
+            {
+                rudder = value;
+                NotifyPropertyChanged("Rudder");
+            }
+        }
+
+        public float Throttle
+        {
+            get { return throttle; }
+            set
+            {
+                throttle = value;
+                NotifyPropertyChanged("Throttle");
             }
         }
 
@@ -395,6 +421,8 @@ namespace Flight_Inspection_App
                         line = ts.GetTimestepStr(timeInDeciSeconds);
                         Elevator = (ts.getFeatureVal("elevator", timeInDeciSeconds)) * 130 + 125;
                         Aileron = (ts.getFeatureVal("aileron", timeInDeciSeconds)) * 130 + 125;
+                        Throttle = (ts.getFeatureVal("throttle", timeInDeciSeconds));
+                        Rudder = (ts.getFeatureVal("rudder", timeInDeciSeconds));
                         Height = ts.getFeatureVal("altitude-ft", timeInDeciSeconds);
                         FlightSpeed = ts.getFeatureVal("airspeed-kt", timeInDeciSeconds);
                         Direction = ts.getFeatureVal("heading-deg", timeInDeciSeconds);
@@ -579,8 +607,16 @@ namespace Flight_Inspection_App
             {
                 PointsTopLeftGraph.Add(new DataPoint(TimeInDeci, getDuplicatedFaetureVal(CorrelatedFeature)));
                 PointsBottomGraph.Add(new DataPoint(PointsTopRightGraph.Last().Y, PointsTopLeftGraph.Last().Y));
-                LineBottomGraph[0] = new DataPoint(0, reg.f(0));
-                LineBottomGraph[1] = new DataPoint(PointsTopRightGraph.Last().X, reg.f((float)PointsTopRightGraph.Last().X));
+                if(PointsBottomGraph.Last().X < lineMinX)
+                {
+                    lineMinX = (float)PointsBottomGraph.Last().X;
+                }
+                if (PointsBottomGraph.Last().X > lineMaxX)
+                {
+                    lineMaxX = (float)PointsBottomGraph.Last().X;
+                }
+                LineBottomGraph[0] = new DataPoint(lineMinX, reg.f(lineMinX));
+                LineBottomGraph[1] = new DataPoint(lineMaxX, reg.f(lineMaxX));
             }
             else if (CorrelatedFeature != "")
             {

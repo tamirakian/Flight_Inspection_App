@@ -132,6 +132,16 @@ namespace Flight_Inspection_App
             get { return model.Elevator; }
         }
 
+        public float VM_Rudder
+        {
+            get { return model.Rudder; }
+        }
+
+        public float VM_Throttle
+        {
+            get { return model.Throttle; }
+        }
+
         public float VM_Height
         {
             get { return model.Height; }
