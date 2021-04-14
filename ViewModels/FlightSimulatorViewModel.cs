@@ -182,6 +182,15 @@ namespace Flight_Inspection_App
             get { return model.Aileron; }
         }
 
+        public string VM_AlgorithmDLL
+        {
+            get { return model.AlgorithmDLL; }
+            set
+            {
+                model.AlgorithmDLL = value;
+            }
+        }
+
         public void VM_UploadReg(string name)
         {
             model.UploadReg(name);

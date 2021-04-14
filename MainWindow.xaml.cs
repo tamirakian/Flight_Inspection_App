@@ -28,6 +28,14 @@ namespace Flight_Inspection_App
             vm.VM_Settings = uploadWin.Settingsfilename;
         }
 
+       
+        private void ImportDLLBTn_Click(object sender, RoutedEventArgs e)
+        {
+            UploadDLL uploadWin = new UploadDLL();
+            uploadWin.ShowDialog();
+            vm.VM_AlgorithmDLL = uploadWin.FileName;
+        }
+
         private void StartBTn_Click(object sender, RoutedEventArgs e)
         {
             if (vm.VM_FGLocation == null)

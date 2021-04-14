@@ -15,5 +15,29 @@ namespace Flight_Inspection_App.HelperClasses
 			this.description = description;
 			this.timeStep = timeStep;
 		}
-	};
+
+        public string Description
+        {
+            get
+            {
+                return description;
+            }
+            set
+            {
+                description = value;
+            }
+        }
+
+        public long TimeStep
+        {
+            get
+            {
+                return timeStep;
+            }
+            set
+            {
+                timeStep = value;
+            }
+        }
+    };
 }

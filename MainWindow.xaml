@@ -10,7 +10,13 @@
         <TextBlock TextWrapping="Wrap" Text="Welcome to the Flight Inspection App" HorizontalAlignment="Center" FontSize="16" Height="69" Margin="10,0" Width="280" />
         <Button x:Name="Import_Button" Height="58" Click="ImportBTn_Click" Margin="20,0,34,0">
             <StackPanel>
-                <TextBlock><Run Text="Import Flight Regression File"/></TextBlock>
+                <TextBlock><Run Text="Import Flight Files"/></TextBlock>
+                <Image Source=".\Pictures\importIcon.png" Width="30" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="ImportDLL_Button" Height="58" Click="ImportDLLBTn_Click" Margin="20,0,34,0">
+            <StackPanel>
+                <TextBlock><Run Text="Import DLL Algorithms Files"/></TextBlock>
                 <Image Source=".\Pictures\importIcon.png" Width="30" />
             </StackPanel>
         </Button>

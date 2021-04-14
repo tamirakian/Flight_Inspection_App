@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Net.Sockets;
 using System.Threading;
-using System.ComponentModel;
 using System.Net;
 using Flight_Inspection_App.HelperClasses;
 using OxyPlot;
+using System.Reflection;
 
 namespace Flight_Inspection_App
 {
@@ -19,6 +19,7 @@ namespace Flight_Inspection_App
         private string anomalyFlight;
         private string settings;                // the xml file name.
         private string fgLocation;
+        private string algorithmDLL;
 
         // the connection members
         private Socket fg;                      // the flight simulator socket
@@ -32,6 +33,7 @@ namespace Flight_Inspection_App
         // the flightSimulator own members.
         private int timeInDeciSeconds;          // the time in deciseconds.
         private TimeSeries ts;                  // the timeSeries of the model.
+        string className;
 
         // the joystick members
         private double elevator;                // the up & down movement of the joystick.
@@ -53,6 +55,7 @@ namespace Flight_Inspection_App
         private IList<DataPoint> pointsBottomGraph;
         private IList<DataPoint> lineBottomGraph;
         private IList<DataPoint> oldPointsBottomGraph;
+        private IList<DataPoint> anomalyPoint;
         private float lineMinX = 0;
         private float lineMaxX = 0;
         private string desiredFeature;                      // the desired feature name.
@@ -107,6 +110,7 @@ namespace Flight_Inspection_App
             pointsTopLeftGraph = initializeGraphPoints();
             pointsBottomGraph = initializeGraphPoints();
             oldPointsBottomGraph = initializeGraphPoints();
+            anomalyPoint = initializeGraphPoints();
             lineBottomGraph = new List<DataPoint> { new DataPoint(0, 0), new DataPoint(0, 0) };
         }
 
@@ -151,6 +155,16 @@ namespace Flight_Inspection_App
             }
         }
 
+        public string AlgorithmDLL                  // getter & setter for the anomaly csv file
+        {
+            get { return algorithmDLL; }
+            set
+            {
+                algorithmDLL = value;
+                NotifyPropertyChanged("AlgorithmDLL");
+            }
+        }
+
         public Dictionary<string, Boolean> Flags    // the property for the media player buttons
         {
             get { return flags; }
@@ -176,8 +190,7 @@ namespace Flight_Inspection_App
             get { return speed; }
             set
             {
-                // *******need to put an error message to user
-                if (value < 3)
+                if (value < 3 && value > 0)
                 {
                     speed = value;
                     NotifyPropertyChanged("Speed");
@@ -391,6 +404,16 @@ namespace Flight_Inspection_App
             }
         }
 
+        public IList<DataPoint> AnomalyPoint
+        {
+            get { return anomalyPoint; }
+            set
+            {
+                anomalyPoint = value;
+                NotifyPropertyChanged("AnomalyPoint");
+            }
+        }
+
         // connect to the flight gear socket.
         public void connect(string ip, int port)
         {
@@ -430,6 +453,11 @@ namespace Flight_Inspection_App
                 }
                 SimpleAnomalyDetector simp = new SimpleAnomalyDetector();
                 cf = simp.LearnNormal(ts);
+                dynamic c = loadDLL();
+                TimeSeries anomalyTs = new TimeSeries();
+                anomalyTs.initFeaturesMap(AnomalyFlight, settingsFile);
+                List<AnomalyReport> anomalies = c.Detect(anomalyTs);
+                //int anomalyIndex = 0;
                 while (timeInDeciSeconds <= ts.getNumOfTimesteps())     // while we are not at the end of the flight
                 {
                     if (!Stop)                                          // if the video is not stopped.
@@ -451,6 +479,12 @@ namespace Flight_Inspection_App
                             getCorrelatedFeature();
                             InvalidateFlag++;
                         }
+                        /*
+                        if((anomalyIndex > anomalies.Count) && anomalies[anomalyIndex++].TimeStep == TimeInDeci)
+                        {
+                            UpdateAnomaly();
+                        }
+                        */
                         line = ts.GetTimestepStr(timeInDeciSeconds);                                    // getting the next time series line.
 
                         // updating the flight members
@@ -703,5 +737,35 @@ namespace Flight_Inspection_App
                 CorrelatedFeature = "";
             }
         }
+
+        public dynamic loadDLL()
+        {
+            var DLL = Assembly.LoadFile(AlgorithmDLL);
+            className =DLL.GetName().Name;
+            dynamic c;
+            if (className == "SimpleAnomaly")
+            {
+                var class1Type = DLL.GetType("Algorithms.Sources.SimpleAnomalyDetector");
+                c = Activator.CreateInstance(class1Type);
+            }
+            else
+            {
+                var class1Type = DLL.GetType("Algorithms.Sources.HybridAnomalyDetector");
+                c = Activator.CreateInstance(class1Type);
+            }
+            return c;
+        }
+
+        /*
+        public void UpdateAnomaly()
+        {
+            anomalyPoint.Clear();
+            anomalyPoint.Add(PointsBottomGraph.Last());
+            if(className == "SimpleAnomaly")
+            {
+
+            }
+        }
+        */
     }
 }

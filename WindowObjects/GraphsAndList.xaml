@@ -234,26 +234,26 @@
                     <ColumnDefinition Width="0.5*"/>
                     <ColumnDefinition Width="0.5*"/>
                 </Grid.ColumnDefinitions>
-                <oxy:Plot x:Name="RightGraph" InvalidateFlag="{Binding VM_InvalidateFlag}" Grid.ColumnSpan="2" Margin="150,0,0,-43">
+                <oxy:Plot x:Name="RightGraph" InvalidateFlag="{Binding VM_InvalidateFlag}" Grid.ColumnSpan="2" Margin="150,0,0,0">
                     <oxy:Plot.Series>
                         <oxy:LineSeries ItemsSource="{Binding VM_PointsTopRightGraph}" x:Name="LineRight"/>
                     </oxy:Plot.Series>
                 </oxy:Plot>
-                <oxy:Plot Grid.Column="0" x:Name="LeftGraph" InvalidateFlag="{Binding VM_InvalidateFlag}" Margin="0,0,10.4,-43">
+                <oxy:Plot Grid.Column="0" x:Name="LeftGraph" InvalidateFlag="{Binding VM_InvalidateFlag}" Margin="0,0,10.4,0">
                     <oxy:Plot.Series>
                         <oxy:LineSeries ItemsSource="{Binding VM_PointsTopLeftGraph}"/>
                     </oxy:Plot.Series>
                 </oxy:Plot>
             </Grid>
             <Grid Grid.Row="1">
-                <oxy:Plot x:Name="BottomGraph" Margin="0,44,0,0" InvalidateFlag="{Binding VM_InvalidateFlag}">
+                <oxy:Plot x:Name="BottomGraph" Margin="0,17,0,0" InvalidateFlag="{Binding VM_InvalidateFlag}">
                     <oxy:Plot.Series>
                         <oxy:LineSeries ItemsSource="{Binding VM_LineBottomGraph}"/>
                         <oxy:LineSeries LineStyle="None" MarkerSize="1" MarkerFill="Red" MarkerType="Circle" ItemsSource="{Binding VM_PointsBottomGraph}" />
                         <oxy:LineSeries LineStyle="None" MarkerSize="1" MarkerFill="Gray" MarkerType="Circle" ItemsSource="{Binding VM_OldPointsBottomGraph}" />
                     </oxy:Plot.Series>
                 </oxy:Plot>
-                <TextBox x:Name="CorText" HorizontalAlignment="Left" Height="29" Margin="48,10,0,0" TextWrapping="Wrap" FontSize="8" Text="{Binding VM_CorrelatedFeature}" VerticalAlignment="Top" Width="69"/>
+                <TextBox x:Name="CorText" HorizontalAlignment="Left" Height="29" Margin="49,-6,0,0" TextWrapping="Wrap" FontSize="8" Text="{Binding VM_CorrelatedFeature}" VerticalAlignment="Top" Width="69"/>
             </Grid>
         </Grid>
     </Grid>

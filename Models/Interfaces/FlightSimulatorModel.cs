@@ -28,6 +28,7 @@ namespace Flight_Inspection_App
         string regFlightFile { set; get; }
         string settingsFile { set; get; }
         string FGLocation { set; get; }
+        string AlgorithmDLL { set; get; }
         string AnomalyFlight { set; get; }
         Dictionary<string, Boolean> Flags { set; get; }
         string CurTime { set; get; }
@@ -51,6 +52,7 @@ namespace Flight_Inspection_App
         IList<DataPoint> PointsBottomGraph { set; get; }
         IList<DataPoint> LineBottomGraph { set; get; }
         IList<DataPoint> OldPointsBottomGraph { set; get; }
+        IList<DataPoint> AnomalyPoint { set; get; }
         int InvalidateFlag { set; get; }
     }
 }

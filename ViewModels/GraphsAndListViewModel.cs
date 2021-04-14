@@ -68,5 +68,10 @@ namespace Flight_Inspection_App.ViewModels
         {
             get { return model.OldPointsBottomGraph; }
         }
+
+        public IList<DataPoint> VM_AnomalyPoint
+        {
+            get { return model.AnomalyPoint; }
+        }
     }
 }

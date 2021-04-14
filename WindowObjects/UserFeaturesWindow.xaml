@@ -243,7 +243,7 @@
             </Grid.RowDefinitions>
 
             <DockPanel Grid.Row="0">
-                <Button Content="Open" Name="openButton" Click="btnOpen_Click" Margin="{StaticResource myMargin}"/>
+                <Button Content="Algorithm" Name="openButton" Click="btnOpen_Click" Margin="{StaticResource myMargin}"/>
                 <Button Name="beginButton" Click="btnBegin_Click" Margin="{StaticResource myMargin}">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="..\Pictures\beginIcon.png" Width="16" Height="18"/>

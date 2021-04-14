@@ -64,5 +64,14 @@ namespace Flight_Inspection_App.ViewModels
                 model.FGLocation = value;
             }
         }
+
+        public string VM_AlgorithmDLL
+        {
+            get { return model.AlgorithmDLL; }
+            set
+            {
+                model.AlgorithmDLL = value;
+            }
+        }
     }
 }
