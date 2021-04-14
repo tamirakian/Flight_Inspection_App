@@ -453,10 +453,10 @@ namespace Flight_Inspection_App
                 }
                 SimpleAnomalyDetector simp = new SimpleAnomalyDetector();
                 cf = simp.LearnNormal(ts);
-                dynamic c = loadDLL();
-                TimeSeries anomalyTs = new TimeSeries();
-                anomalyTs.initFeaturesMap(AnomalyFlight, settingsFile);
-                List<AnomalyReport> anomalies = c.Detect(anomalyTs);
+                //dynamic c = loadDLL();
+                //TimeSeries anomalyTs = new TimeSeries();
+                //anomalyTs.initFeaturesMap(AnomalyFlight, settingsFile);
+                //List<AnomalyReport> anomalies = c.Detect(anomalyTs);
                 //int anomalyIndex = 0;
                 while (timeInDeciSeconds <= ts.getNumOfTimesteps())     // while we are not at the end of the flight
                 {

@@ -1,5 +1,4 @@
-﻿using Flight_Inspection_App.Models;
-using Flight_Inspection_App.ViewModels;
+﻿using Flight_Inspection_App.ViewModels;
 using Flight_Inspection_App.WindowObjects;
 using System.Diagnostics;
 using System.Windows;

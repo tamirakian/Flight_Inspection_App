@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using OxyPlot;
 
 namespace Flight_Inspection_App
 {
@@ -189,6 +190,16 @@ namespace Flight_Inspection_App
             {
                 model.AlgorithmDLL = value;
             }
+        }
+
+        public IList<DataPoint> VM_PointsTopRightGraph
+        {
+            get { return model.PointsTopRightGraph; }
+        }
+
+        public IList<DataPoint> VM_PointsTopLeftGraph
+        {
+            get { return model.PointsTopLeftGraph; }
         }
 
         public void VM_UploadReg(string name)

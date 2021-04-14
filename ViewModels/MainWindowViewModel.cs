@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
-using Flight_Inspection_App.Models;
 
 namespace Flight_Inspection_App.ViewModels
 {

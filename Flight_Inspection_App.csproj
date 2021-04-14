@@ -76,7 +76,6 @@
     <Compile Include="HelperClasses\SimpleAnomalyDetector.cs" />
     <Compile Include="HelperClasses\TimeSeries.cs" />
     <Compile Include="Models\Interfaces\FlightSimulatorModel.cs" />
-    <Compile Include="Models\MediaPlayerModel.cs" />
     <Compile Include="ViewModels\GraphsAndListViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\FlightSimulatorViewModel.cs" />

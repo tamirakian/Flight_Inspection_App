@@ -253,7 +253,7 @@
                         <oxy:LineSeries LineStyle="None" MarkerSize="1" MarkerFill="Gray" MarkerType="Circle" ItemsSource="{Binding VM_OldPointsBottomGraph}" />
                     </oxy:Plot.Series>
                 </oxy:Plot>
-                <TextBox x:Name="CorText" HorizontalAlignment="Left" Height="29" Margin="49,-6,0,0" TextWrapping="Wrap" FontSize="8" Text="{Binding VM_CorrelatedFeature}" VerticalAlignment="Top" Width="69"/>
+                <TextBox x:Name="CorText" HorizontalAlignment="Left" Height="29" Margin="34,-6,0,0" TextWrapping="Wrap" FontSize="8" Text="{Binding VM_CorrelatedFeature}" VerticalAlignment="Top" Width="102"/>
             </Grid>
         </Grid>
     </Grid>

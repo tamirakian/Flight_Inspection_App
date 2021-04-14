@@ -157,8 +157,14 @@ namespace Flight_Inspection_App.WindowObjects
 
         private void sliProgress_DragCompleted(object sender, DragCompletedEventArgs e)
         {
+            int timeBefore = fsView.VM_TimeInDeci;
             userIsDraggingSlider = false;
             fsView.VM_TimeInDeci = (int)TimeSpan.FromSeconds(sliProgress.Value).TotalMilliseconds / 1000;
+            if(timeBefore > fsView.VM_TimeInDeci)
+            {
+                fsView.VM_PointsTopRightGraph.Clear();
+                fsView.VM_PointsTopLeftGraph.Clear();
+            }
         }
 
         private void sliProgress_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
