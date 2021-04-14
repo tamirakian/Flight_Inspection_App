@@ -50,6 +50,7 @@ namespace Flight_Inspection_App
         private IList<DataPoint> pointsTopLeftGraph;       // the list of the points of the chosen feature.
         private IList<DataPoint> pointsBottomGraph;
         private IList<DataPoint> lineBottomGraph;
+        private IList<DataPoint> oldPointsBottomGraph;
         private float lineMinX = 0;
         private float lineMaxX = 0;
         private string desiredFeature;                      // the desired feature name.
@@ -87,8 +88,8 @@ namespace Flight_Inspection_App
             timeInDeciSeconds = 1;
             elevator = 125;
             aileron = 125;
-            //throttle = // the black square position initial
-            // same same new name
+            throttle = 46;
+            rudder = 46;
             speed = 1;
             height = 0;
             flightSpeed = 0;
@@ -96,13 +97,14 @@ namespace Flight_Inspection_App
             roll = 0;
             yaw = 0;
             pitch = 0;
-            ts = new TimeSeries(regFlightFile);
+            ts = new TimeSeries();
             desiredFeature = "";
             correlatedFeature = "";
             invalidateFlag = 0;
             pointsTopRightGraph = initializeGraphPoints();
             pointsTopLeftGraph = initializeGraphPoints();
             pointsBottomGraph = initializeGraphPoints();
+            oldPointsBottomGraph = initializeGraphPoints();
             lineBottomGraph = new List<DataPoint> { new DataPoint(0, 0), new DataPoint(0, 0) };
         }
 
@@ -347,6 +349,16 @@ namespace Flight_Inspection_App
             }
         }
 
+        public IList<DataPoint> OldPointsBottomGraph
+        {
+            get { return oldPointsBottomGraph; }
+            set
+            {
+                oldPointsBottomGraph = value;
+                NotifyPropertyChanged("PointsBottomGraph");
+            }
+        }
+
         public IList<DataPoint> LineBottomGraph
         {
             get { return lineBottomGraph; }
@@ -368,10 +380,9 @@ namespace Flight_Inspection_App
             {
                 fg.Connect(localEndPoint);
             }
-            //// improve!!!!
             catch (Exception e)
             {
-                return;
+                new Exception(e.Message);
             }
         }
 
@@ -391,7 +402,7 @@ namespace Flight_Inspection_App
             string line;
             new Thread(delegate ()
             {
-                if (ts.getNumOfFeatures() == 0)                      // saving the values of the reg flight in timeseries
+                if (ts.FeaturesMap.Count == 0)                      // saving the values of the reg flight in timeseries
                 {
                     ts.initFeaturesMap(regFlightFile);
                 }
@@ -401,16 +412,16 @@ namespace Flight_Inspection_App
                 {
                     if (!Stop)                                          // if the video is not stopped.
                     {
-                        UpdateTime();
-                        if (timeInDeciSeconds == ts.getNumOfTimesteps() - 1)
+                        UpdateTime();                                   // updating the time of the flight by 1 deciseconds.
+                        if (timeInDeciSeconds == ts.getNumOfTimesteps() - 1)    // if the time is the end of the flight we will pause the connection.
                         {
                             Stop = true;
                         }
-                        if ((DesiredFeature.EndsWith("1") || DesiredFeature.EndsWith("2")) && DesiredFeature != "")
+                        if ((DesiredFeature.EndsWith("1") || DesiredFeature.EndsWith("2")) && DesiredFeature != "") // check if the feature has 2 occurences.
                         {
-                            PointsTopRightGraph.Add(new DataPoint(TimeInDeci, getDuplicatedFaetureVal(DesiredFeature)));
-                            getCorrelatedFeature();
-                            InvalidateFlag++;
+                            PointsTopRightGraph.Add(new DataPoint(TimeInDeci, getDuplicatedFaetureVal(DesiredFeature)));  // adding new point to the graph of the desired feature;
+                            getCorrelatedFeature();  // if the feature has a correlated feature, it will handle the correlated feature's graph here.
+                            InvalidateFlag++;   // indicating we made a chenge in points.
                         }
                         else if(DesiredFeature != "")
                         {
@@ -418,11 +429,13 @@ namespace Flight_Inspection_App
                             getCorrelatedFeature();
                             InvalidateFlag++;
                         }
-                        line = ts.GetTimestepStr(timeInDeciSeconds);
+                        line = ts.GetTimestepStr(timeInDeciSeconds);                                    // getting the next time series line.
+
+                        // updating the flight members
                         Elevator = (ts.getFeatureVal("elevator", timeInDeciSeconds)) * 130 + 125;
                         Aileron = (ts.getFeatureVal("aileron", timeInDeciSeconds)) * 130 + 125;
-                        Throttle = (ts.getFeatureVal("throttle", timeInDeciSeconds));
-                        Rudder = (ts.getFeatureVal("rudder", timeInDeciSeconds));
+                        Throttle = (getDuplicatedFaetureVal("throttle1")) * 46 + 46;
+                        Rudder = (ts.getFeatureVal("rudder", timeInDeciSeconds)) + 46;
                         Height = ts.getFeatureVal("altitude-ft", timeInDeciSeconds);
                         FlightSpeed = ts.getFeatureVal("airspeed-kt", timeInDeciSeconds);
                         Direction = ts.getFeatureVal("heading-deg", timeInDeciSeconds);
@@ -536,7 +549,7 @@ namespace Flight_Inspection_App
 
         public int getFlightLen()
         {
-            if (ts.getFeaturesNames() == null)
+            if (ts.FeaturesMap.Count == 0)
             {
                 ts.initFeaturesMap(regFlightFile);
             }
@@ -607,6 +620,11 @@ namespace Flight_Inspection_App
             {
                 PointsTopLeftGraph.Add(new DataPoint(TimeInDeci, getDuplicatedFaetureVal(CorrelatedFeature)));
                 PointsBottomGraph.Add(new DataPoint(PointsTopRightGraph.Last().Y, PointsTopLeftGraph.Last().Y));
+                if(PointsBottomGraph.Count > 30)
+                {
+                    OldPointsBottomGraph.Add(PointsBottomGraph.First());
+                    PointsBottomGraph.Remove(PointsBottomGraph.First());
+                }
                 if(PointsBottomGraph.Last().X < lineMinX)
                 {
                     lineMinX = (float)PointsBottomGraph.Last().X;
@@ -615,21 +633,51 @@ namespace Flight_Inspection_App
                 {
                     lineMaxX = (float)PointsBottomGraph.Last().X;
                 }
-                LineBottomGraph[0] = new DataPoint(lineMinX, reg.f(lineMinX));
-                LineBottomGraph[1] = new DataPoint(lineMaxX, reg.f(lineMaxX));
+                if (LineBottomGraph.Count == 0)
+                {
+                    LineBottomGraph.Add(new DataPoint(lineMinX, reg.f(lineMinX)));
+                    LineBottomGraph.Add(new DataPoint(lineMaxX, reg.f(lineMaxX)));
+                }
+                else
+                {
+                    LineBottomGraph[0] = new DataPoint(lineMinX, reg.f(lineMinX));
+                    LineBottomGraph[1] = new DataPoint(lineMaxX, reg.f(lineMaxX));
+                }
             }
             else if (CorrelatedFeature != "")
             {
                 PointsTopLeftGraph.Add(new DataPoint(TimeInDeci, getFaetureVal(CorrelatedFeature)));
                 PointsBottomGraph.Add(new DataPoint(PointsTopRightGraph.Last().Y, PointsTopLeftGraph.Last().Y));
-                LineBottomGraph[0] = new DataPoint(0, reg.f(0));
-                LineBottomGraph[1] = new DataPoint(PointsTopRightGraph.Last().Y, reg.f((float)PointsTopRightGraph.Last().Y));
+                if (PointsBottomGraph.Count > 30)
+                {
+                    OldPointsBottomGraph.Add(PointsBottomGraph.First());
+                    PointsBottomGraph.Remove(PointsBottomGraph.First());
+                }
+                if (PointsBottomGraph.Last().X < lineMinX)
+                {
+                    lineMinX = (float)PointsBottomGraph.Last().X;
+                }
+                if (PointsBottomGraph.Last().X > lineMaxX)
+                {
+                    lineMaxX = (float)PointsBottomGraph.Last().X;
+                }
+                if(LineBottomGraph.Count == 0)
+                {
+                    LineBottomGraph.Add(new DataPoint(lineMinX, reg.f(lineMinX)));
+                    LineBottomGraph.Add(new DataPoint(lineMaxX, reg.f(lineMaxX)));
+                }
+                else
+                {
+                    LineBottomGraph[0] = new DataPoint(lineMinX, reg.f(lineMinX));
+                    LineBottomGraph[1] = new DataPoint(lineMaxX, reg.f(lineMaxX));
+                }
             }
             else
             {
                 pointsTopLeftGraph.Clear();
                 pointsBottomGraph.Clear();
                 lineBottomGraph.Clear();
+                OldPointsBottomGraph.Clear();
                 CorrelatedFeature = "";
             }
         }

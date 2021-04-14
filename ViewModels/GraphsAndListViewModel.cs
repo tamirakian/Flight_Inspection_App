@@ -62,5 +62,11 @@ namespace Flight_Inspection_App.ViewModels
         {
             get { return model.InvalidateFlag; }
         }
+
+        
+        public IList<DataPoint> VM_OldPointsBottomGraph
+        {
+            get { return model.OldPointsBottomGraph; }
+        }
     }
 }

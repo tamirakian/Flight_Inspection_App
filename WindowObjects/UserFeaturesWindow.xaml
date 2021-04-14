@@ -45,17 +45,39 @@
                     <TextBlock x:Name="FlightPitch" Text="{Binding VM_Pitch}" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </StackPanel>
             </StackPanel>
-            <Grid Margin="65,66,-0.4,-66.4" Grid.Column="2">
-                <DockPanel VerticalAlignment="Center" Margin="10,10,0,10" HorizontalAlignment="Left">
+            <Viewbox Stretch="Uniform" Width="108">
+                <Grid>
+                    <Canvas HorizontalAlignment="Left" Height="16" VerticalAlignment="Top" Width="108" Background="Gray" Canvas.Left="125" Canvas.Top="125" Margin="521,185,-521,-185">
+                        <Rectangle HorizontalAlignment="Left" Height="16" VerticalAlignment="Top" Width="16" Fill="Black" Canvas.Left="{Binding VM_Rudder}" />
+                    </Canvas>
+                </Grid>
+            </Viewbox>
+            <Viewbox Stretch="Uniform" Width="108">
+                <Grid>
+                    <Canvas HorizontalAlignment="Left" Height="16" VerticalAlignment="Top" Width="108" Background="Gray" Canvas.Left="125" Canvas.Top="125" Margin="422,89,-422,-89" RenderTransformOrigin="0.5,0.5">
+                        <Canvas.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-89.948"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Canvas.RenderTransform>
+                        <Rectangle HorizontalAlignment="Left" Height="16" VerticalAlignment="Top" Width="16" Fill="Black" Canvas.Left="{Binding VM_Throttle}" />
+                    </Canvas>
+                </Grid>
+            </Viewbox>
+
+
+            <Grid Margin="121,115,27.6,-54.4" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="244*"/>
+                </Grid.ColumnDefinitions>
+                <DockPanel VerticalAlignment="Center" Margin="4.8,23,0,23" HorizontalAlignment="Left" Grid.Column="1">
                     <Label Content="← rudder →" FontWeight="Bold" FontSize="14" DockPanel.Dock="Bottom" HorizontalContentAlignment="Center" />
                     <Grid DockPanel.Dock="Top">
                         <Label Content="← aileron →" FontWeight="Bold" FontSize="14"  HorizontalContentAlignment="Center" />
-                        <Label Content="{Binding ElementName=myJoyStick, Path=Aileron}" ContentStringFormat="F2"  FontWeight="Bold" FontSize="14"  HorizontalContentAlignment="Right" Margin="0,0,30,0" />
-                        <Label Content="{Binding ElementName=throttleSlider, Path=Value}" ContentStringFormat="F2" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="30,10,0,-362">
-                            <Label.LayoutTransform>
-                                <RotateTransform Angle="90" />
-                            </Label.LayoutTransform>
-                        </Label>
                     </Grid>
                     <Label Content="← throttle →" FontWeight="Bold" FontSize="14" DockPanel.Dock="Left" HorizontalContentAlignment="Center">
                         <Label.LayoutTransform>
@@ -75,8 +97,6 @@
                         </Label>
                         <Label Content="{Binding RudderSliderVal}" ContentStringFormat="F2" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" />
                     </Grid>
-                    <Slider Name="throttleSlider" DockPanel.Dock="Left" Minimum="-1" IsMoveToPointEnabled="True" Maximum="1" IsSnapToTickEnabled="False" TickPlacement="BottomRight" TickFrequency="0.1" Value="{Binding ThrottleSliderVal, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Delay=10}" Orientation="Vertical" Height="169" Width="31" />
-                    <Slider Name="rudderSlider" DockPanel.Dock="Bottom" Minimum="-1" IsMoveToPointEnabled="True" Maximum="1" IsSnapToTickEnabled="False" TickPlacement="BottomRight" TickFrequency="0.1" Value="{Binding RudderSliderVal, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Delay=10}" Margin="10,0,10,0" Height="22" Width="151" />
                     <Viewbox Stretch="Uniform" Width="133">
                         <Grid>
                             <Canvas  x:Name="Base" Margin="0" Width="340" Height="340">

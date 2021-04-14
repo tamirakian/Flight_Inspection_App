@@ -42,19 +42,21 @@ namespace Flight_Inspection_App.HelperClasses
 
     public class TimeSeries
     {
-        private string CSVFile;
         private SortedDictionary<int, featureID> featuresMap;
-
-        public TimeSeries(string CSVFile)
+        public SortedDictionary<int, featureID> FeaturesMap
         {
-            this.CSVFile = CSVFile;
+            get { return featuresMap; }
+            set { featuresMap = value; }
+        }
+
+        public TimeSeries()
+        {
             featuresMap = new SortedDictionary<int, featureID>();
         }
 
         // intializing the map keys and values from the csv file
         public void initFeaturesMap(string fileName)
         {
-            string featuresLine;
             StreamReader reader = new StreamReader(fileName);
             // creating from each feature a key in the map by its position indes in the line
             loadFeaturesFromFile("playback_small.xml");

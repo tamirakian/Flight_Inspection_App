@@ -48,6 +48,7 @@ namespace Flight_Inspection_App
         IList<DataPoint> PointsTopLeftGraph { set; get; }
         IList<DataPoint> PointsBottomGraph { set; get; }
         IList<DataPoint> LineBottomGraph { set; get; }
+        IList<DataPoint> OldPointsBottomGraph { set; get; }
         int InvalidateFlag { set; get; }
     }
 }
