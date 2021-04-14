@@ -55,11 +55,11 @@ namespace Flight_Inspection_App.HelperClasses
         }
 
         // intializing the map keys and values from the csv file
-        public void initFeaturesMap(string fileName)
+        public void initFeaturesMap(string fileName, string settingsName)
         {
             StreamReader reader = new StreamReader(fileName);
             // creating from each feature a key in the map by its position indes in the line
-            loadFeaturesFromFile("playback_small.xml");
+            loadFeaturesFromFile(settingsName);
             // iterating over the time steps lines in the file
             string valuesLine;
             while ((valuesLine = reader.ReadLine()) != null)

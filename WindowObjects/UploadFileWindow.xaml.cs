@@ -21,7 +21,9 @@ namespace Flight_Inspection_App.WindowObjects
     public partial class UploadFileWindow : Window
     {
         private Microsoft.Win32.OpenFileDialog dlg;
-        private string filename;
+        private string CSVfilename;
+        private string anomalyfilename;
+        private string settingsfilename;
 
         public UploadFileWindow()
         {
@@ -42,8 +44,42 @@ namespace Flight_Inspection_App.WindowObjects
             if (result == true)
             {
                 // Open document 
-                filename = dlg.FileName;
-                FilePath.Text = filename;
+                CSVfilename = dlg.FileName;
+                FilePath.Text = CSVfilename;
+            }
+        }
+
+        private void BtnUpload_Click2(object sender, RoutedEventArgs e)
+        {
+            // Set filter for file extension and default file extension 
+            dlg.DefaultExt = ".csv";
+            dlg.Filter = "CSV files (*.csv)|*.csv";
+
+            // Display OpenFileDialog by calling ShowDialog method 
+            Nullable<bool> result = dlg.ShowDialog();
+            // Get the selected file name and display in a TextBox 
+            if (result == true)
+            {
+                // Open document 
+                anomalyfilename = dlg.FileName;
+                FilePath2.Text = anomalyfilename;
+            }
+        }
+
+        private void BtnUpload_Click3(object sender, RoutedEventArgs e)
+        {
+            // Set filter for file extension and default file extension 
+            dlg.DefaultExt = ".xml";
+            dlg.Filter = "XML Files (*.xml)|*.xml";
+
+            // Display OpenFileDialog by calling ShowDialog method 
+            Nullable<bool> result = dlg.ShowDialog();
+            // Get the selected file name and display in a TextBox 
+            if (result == true)
+            {
+                // Open document 
+                settingsfilename = dlg.FileName;
+                FilePath3.Text = settingsfilename;
             }
         }
 
@@ -52,9 +88,19 @@ namespace Flight_Inspection_App.WindowObjects
             this.Close();
         }
 
-        public string FileName
+        public string CSVFileName
         {
-            get { return filename; }
+            get { return CSVfilename; }
+        }
+
+        public string Anomalyfilename
+        {
+            get { return anomalyfilename; }
+        }
+
+        public string Settingsfilename
+        {
+            get { return settingsfilename; }
         }
     }
 }

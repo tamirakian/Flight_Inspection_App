@@ -38,12 +38,30 @@ namespace Flight_Inspection_App.ViewModels
             }
         }
 
-        public string VM_FGLocation
+        public string VM_Settings
         {
             get { return model.settingsFile; }
             set
             {
                 model.settingsFile = value;
+            }
+        }
+
+        public string VM_AnomalyFlight
+        {
+            get { return model.AnomalyFlight; }
+            set
+            {
+                model.AnomalyFlight = value;
+            }
+        }
+
+        public string VM_FGLocation
+        {
+            get { return model.FGLocation; }
+            set
+            {
+                model.FGLocation = value;
             }
         }
     }

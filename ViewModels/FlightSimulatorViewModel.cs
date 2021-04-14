@@ -42,6 +42,11 @@ namespace Flight_Inspection_App
             get { return model.settingsFile; }
         }
 
+        public string VM_AnomalyFlight
+        {
+            get { return model.AnomalyFlight; }
+        }
+
         public Dictionary<string, Boolean> VM_Flags
         {
             get { return model.Flags; }

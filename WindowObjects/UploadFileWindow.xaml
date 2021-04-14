@@ -7,8 +7,12 @@
         mc:Ignorable="d"
         Title="Upload csv File" Height="450" Width="800">
     <Grid HorizontalAlignment="Left" Height="335" Margin="232,52,0,0" VerticalAlignment="Top" Width="322" Background="White">
-        <Button x:Name="UploadBtn"  Content="Upload File" HorizontalAlignment="Left" Margin="102,40,0,0" VerticalAlignment="Top" Width="75" Click="BtnUpload_Click"/>
-        <TextBox x:Name="FilePath" HorizontalAlignment="Left" Height="20" Margin="19,76,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="245"/>
-        <Button x:Name="SubmitBtn" Content="Submit" HorizontalAlignment="Left" Margin="102,198,0,0" VerticalAlignment="Top" Width="75" Click="BtnSubmit_Click"/>
+        <Button x:Name="UploadBtn"  Content="Upload flight regression File" HorizontalAlignment="Left" Margin="58,40,0,0" VerticalAlignment="Top" Width="162" Click="BtnUpload_Click"/>
+        <TextBox x:Name="FilePath" HorizontalAlignment="Left" Height="20" Margin="19,64,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="245"/>
+        <Button x:Name="UploadBtn2"  Content="Upload anomaly flight File" HorizontalAlignment="Left" Margin="58,126,0,0" VerticalAlignment="Top" Width="162" Click="BtnUpload_Click2"/>
+        <TextBox x:Name="FilePath2" HorizontalAlignment="Left" Height="20" Margin="19,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="245"/>
+        <Button x:Name="UploadBtn3"  Content="Upload settings File" HorizontalAlignment="Left" Margin="82,209,0,0" VerticalAlignment="Top" Width="117" Click="BtnUpload_Click3"/>
+        <TextBox x:Name="FilePath3" HorizontalAlignment="Left" Height="20" Margin="19,233,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="245"/>
+        <Button x:Name="SubmitBtn" Content="Submit" HorizontalAlignment="Left" Margin="102,306,0,0" VerticalAlignment="Top" Width="75" Click="BtnSubmit_Click"/>
     </Grid>
 </Window>

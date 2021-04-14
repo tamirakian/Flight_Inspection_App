@@ -23,7 +23,9 @@ namespace Flight_Inspection_App
         {
             UploadFileWindow uploadWin = new UploadFileWindow();
             uploadWin.ShowDialog();
-            vm.VM_CSVFile = uploadWin.FileName;
+            vm.VM_CSVFile = uploadWin.CSVFileName;
+            vm.VM_AnomalyFlight = uploadWin.Anomalyfilename;
+            vm.VM_Settings = uploadWin.Settingsfilename;
         }
 
         private void StartBTn_Click(object sender, RoutedEventArgs e)

@@ -16,7 +16,9 @@ namespace Flight_Inspection_App
     {
         // the settings members
         private string regFlight;               // the reg_flight csv file name.
+        private string anomalyFlight;
         private string settings;                // the xml file name.
+        private string fgLocation;
 
         // the connection members
         private Socket fg;                      // the flight simulator socket
@@ -126,6 +128,26 @@ namespace Flight_Inspection_App
             {
                 settings = value;
                 NotifyPropertyChanged("settingsFile");
+            }
+        }
+
+        public string AnomalyFlight                  // getter & setter for the anomaly csv file
+        {
+            get { return anomalyFlight; }
+            set
+            {
+                anomalyFlight = value;
+                NotifyPropertyChanged("AnomalyFlight");
+            }
+        }
+
+        public string FGLocation                  // getter & setter for the anomaly csv file
+        {
+            get { return fgLocation; }
+            set
+            {
+                fgLocation = value;
+                NotifyPropertyChanged("FGLocation");
             }
         }
 
@@ -404,7 +426,7 @@ namespace Flight_Inspection_App
             {
                 if (ts.FeaturesMap.Count == 0)                      // saving the values of the reg flight in timeseries
                 {
-                    ts.initFeaturesMap(regFlightFile);
+                    ts.initFeaturesMap(regFlightFile, settingsFile);
                 }
                 SimpleAnomalyDetector simp = new SimpleAnomalyDetector();
                 cf = simp.LearnNormal(ts);
@@ -551,7 +573,7 @@ namespace Flight_Inspection_App
         {
             if (ts.FeaturesMap.Count == 0)
             {
-                ts.initFeaturesMap(regFlightFile);
+                ts.initFeaturesMap(regFlightFile, settingsFile);
             }
             return ts.getNumOfTimesteps();
         }

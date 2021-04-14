@@ -58,7 +58,7 @@ namespace Flight_Inspection_App.WindowObjects
         {
             UploadFileWindow uploadWin = new UploadFileWindow();
             uploadWin.ShowDialog();
-            fsView.VM_UploadReg(uploadWin.FileName);
+            fsView.VM_UploadReg(uploadWin.CSVFileName);
         }
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)

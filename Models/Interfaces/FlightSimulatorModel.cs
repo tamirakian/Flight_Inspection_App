@@ -27,6 +27,8 @@ namespace Flight_Inspection_App
         // The flight simulator properties
         string regFlightFile { set; get; }
         string settingsFile { set; get; }
+        string FGLocation { set; get; }
+        string AnomalyFlight { set; get; }
         Dictionary<string, Boolean> Flags { set; get; }
         string CurTime { set; get; }
         float Speed { set; get; }
