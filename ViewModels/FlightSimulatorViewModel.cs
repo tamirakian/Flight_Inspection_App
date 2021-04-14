@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
-/// <summary>
-/// /////
-/// </summary>
+
 namespace Flight_Inspection_App
 {
     // the flight simulator view model
