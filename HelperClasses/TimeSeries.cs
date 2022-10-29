@@ -21,6 +21,7 @@ namespace Flight_Inspection_App.HelperClasses
             values = new List<float>();
             featureName = "";
         }
+
         public List<float> Values
         {
             get { return values; }
@@ -29,6 +30,7 @@ namespace Flight_Inspection_App.HelperClasses
                 values = value;
             }
         }
+
         public string FeatureName
         {
             get { return featureName; }
@@ -58,7 +60,7 @@ namespace Flight_Inspection_App.HelperClasses
         public void initFeaturesMap(string fileName, string settingsName)
         {
             StreamReader reader = new StreamReader(fileName);
-            // creating from each feature a key in the map by its position indes in the line
+            // creating from each feature a key in the map by its position index in the line
             loadFeaturesFromFile(settingsName);
             // iterating over the time steps lines in the file
             string valuesLine;
@@ -83,8 +85,7 @@ namespace Flight_Inspection_App.HelperClasses
             return list;
         }
 
-        // getting the first line of the features names and creating for each of them a new key in the map by their order from right
-        // to left.
+        // getting the first line of the features names and creating for each of them a new key in the map by their order from right to left.
         public void loadFeaturesFromFile(string fileName)
         {
             XmlDocument doc = new XmlDocument();
@@ -94,7 +95,7 @@ namespace Flight_Inspection_App.HelperClasses
             int i = 0;
             foreach (XmlNode node in nodes)
             {
-                if (i >= 42)
+                if (i >= Constants.NUM_OF_NODES)
                 {
                     break;
                 }
@@ -127,12 +128,13 @@ namespace Flight_Inspection_App.HelperClasses
             return featuresNames;
         }
 
-        // getting a specific value of a specific feature 
+        // getting a specific feature's value from index
         public float getFeatureVal(int featureIndex, int valueIndex)
         {
             return featuresMap[featureIndex].Values[valueIndex];
         }
 
+        // getting a specific feature's value from name
         public float getFeatureVal(string featureName, int valueIndex)
         {
             foreach (var feature in featuresMap)
@@ -142,11 +144,10 @@ namespace Flight_Inspection_App.HelperClasses
                     return getFeatureVal(feature.Key, valueIndex);
                 }
             }
-            //////////// to change
             return 0;
         }
 
-        // getting the specific time step values
+        // getting the specific time stemp values
         public List<float> getTimeStemp(int stepIndex)
         {
             List<float> list = new List<float>();

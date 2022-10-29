@@ -8,15 +8,17 @@ namespace Flight_Inspection_App.HelperClasses
     {
         float maxC;
         float minC;
+
         public HybridAnomalyDetector()
         {
             maxC = base.Threshold;
-            minC = (float)0.5;
+            minC = Constants.HYBRID_DETECTOR_MIN_CIRCLE_TRESHOLD;
         }
+
         public void LearnHelper(TimeSeries ts, float p/*pearson*/, string f1, string f2, Point[] ps)
         {
             base.LearnHelper(ts, p, f1, f2, ps);
-            if (p > 0.5 && p < maxC)
+            if (p > minC && p < maxC)
             {
                 MinCircle circ = new MinCircle();
                 Circle circle = circ.findMinCircle(ps, ts.getNumOfTimesteps());

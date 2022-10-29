@@ -8,6 +8,7 @@ namespace Flight_Inspection_App.HelperClasses
     {
         public float x;
         public float y;
+
         public Point(float x, float y)
         {
             this.x = x;

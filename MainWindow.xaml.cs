@@ -5,9 +5,7 @@ using System.Windows;
 
 namespace Flight_Inspection_App
 {
-    /// <summary>
     /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private MainWindowViewModel vm;
@@ -42,9 +40,6 @@ namespace Flight_Inspection_App
                 UploadFlightGearLocationWindow uploadFGWin = new UploadFlightGearLocationWindow();
                 uploadFGWin.ShowDialog();
                 vm.VM_FGLocation = uploadFGWin.FileName;
-                //}
-                //else
-                //{
                 Process process = new Process();
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.WindowStyle = ProcessWindowStyle.Hidden;

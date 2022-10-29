@@ -3,9 +3,7 @@ using System.Windows.Controls;
 
 namespace Flight_Inspection_App.WindowObjects
 {
-    /// <summary>
     /// Interaction logic for GraphsAndList.xaml
-    /// </summary>
     public partial class GraphsAndList : UserControl
     {
         private GraphsAndListViewModel ViewModel;

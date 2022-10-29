@@ -3,9 +3,7 @@ using System.Windows;
 
 namespace Flight_Inspection_App.WindowObjects
 {
-    /// <summary>
     /// Interaction logic for UploadFlightGearLocationWindow.xaml
-    /// </summary>
     public partial class UploadFlightGearLocationWindow : Window
     {
         private Microsoft.Win32.OpenFileDialog dlg;

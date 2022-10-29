@@ -16,19 +16,19 @@ using System.Text.RegularExpressions;
 
 namespace Flight_Inspection_App
 {
-    /// <summary>
-    /// Interaction logic for MediaPlayerController.xaml
-    /// </summary>
+    // Interaction logic for MediaPlayerController.xaml
     public partial class MediaPlayerController : UserControl
     {
         private MediaPlayerViewModel mpvm;
         string V_CSVFile;
         string V_curTime;
+
         public MediaPlayerController()
         {
             this.mpvm = new MediaPlayerViewModel(new Models.MediaPlayerModel(V_CSVFile , V_curTime));
             InitializeComponent();
         }
+
         // checks if the input given by the user is a decimal number.
         private void NumberDecimalValidationTextbox(object sender, TextCompositionEventArgs e)
         {
@@ -38,9 +38,7 @@ namespace Flight_Inspection_App
             else
                 e.Handled = true;
         }
-        private void btnPlay_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
+        private void btnPlay_Click(object sender, RoutedEventArgs e) {}
     }
 }

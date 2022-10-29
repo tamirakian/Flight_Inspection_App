@@ -32,6 +32,7 @@ namespace Flight_Inspection_App.HelperClasses
                 feature1 = value;
             }
         }
+
         public string Feature2
         {
             get
@@ -43,6 +44,7 @@ namespace Flight_Inspection_App.HelperClasses
                 feature2 = value;
             }
         }
+
         public float CX
         {
             get
@@ -54,6 +56,7 @@ namespace Flight_Inspection_App.HelperClasses
                 cx = value;
             }
         }
+
         public float CY
         {
             get
@@ -65,6 +68,7 @@ namespace Flight_Inspection_App.HelperClasses
                 cy = value;
             }
         }
+
         public Line LineReg
         {
             get
@@ -76,6 +80,7 @@ namespace Flight_Inspection_App.HelperClasses
                 lin_reg = value;
             }
         }
+
         public float Threshhold
         {
             get
@@ -87,6 +92,7 @@ namespace Flight_Inspection_App.HelperClasses
                 threshold = value;
             }
         }
+
         public float Correlation
         {
             get

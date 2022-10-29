@@ -13,6 +13,7 @@ namespace Flight_Inspection_App.HelperClasses
 			return (float)Math.Sqrt(x2 + y2);
 		}
 
+		// Creates circle from 2 points
 		public Circle From2Points(Point a, Point b)
 		{
 			float x = (a.x + b.x) / 2;
@@ -21,29 +22,24 @@ namespace Flight_Inspection_App.HelperClasses
 			return new Circle(new Point(x, y), r);
 		}
 
+		// Creates circle from 3 points
 		public Circle From3Points(Point a, Point b, Point c)
 		{
 			// find the circumcenter of the triangle a,b,c
-			Point mAB = new Point((a.x + b.x) / 2, (a.y + b.y) / 2); // mid point of line AB
-			float slopAB = (b.y - a.y) / (b.x - a.x); // the slop of AB
-			float pSlopAB = -1 / slopAB; // the perpendicular slop of AB
-										 // pSlop equation is:
-										 // y - mAB.y = pSlopAB * (x - mAB.x) ==> y = pSlopAB * (x - mAB.x) + mAB.y
 
-			Point mBC = new Point((b.x + c.x) / 2, (b.y + c.y) / 2); // mid point of line BC
-			float slopBC = (c.y - b.y) / (c.x - b.x); // the slop of BC
-			float pSlopBC = -1 / slopBC; // the perpendicular slop of BC
-										 // pSlop equation is:
-										 // y - mBC.y = pSlopBC * (x - mBC.x) ==> y = pSlopBC * (x - mBC.x) + mBC.y
+			// mid point of line AB
+			Point mAB = new Point((a.x + b.x) / 2, (a.y + b.y) / 2);
+			// the slope of AB
+			float slopAB = (b.y - a.y) / (b.x - a.x);
+			// the perpendicular slope of AB. pSlop equation is: y - mAB.y = pSlopAB * (x - mAB.x) ==> y = pSlopAB * (x - mAB.x) + mAB.y
+			float pSlopAB = -1 / slopAB;
 
-			/*
-			pSlopAB * (x - mAB.x) + mAB.y = pSlopBC * (x - mBC.x) + mBC.y
-			pSlopAB*x - pSlopAB*mAB.x + mAB.y = pSlopBC*x - pSlopBC*mBC.x + mBC.y
-
-			x*(pSlopAB - pSlopBC) = - pSlopBC*mBC.x + mBC.y + pSlopAB*mAB.x - mAB.y
-			x = (- pSlopBC*mBC.x + mBC.y + pSlopAB*mAB.x - mAB.y) / (pSlopAB - pSlopBC);
-
-			*/
+			// mid point of line BC
+			Point mBC = new Point((b.x + c.x) / 2, (b.y + c.y) / 2);
+			// the slope of BC
+			float slopBC = (c.y - b.y) / (c.x - b.x);
+			// the perpendicular slope of BC. pSlop equation is: y - mBC.y = pSlopBC * (x - mBC.x) ==> y = pSlopBC * (x - mBC.x) + mBC.y
+			float pSlopBC = -1 / slopBC; 
 
 			float x = (-pSlopBC * mBC.x + mBC.y + pSlopAB * mAB.x - mAB.y) / (pSlopAB - pSlopBC);
 			float y = pSlopAB * (x - mAB.x) + mAB.y;
@@ -62,7 +58,7 @@ namespace Flight_Inspection_App.HelperClasses
 			else if (P.Count == 2)
 				return From2Points(P[0], P[1]);
 
-			// maybe 2 of the points define a small circle that contains the 3ed point
+			// In case 2 of the points define a small circle that contains the 3rd point
 			Circle c = From2Points(P[0], P[1]);
 			if (Dist(P[2], c.center) <= c.radius)
 				return c;
@@ -92,7 +88,6 @@ namespace Flight_Inspection_App.HelperClasses
 
 			// remove random point p
 			// swap is more efficient than remove
-			//srand (time(NULL));
 			Random r = new Random();
 			int g = r.Next();
 			int i = g % n;

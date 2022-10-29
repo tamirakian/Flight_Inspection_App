@@ -26,22 +26,22 @@ namespace Flight_Inspection_App
         private volatile Boolean stop;
 
         // the media player members
-        private Dictionary<string, Boolean> flags = new Dictionary<string, bool>();         // a dictionary to keep the check which buttons was pressed.
-        private string curTime;                 // the current time (in deciseconds) in the format of MM:SS:CSCS
-        private float speed;                    // the speed of the video.
+        private Dictionary<string, Boolean> flags = new Dictionary<string, bool>();         // a dictionary to check which buttons were pressed.
+        private string curTime;                                                             // the current time (in deciseconds) in the format of MM:SS:CSCS
+        private float speed;                                                                // the speed of the video.
 
-        // the flightSimulator own members.
+        // the flightSimulator's members.
         private int timeInDeciSeconds;          // the time in deciseconds.
         private TimeSeries ts;                  // the timeSeries of the model.
         string className;
 
-        // the joystick members
+        // the joystick's members
         private double elevator;                // the up & down movement of the joystick.
         private double aileron;                 // the right & left movement of the joystick.
         private float rudder;
         private float throttle;
 
-        // the list members
+        // the list's members
         private float height;
         private float flightSpeed;
         private float direction;
@@ -49,9 +49,9 @@ namespace Flight_Inspection_App
         private float yaw;
         private float pitch;
 
-        // the graph members
+        // the graph's members
         private IList<DataPoint> pointsTopRightGraph;       // the list of the points of the chosen feature.
-        private IList<DataPoint> pointsTopLeftGraph;       // the list of the points of the chosen feature.
+        private IList<DataPoint> pointsTopLeftGraph;        // the list of the points of the chosen feature.
         private IList<DataPoint> pointsBottomGraph;
         private IList<DataPoint> lineBottomGraph;
         private IList<DataPoint> oldPointsBottomGraph;
@@ -70,7 +70,8 @@ namespace Flight_Inspection_App
         {
             get
             {
-                if (modelInstance == null)                  // if there is no instance its created for the 1st time.                                                           //
+                // if there is no instance its created for the 1st time.
+                if (modelInstance == null)                                                                            
                 {
                     modelInstance = new FlightSimulator();
                 }
@@ -81,13 +82,15 @@ namespace Flight_Inspection_App
         // constructor
         public FlightSimulator()
         {
-            flags.Add("Play", false);                       // configuring the buttons as false (not pressed).
+            // configuring the buttons as false (not pressed).
+            flags.Add("Play", false);       
             flags.Add("Stop", false);
             flags.Add("Pause", false);
             flags.Add("End", false);
             flags.Add("Begin", false);
             flags.Add("Rewind", false);
             flags.Add("Forward", false);
+
             flags.Add("Start", true);
             curTime = "00:00:00";
             timeInDeciSeconds = 1;  // the time in 0.1 seconds
@@ -115,7 +118,7 @@ namespace Flight_Inspection_App
         }
 
         // Properties
-        public string regFlightFile                 // getter & setter for the regression flight csv file
+        public string regFlightFile                 
         {
             get { return regFlight; }
             set
@@ -125,7 +128,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public string settingsFile                  // getter & setter for the settings xml file
+        public string settingsFile                 
         {
             get { return settings; }
             set
@@ -135,7 +138,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public string AnomalyFlight                  // getter & setter for the anomaly csv file
+        public string AnomalyFlight                  
         {
             get { return anomalyFlight; }
             set
@@ -145,7 +148,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public string FGLocation                  // getter & setter for the anomaly csv file
+        public string FGLocation                  
         {
             get { return fgLocation; }
             set
@@ -155,7 +158,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public string AlgorithmDLL                  // getter & setter for the anomaly csv file
+        public string AlgorithmDLL                 
         {
             get { return algorithmDLL; }
             set
@@ -165,7 +168,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public Dictionary<string, Boolean> Flags    // the property for the media player buttons
+        public Dictionary<string, Boolean> Flags   
         {
             get { return flags; }
             set
@@ -175,7 +178,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public string CurTime                       // the property for the current time.           
+        public string CurTime                               
         {
             get { return curTime; }
             set
@@ -185,7 +188,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public float Speed                          // the property for the speed. 
+        public float Speed                         
         {
             get { return speed; }
             set
@@ -199,7 +202,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public double Elevator                      // the property for the elvatore. 
+        public double Elevator                     
         {
             get { return elevator; }
             set
@@ -209,7 +212,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public double Aileron                       // the property for the aileron. 
+        public double Aileron                      
         {
             get { return aileron; }
             set
@@ -219,7 +222,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public float Rudder                         // the property for the rudder. 
+        public float Rudder                        
         {
             get { return rudder; }
             set
@@ -229,7 +232,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public float Throttle                       // the property for the rudder. 
+        public float Throttle                      
         {
             get { return throttle; }
             set
@@ -239,7 +242,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public float Height                         // the property for the height. 
+        public float Height                        
         {
             get { return height; }
             set
@@ -249,7 +252,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public float FlightSpeed                    // the property for the flight speed. 
+        public float FlightSpeed                  
         {
             get { return flightSpeed; }
             set
@@ -259,7 +262,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public float Direction                      // the property for the direction. 
+        public float Direction                     
         {
             get { return direction; }
             set
@@ -269,7 +272,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public float Roll                           // the property for the roll. 
+        public float Roll                        
         {
             get { return roll; }
             set
@@ -279,7 +282,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public float Yaw                            // the property for the yaw. 
+        public float Yaw                            
         {
             get { return yaw; }
             set
@@ -289,7 +292,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public float Pitch                          // the property for the pitch. 
+        public float Pitch                          
         {
             get { return pitch; }
             set
@@ -299,7 +302,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public Boolean Stop                         // the property for when to stop the video. 
+        public Boolean Stop                        
         {
             get
             {
@@ -313,7 +316,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public int TimeInDeci                       // the property for the time in deciseconds. 
+        public int TimeInDeci                      
         {
             get { return timeInDeciSeconds; }
             set
@@ -323,7 +326,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public string DesiredFeature                // the property to get the desired feature. 
+        public string DesiredFeature               
         {
             get { return desiredFeature; }
             set
@@ -334,7 +337,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public string CorrelatedFeature             // the property to get the correlated feature. 
+        public string CorrelatedFeature             
         {
             get { return correlatedFeature; }
             set
@@ -344,7 +347,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public int InvalidateFlag                   // the property if there was a change in the points. 
+        public int InvalidateFlag                  
         {
             get { return invalidateFlag; }
             set
@@ -354,7 +357,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public IList<DataPoint> PointsTopRightGraph     // the property to get the desired feature graph. 
+        public IList<DataPoint> PointsTopRightGraph    
         {
             get { return pointsTopRightGraph; }
             set
@@ -364,7 +367,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public IList<DataPoint> PointsTopLeftGraph      // the property to get the correlation graph. 
+        public IList<DataPoint> PointsTopLeftGraph     
         {
             get { return pointsTopLeftGraph; }
             set
@@ -374,7 +377,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public IList<DataPoint> PointsBottomGraph       // the property to get the regression line graph. 
+        public IList<DataPoint> PointsBottomGraph       
         {
             get { return pointsBottomGraph; }
             set
@@ -384,7 +387,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public IList<DataPoint> OldPointsBottomGraph    // the property to get all points besides the last 30.
+        public IList<DataPoint> OldPointsBottomGraph    
         {
             get { return oldPointsBottomGraph; }
             set
@@ -394,7 +397,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public IList<DataPoint> LineBottomGraph         // the property to get the last 30 points.
+        public IList<DataPoint> LineBottomGraph        
         {
             get { return lineBottomGraph; }
             set
@@ -404,7 +407,7 @@ namespace Flight_Inspection_App
             }
         }
 
-        public IList<DataPoint> AnomalyPoint            // the property to get the anomaly points. 
+        public IList<DataPoint> AnomalyPoint           
         {
             get { return anomalyPoint; }
             set
@@ -420,14 +423,17 @@ namespace Flight_Inspection_App
             IPHostEntry ipHost = Dns.GetHostEntry(ip);
             IPAddress ipAddr = ipHost.AddressList[1];
             IPEndPoint localEndPoint = new IPEndPoint(ipAddr, port);
-            fg = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp); // create a new socket to use.
+            // create a new socket to use.
+            fg = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp); 
             try
             {
-                fg.Connect(localEndPoint); // try to connect.
+                // try to connect.
+                fg.Connect(localEndPoint); 
             }
             catch (Exception e)
             {
-                new Exception(e.Message); // if the connection has failed throw exception.
+                // if the connection has failed throw exception.
+                new Exception(e.Message); 
             }
         }
 
@@ -436,42 +442,51 @@ namespace Flight_Inspection_App
         {
             // indicating that the socket is closed.
             Stop = true;
+            // false - not reusing the socket
             fg.Disconnect(false);
         }
 
         // starting the application
         public void start()
         {
-            this.connect(Constants.HOST_IP, Constants.HOST_PORT);       // connecting to the flight gear server.
-            NetworkStream writer = new NetworkStream(fg);               // creating a stream for writing to the server.
+            // connecting to the flight gear server.
+            this.connect(Constants.HOST_IP, Constants.HOST_PORT);  
+            // creating a stream for writing to the server.
+            NetworkStream writer = new NetworkStream(fg);               
             string line;
+            
             new Thread(delegate ()
             {
-                if (ts.FeaturesMap.Count == 0)                      // saving the values of the reg flight in timeseries
+                // saving the values of the reg flight in timeseries
+                if (ts.FeaturesMap.Count == 0)                      
                 {
                     ts.initFeaturesMap(regFlightFile, settingsFile);
                 }
                 SimpleAnomalyDetector simp = new SimpleAnomalyDetector();
                 cf = simp.LearnNormal(ts);
-                //dynamic c = loadDLL();
-                //TimeSeries anomalyTs = new TimeSeries();
-                //anomalyTs.initFeaturesMap(AnomalyFlight, settingsFile);
-                //List<AnomalyReport> anomalies = c.Detect(anomalyTs);
-                //int anomalyIndex = 0;
-                while (timeInDeciSeconds <= ts.getNumOfTimesteps())     // while we are not at the end of the flight
+
+                // while we are not at the end of the flight
+                while (timeInDeciSeconds <= ts.getNumOfTimesteps())     
                 {
-                    if (!Stop)                                          // if the video is not stopped.
+                    // if the video is not stopped.
+                    if (!Stop)                                          
                     {
-                        UpdateTime();                                   // updating the time of the flight by 1 deciseconds.
-                        if (timeInDeciSeconds == ts.getNumOfTimesteps() - 1)    // if the time is the end of the flight we will pause the connection.
+                        // updating the time of the flight by 1 deciseconds.
+                        UpdateTime();       
+                        // if the time is the end of the flight, we will pause the connection.
+                        if (timeInDeciSeconds == ts.getNumOfTimesteps() - 1)    
                         {
                             Stop = true;
                         }
-                        if ((DesiredFeature.EndsWith("1") || DesiredFeature.EndsWith("2")) && DesiredFeature != "") // check if the feature has 2 occurences.
+                        // check if the feature has 2 occurences.
+                        if ((DesiredFeature.EndsWith("1") || DesiredFeature.EndsWith("2")) && DesiredFeature != "") 
                         {
-                            PointsTopRightGraph.Add(new DataPoint(TimeInDeci, getDuplicatedFaetureVal(DesiredFeature)));  // adding new point to the graph of the desired feature;
-                            getCorrelatedFeature();  // if the feature has a correlated feature, it will handle the correlated feature's graph here.
-                            InvalidateFlag++;   // indicating we made a chenge in points.
+                            // adding new point to the graph of the desired feature;
+                            PointsTopRightGraph.Add(new DataPoint(TimeInDeci, getDuplicatedFaetureVal(DesiredFeature)));  
+                            // if the feature has a correlated feature, it will handle the correlated feature's graph here.
+                            getCorrelatedFeature();  
+                            // indicating we made a chenge in points.
+                            InvalidateFlag++;   
                         }
                         else if (DesiredFeature != "")
                         {
@@ -479,33 +494,31 @@ namespace Flight_Inspection_App
                             getCorrelatedFeature();
                             InvalidateFlag++;
                         }
-                        /*
-                        if((anomalyIndex > anomalies.Count) && anomalies[anomalyIndex++].TimeStep == TimeInDeci)
-                        {
-                            UpdateAnomaly();
-                        }
-                        */
-                        line = ts.GetTimestepStr(timeInDeciSeconds);                                    // getting the next time series line.
+                        
+                        // getting the next time series line.
+                        line = ts.GetTimestepStr(timeInDeciSeconds);                                    
 
                         // updating the flight members
-                        Elevator = (ts.getFeatureVal("elevator", timeInDeciSeconds)) * 130 + 125; // update the elevator.
-                        Aileron = (ts.getFeatureVal("aileron", timeInDeciSeconds)) * 130 + 125;   // update the aileron.
-                        Throttle = (getDuplicatedFaetureVal("throttle1")) * 46 + 46;              // update the throttle.
-                        Rudder = (ts.getFeatureVal("rudder", timeInDeciSeconds)) + 46;            // update the rudder.
-                        Height = ts.getFeatureVal("altitude-ft", timeInDeciSeconds);              // update the altitude-ft.
-                        FlightSpeed = ts.getFeatureVal("airspeed-kt", timeInDeciSeconds);         // update the airspeed-kt.
-                        Direction = ts.getFeatureVal("heading-deg", timeInDeciSeconds);           // update the heading-deg.
-                        Roll = ts.getFeatureVal("roll-deg", timeInDeciSeconds);                   // update the roll-deg.
-                        Yaw = ts.getFeatureVal("side-slip-deg", timeInDeciSeconds);               // update the side-slip-deg.
-                        Pitch = ts.getFeatureVal("pitch-deg", timeInDeciSeconds);                 // update the pitch-deg.
+                        Elevator = (ts.getFeatureVal("elevator", timeInDeciSeconds)) * 130 + 125; 
+                        Aileron = (ts.getFeatureVal("aileron", timeInDeciSeconds)) * 130 + 125;   
+                        Throttle = (getDuplicatedFaetureVal("throttle1")) * 46 + 46;             
+                        Rudder = (ts.getFeatureVal("rudder", timeInDeciSeconds)) + 46;           
+                        Height = ts.getFeatureVal("altitude-ft", timeInDeciSeconds);              
+                        FlightSpeed = ts.getFeatureVal("airspeed-kt", timeInDeciSeconds);        
+                        Direction = ts.getFeatureVal("heading-deg", timeInDeciSeconds);         
+                        Roll = ts.getFeatureVal("roll-deg", timeInDeciSeconds);                   
+                        Yaw = ts.getFeatureVal("side-slip-deg", timeInDeciSeconds);              
+                        Pitch = ts.getFeatureVal("pitch-deg", timeInDeciSeconds);    
+                        
                         if (writer.CanWrite)
                         {
-                            byte[] writeBuffer = Encoding.ASCII.GetBytes(line + "\r\n"); // start writing the given features.
+                            // start writing the given features.
+                            byte[] writeBuffer = Encoding.ASCII.GetBytes(line + "\r\n"); 
                             writer.Write(writeBuffer, 0, writeBuffer.Length);
                             writer.Flush();
                             // sending data in 10HZ
-                            int converToIntSpeed = Convert.ToInt32(100 / Speed);        // this is how we use the speed of the video
-                            Thread.Sleep(converToIntSpeed);                             // the sleep method decides the rate we produce the video.
+                            int converToIntSpeed = Convert.ToInt32(100 / Speed);    // this is how we use the speed of the video
+                            Thread.Sleep(converToIntSpeed);                         // the sleep method decides the rate we produce the video.
                         }
                         else
                         {
@@ -514,7 +527,8 @@ namespace Flight_Inspection_App
                     }
                     else
                     {
-                        while (Stop) { }; // so we wont return to the main loop while we are at pause or stop button.
+                        // not returnning to the main loop while we are at pause or stop button.
+                        while (Stop) { }; 
                     }
                 }
                 writer.Close();
@@ -525,14 +539,17 @@ namespace Flight_Inspection_App
         // return the entire flight time.
         public void UpdateFlightLen(int timeInDeci)
         {
-            int centiSecondsNum = timeInDeci * 10;              // calculation of time units.
+            // calculation of time units.
+            int centiSecondsNum = timeInDeci * 10;              
             int minutes = centiSecondsNum / (60 * 100);
             int seconds = (centiSecondsNum - (minutes * 100 * 60)) / 100;
             int centiseconds = (centiSecondsNum - (minutes * 100 * 60) - (seconds * 100));
             string minutesStr;
             string secondsStr;
             string centiSecondsStr;
-            if (minutes <= 9)       // if we start using the double digits in minutes.
+
+            // if we start using the double digits in minutes.
+            if (minutes <= 9)       
             {
                 minutesStr = "0" + minutes.ToString();
             }
@@ -540,7 +557,8 @@ namespace Flight_Inspection_App
             {
                 minutesStr = minutes.ToString();
             }
-            if (seconds <= 9)       // if we start using the double digits in seconds.
+            // if we start using the double digits in seconds.
+            if (seconds <= 9)       
             {
                 secondsStr = "0" + seconds.ToString();
             }
@@ -548,7 +566,8 @@ namespace Flight_Inspection_App
             {
                 secondsStr = seconds.ToString();
             }
-            if (centiseconds <= 9)  // if we start using the double digits in centiseconds. 
+            // if we start using the double digits in centiseconds.
+            if (centiseconds <= 9)  
             {
                 centiSecondsStr = "0" + centiseconds.ToString();
             }
@@ -563,14 +582,17 @@ namespace Flight_Inspection_App
         // this function will go to the next time sample. 
         public void UpdateTime()
         {
-            if (timeInDeciSeconds >= ts.getNumOfTimesteps())    // if the next update will go over the time samples given. 
+            // if the next update will go over the time samples given. 
+            if (timeInDeciSeconds >= ts.getNumOfTimesteps())    
             {
-                timeInDeciSeconds = ts.getNumOfTimesteps();     // set to end of flight.
+                // set to end of flight.
+                timeInDeciSeconds = ts.getNumOfTimesteps();     
                 UpdateFlightLen(timeInDeciSeconds);
             }
             else
             {
-                timeInDeciSeconds++;        // go to the next time sample.
+                // go to the next time sample.
+                timeInDeciSeconds++;        
                 UpdateFlightLen(timeInDeciSeconds);
             }
         }
@@ -581,23 +603,28 @@ namespace Flight_Inspection_App
             // if we are using the forward button.
             if (forward)
             {
-                if (timeInDeciSeconds + 10 >= ts.getNumOfTimesteps())   // if with the next second is over the time of the enntire flight.
+                // if with the next second is over the time of the entire flight.
+                if (timeInDeciSeconds + 10 >= ts.getNumOfTimesteps())   
                 {
-                    timeInDeciSeconds = ts.getNumOfTimesteps();     // set to end of flight.
+                    // set to end of flight.
+                    timeInDeciSeconds = ts.getNumOfTimesteps();     
                     UpdateFlightLen(timeInDeciSeconds);
                 }
                 else
                 {
-                    timeInDeciSeconds += 10;        // skip 1 second in the flight.
+                    // skip 1 second in the flight.
+                    timeInDeciSeconds += 10;        
                     UpdateFlightLen(timeInDeciSeconds);
                 }
             }
             // we are using the rewind button.
             else
             {
-                if (timeInDeciSeconds - 10 > 1)     // if we are not at the beginning of the flight after a press of the rewind button. 
+                // if we are not at the beginning of the flight after a press of the rewind button.
+                if (timeInDeciSeconds - 10 > 1)      
                 {
-                    timeInDeciSeconds -= 10;        // go back 1 second in the flight. 
+                    // go back 1 second in the flight. 
+                    timeInDeciSeconds -= 10;        
                     UpdateFlightLen(timeInDeciSeconds);
                 }
             }
@@ -606,32 +633,42 @@ namespace Flight_Inspection_App
         // get the entire flight length.
         public int getFlightLen()
         {
-            if (ts.FeaturesMap.Count == 0)  // if the time series isnt initialized
+            // if the time series isnt initialized
+            if (ts.FeaturesMap.Count == 0)  
             {
-                ts.initFeaturesMap(regFlightFile, settingsFile);  // initialize the time series object
+                // initialize the time series object
+                ts.initFeaturesMap(regFlightFile, settingsFile);  
             }
             return ts.getNumOfTimesteps();
         }
 
-        public void UploadReg(string name)      // uploading the reg flight file
+        // uploading the reg flight file
+        public void UploadReg(string name)      
         {
             regFlightFile = name;
         }
 
-        public float getFaetureVal(string feature)  // returning the value at the current time of the desired feature
+        // returning the value at the current time of the desired feature
+        public float getFaetureVal(string feature)  
         {
             return ts.getFeatureVal(feature, timeInDeciSeconds);
         }
 
-        public float getDuplicatedFaetureVal(string feature) // in case we have 2 features with the same name
+        // in case we have 2 features with the same name
+        public float getDuplicatedFaetureVal(string feature) 
         {
-            int isCorrect = feature.Last() - '0';       // getting the number value.
-            isCorrect--;        // adjusting to the correct index
+            // getting the number value.
+            int isCorrect = feature.Last() - '0';       
+            // adjusting to the correct index
+            isCorrect--;        
             string tempName = feature;
-            tempName = tempName.Remove(tempName.Length - 1);        // saving the feature name without the number
+            // saving the feature name without the number
+            tempName = tempName.Remove(tempName.Length - 1);        
             int count = 0;
             int realIndex = -1;
-            for (int i = 0; i < ts.getNumOfFeatures(); i++)   // finding the correct index in the features map
+
+            // finding the correct index in the features map
+            for (int i = 0; i < ts.getNumOfFeatures(); i++)   
             {
                 if (ts.getFeaturesNames()[i] == tempName && isCorrect == count)
                 {
@@ -646,14 +683,16 @@ namespace Flight_Inspection_App
             return ts.getFeatureVal(realIndex, timeInDeciSeconds);
         }
 
-        public List<DataPoint> initializeGraphPoints()          // initializing the points graph
+        // initializing the points graph
+        public List<DataPoint> initializeGraphPoints()         
         {
             List<DataPoint> pointsList = new List<DataPoint>();
             pointsList.Clear();
             return pointsList;
         }
 
-        public void getCorrelatedFeature()      //get the correlated feature
+        //get the correlated feature
+        public void getCorrelatedFeature()      
         {
             CorrelatedFeature = "";
             Line reg = null;
@@ -742,37 +781,5 @@ namespace Flight_Inspection_App
                 CorrelatedFeature = "";
             }
         }
-
-        /*
-        //dynamically loading the dll file
-        public dynamic loadDLL()
-        {
-            var DLL = Assembly.LoadFile(AlgorithmDLL);
-            className =DLL.GetName().Name;
-            dynamic c;
-            if (className == "SimpleAnomaly")
-            {
-                var class1Type = DLL.GetType("Algorithms.Sources.SimpleAnomalyDetector");
-                c = Activator.CreateInstance(class1Type);
-            }
-            else
-            {
-                var class1Type = DLL.GetType("Algorithms.Sources.HybridAnomalyDetector");
-                c = Activator.CreateInstance(class1Type);
-            }
-            return c;
-        }
-
-        /*
-        public void UpdateAnomaly()
-        {
-            anomalyPoint.Clear();
-            anomalyPoint.Add(PointsBottomGraph.Last());
-            if(className == "SimpleAnomaly")
-            {
-
-            }
-        }
-        */
     }
 }

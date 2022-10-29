@@ -6,7 +6,7 @@ namespace Flight_Inspection_App.HelperClasses
 {
     public class AnomalyDetectionUtil
     {
-
+        // Average Calculation
         public static float Avg(float[] x , int size)
         {
             float sum = 0;
@@ -14,6 +14,7 @@ namespace Flight_Inspection_App.HelperClasses
             return sum / size;
         }
 
+        // Variance Calculation
         public static float Var(float[] x, int size)
         {
             float av = Avg(x, size);
@@ -25,6 +26,7 @@ namespace Flight_Inspection_App.HelperClasses
             return sum / size - av * av;
         }
 
+        // Covariane Calculation
         public static float Cov(float[] x, float[] y, int size)
         {
             float sum = 0;
@@ -37,11 +39,13 @@ namespace Flight_Inspection_App.HelperClasses
             return sum - Avg(x, size) * Avg(y, size);
         }
 
+        // Pearson Calculation
         public static float Pearson(float[] x, float[] y, int size)
         {
             return (float)(Cov(x, y, size) / (Math.Sqrt(Var(x, size)) * (Math.Sqrt(Var(y , size)))));
         }
 
+        // Linear Regression Calculation
         public static Line LinearReg(Point[] points, int size)
         {
             float[] x = new float[size];
@@ -57,10 +61,13 @@ namespace Flight_Inspection_App.HelperClasses
             return new Line(a, b);
         }
 
+        // returns the deviation between point p and the line equation of the points
         public static float Dev(Point p, Line l)
         {
             return Math.Abs(p.y - l.f(p.x));
         }
+
+        // returns the deviation between point p and the line
         public float Dev(Point p, Point[] points, int size)
         {
             Line l = LinearReg(points, size);

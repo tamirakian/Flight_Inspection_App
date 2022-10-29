@@ -12,7 +12,7 @@ namespace Flight_Inspection_App.HelperClasses
 
         public SimpleAnomalyDetector()
         {
-            this.threshold = (float)0.9;
+            this.threshold = Constants.SIMPLE_DETECTOR_TRESHOLD;
             cf = new List<correlatedFeatures>();
         }
 
@@ -38,15 +38,19 @@ namespace Flight_Inspection_App.HelperClasses
             return max;
         }
 
-        public void LearnHelper( TimeSeries ts,float p/*pearson*/,string f1, string f2, Point[] ps)
+        public void LearnHelper( TimeSeries ts, float p/*pearson*/, string f1, string f2, Point[] ps)
         {
 	        if(p>threshold)
             {
 		        int len = ts.getNumOfTimesteps();
-                correlatedFeatures c = new correlatedFeatures(f1 , f2 , p , AnomalyDetectionUtil.LinearReg(ps , len) ,findThreshold(ps, len, AnomalyDetectionUtil.LinearReg(ps, len)) * (float)1.1);
+                Line linearRegLine = AnomalyDetectionUtil.LinearReg(ps, len);
+                float featuresThreshold = findThreshold(ps, len, linearRegLine) * (float)1.1
+                correlatedFeatures c = new correlatedFeatures(f1 , f2 , p , linearRegLine, featuresThreshold);
 		        cf.Add(c);
 	        }
         }
+
+        // Learn a normal flight data
         public List<correlatedFeatures> LearnNormal(TimeSeries ts)
         {
             List<string> atts = ts.getFeaturesNames();
@@ -68,20 +72,22 @@ namespace Flight_Inspection_App.HelperClasses
                 int jmax = 0;
                 for (int j = i + 1; j < atts.Count; j++)
                 {
+                    // Get values of the 2 features
                     float[] valFeatureI = Enumerable.Range(0, vals.GetLength(1))
                     .Select(x => vals[i, x])
                     .ToArray();
                     float[] valFeatureJ = Enumerable.Range(0, vals.GetLength(1))
-                .Select(x => vals[j , x])
-                .ToArray();
+                    .Select(x => vals[j , x])
+                    .ToArray();
                     float retVal = AnomalyDetectionUtil.Pearson(valFeatureI, valFeatureJ, len);
-                    float p = Math.Abs(AnomalyDetectionUtil.Pearson(valFeatureI, valFeatureJ, len));
+                    float p = Math.Abs(retVal);
                     if (p > max)
                     {
                         max = p;
                         jmax = j;
                     }
                 }
+                // feature 2 name
                 string f2 = atts[jmax];
                 Point[] ps = toPoints(ts.getAllFeatureValues(f1), ts.getAllFeatureValues(f2));
 
@@ -90,6 +96,7 @@ namespace Flight_Inspection_App.HelperClasses
             return cf;
         }
 
+        // This function recognizes if the deviation between two features is larger then the threshold and updates the anomaly report
         public void UpdateAnomaly(List<AnomalyReport> ar , Point p , correlatedFeatures cor , int timeStepIndex , string f1 , string f2)
         {
             if(AnomalyDetectionUtil.Dev(p , cor.LineReg) > cor.Threshhold)
@@ -100,6 +107,8 @@ namespace Flight_Inspection_App.HelperClasses
                 ar.Add(rep);
             }
         }
+
+        // Detecting anomalies
         public List<AnomalyReport> Detect(TimeSeries ts)
         {
             List<AnomalyReport> v = new List<AnomalyReport>();
@@ -116,6 +125,7 @@ namespace Flight_Inspection_App.HelperClasses
             }
             return v;
         }
+
         public float Threshold
         {
             get

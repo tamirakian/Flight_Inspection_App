@@ -15,9 +15,7 @@ using System.Net.Sockets;
 
 namespace Flight_Inspection_App.WindowObjects
 {
-    /// <summary>
     /// Interaction logic for UploadFileWindow.xaml
-    /// </summary>
     public partial class UploadFileWindow : Window
     {
         private Microsoft.Win32.OpenFileDialog dlg;

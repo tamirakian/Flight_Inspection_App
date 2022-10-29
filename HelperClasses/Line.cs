@@ -15,6 +15,7 @@ namespace Flight_Inspection_App.HelperClasses
             a = 0;
             b = 0;
         }
+
         public Line(float a, float b)
         {
             this.a = a;

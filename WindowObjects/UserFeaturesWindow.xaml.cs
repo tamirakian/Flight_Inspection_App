@@ -10,9 +10,7 @@ using Flight_Inspection_App.ViewModels;
 
 namespace Flight_Inspection_App.WindowObjects
 {
-    /// <summary>
     /// Interaction logic for UserFeaturesWindow.xaml
-    /// </summary>
     public partial class UserFeaturesWindow : Window
     {
         private FlightSimulatorViewModel fsView;
